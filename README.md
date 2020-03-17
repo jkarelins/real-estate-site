@@ -8,11 +8,14 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 - React
 - Redux
 - Redux-Thunk
-- Github
+- http://github.com
+  [GitHub](http://github.com)
 - Express
 - PostgresQL
 
-# User roles
+#
+
+## User roles
 
 Admin
 -full site management, adds management & user management -> admin panel
@@ -33,7 +36,7 @@ Buyer of RE
 -get contacts email / phone number of seller
 -see all details of advertisement
 
-# Advertisements
+## Advertisements
 
 Sell
 -Flat
@@ -46,7 +49,7 @@ For Rent
 -House
 -Garage/Storage
 
-# Calendar to view Real Estate - make appointment
+## Calendar to view Real Estate - make appointment
 
 -Fill form
 -Client & company receives e-mails
@@ -56,7 +59,7 @@ For Rent
 
 # Datastructure for db:
 
-# Advertisement
+## Advertisement
 
 isForSale: Boolean,
 isForRent: Boolean,
@@ -87,7 +90,7 @@ city view/nature view / cannal view
 air conditioner
 bath
 
-# User
+## User
 
 username: TEXT,
 password: TEXT,
@@ -102,7 +105,7 @@ isREAgent: Boolean,
 isDevCompany: Boolean,
 isPrivatePerson: Boolean,
 
-# Calendar
+## Calendar
 
 Used to make a new appointment:
 
