@@ -17,18 +17,24 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ## User roles
 
-Admin
--full site management, adds management & user management -> admin panel
+Admin:
+-full site management
+-adds management
+-user management
+-access to admin panel
 
-Real Estate agency
+Real Estate agency  
 -Can add multiple adds
 -can have multiple accounts for real estate agents
 
 Development Company
--Can add news / Can publish New Projects
+-Can add news
+-Can publish New Projects
 
 Seller of one RE
--can sell or rent one RE for free each month, also can edit existing advertisement, but can not change adress
+-can sell or rent one RE for free each month
+-also can edit existing advertisement
+-can not change adress
 
 Buyer of RE
 -can find all real estates
