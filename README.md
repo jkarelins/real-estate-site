@@ -15,38 +15,19 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 # Basic Design mockups for project
 
-### ![Image of Single advertisement page](https://github.com/jkarelins/real-estate-site/blob/master/images/One_Advertisement_page.png?raw=true)
+#### Image of Single advertisement page
 
-### ![Image of Search Page](https://github.com/jkarelins/real-estate-site/blob/master/images/Search_page.png?raw=true)
+![Image of Single advertisement page](https://github.com/jkarelins/real-estate-site/blob/master/images/One_Advertisement_page.png?raw=true)
 
-### ![Top Visited Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/Top_rated_real_estate.png?raw=true)
+#### Image of Search Page
+
+![Image of Search Page](https://github.com/jkarelins/real-estate-site/blob/master/images/Search_page.png?raw=true)
+
+#### Top Visited Advertisements
+
+![Top Visited Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/Top_rated_real_estate.png?raw=true)
 
 ## User roles
-
-Admin:
--full site management
--adds management
--user management
--access to admin panel
-
-Real Estate agency  
--Can add multiple adds
--can have multiple accounts for real estate agents
-
-Development Company
--Can add news
--Can publish New Projects
-
-Seller of one RE
--can sell or rent one RE for free each month
--also can edit existing advertisement
--can not change adress
-
-Buyer of RE
--can find all real estates
--make appointment to view
--get contacts email / phone number of seller
--see all details of advertisement
 
 ## Advertisements
 
