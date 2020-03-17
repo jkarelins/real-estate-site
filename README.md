@@ -116,3 +116,7 @@ Each calendar event has:
 -customer Email
 -canceledByCustomer: Boolean
 -canceledBySeller: Boolean
+
+# Abbreviations
+
+RE - real estate
