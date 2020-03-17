@@ -35,22 +35,22 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 #### Sell
 
--Flat
--House
--Garage/Storage
--New Projects
+- Flat
+- House
+- Garage/Storage
+- New Projects
 
 #### For Rent
 
--Flat
--House
--Garage/Storage
+- Flat
+- House
+- Garage/Storage
 
 ## Calendar to view Real Estate - make appointment
 
--Fill form
--Client & company receives e-mails
--If Company confirm appointment -> customer receive second email
+- Fill form
+- Client & company receives e-mails
+- If Company confirm appointment -> customer receive second email
 
 ---
 
