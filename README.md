@@ -33,13 +33,15 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ## Advertisements
 
-Sell
+#### Sell
+
 -Flat
 -House
 -Garage/Storage
 -New Projects
 
-For Rent
+#### For Rent
+
 -Flat
 -House
 -Garage/Storage
@@ -52,7 +54,7 @@ For Rent
 
 ---
 
-# Datastructure for db:
+# Datastructure for db
 
 ## Advertisement
 
