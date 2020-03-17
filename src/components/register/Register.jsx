@@ -4,8 +4,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const initialState = {
+  username: "",
   email: "",
-  password: ""
+  password: "",
+  repeatPassword: "",
+  role: "",
+  showPrivateMenu: false
 };
 
 class SignUpForm extends Component {
@@ -24,6 +28,12 @@ class SignUpForm extends Component {
     });
   };
 
+  showPrivPersMenu = () => {
+    this.setState({
+      showPrivateMenu: true
+    });
+  };
+
   render() {
     return (
       <Fragment>
@@ -39,15 +49,67 @@ class SignUpForm extends Component {
                     name="username"
                     placeholder="Username"
                     className="form-control"
-                    value={this.state.email}
+                    value={this.state.username}
                     onChange={e => this.handleChange(e)}
+                    required
                   />
                   <small className="form-text text-muted">
                     Choose username for your account
                   </small>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="username">Password</label>
+                  <label htmlFor="email">Your Email</label>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={e => this.handleChange(e)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <button type="button" onClick={this.showPrivPersMenu}>
+                    I am Private person
+                  </button>
+                  <button type="button">Company Representative</button>
+
+                  {this.state.showPrivateMenu ? (
+                    <div>
+                      <label>
+                        I want sell property
+                        <input type="radio" name="agencyManager" />
+                      </label>
+                      <label>
+                        I want buy property
+                        <input type="radio" name="agencyManager" />
+                      </label>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {/* <label htmlFor="selectAccountType">
+                    Select Account type you want to register:
+                  </label>
+                  <label>
+                    Private Person selling property
+                    <input type="radio" name="agencyManager" />
+                  </label>
+                  <label>
+                    I want to buy property
+                    <input type="radio" name="agencyManager" />
+                  </label>
+                  <label>
+                    Real Estate Agency Manager
+                    <input type="radio" name="agencyManager" />
+                  </label>
+                  <label>
+                    Real Estate Agency Agent
+                    <input type="radio" name="agencyManager" />
+                  </label> */}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
                   <input
                     type="password"
                     name="password"
@@ -55,6 +117,22 @@ class SignUpForm extends Component {
                     className="form-control"
                     value={this.state.password}
                     onChange={e => this.handleChange(e)}
+                    required
+                  />
+                  <small className="form-text text-muted">
+                    Choose password for your account
+                  </small>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="repeatPassword">Repeat Password</label>
+                  <input
+                    type="password"
+                    name="repeatPassword"
+                    placeholder="Repeat Password"
+                    className="form-control"
+                    value={this.state.repeatPassword}
+                    onChange={e => this.handleChange(e)}
+                    required
                   />
                   <small className="form-text text-muted">
                     Choose password for your account
