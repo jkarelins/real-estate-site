@@ -1,68 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+What's this project is all about
 
-## Available Scripts
+Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
+Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill form to make online appointment request.
 
-In the project directory, you can run:
+Technologies Used
 
-### `yarn start`
+- React
+- Redux
+- Redux-Thunk
+- Github
+- Express
+- PostgresQL
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Users
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Admin
+-full site management, adds management & user management -> admin panel
 
-### `yarn test`
+Real Estate agency
+-Can add multiple adds
+-can have multiple accounts for real estate agents
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Development Company
+-Can add news / Can publish New Projects
 
-### `yarn build`
+Seller of one RE
+-can sell or rent one RE for free each month, also can edit existing advertisement, but can not change adress
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Buyer of RE
+-can find all real estates
+-make appointment to view
+-get contacts email / phone number of seller
+-see all details of advertisement
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Advertisements
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Sell
+-Flat
+-House
+-Garage/Storage
+-New Projects
 
-### `yarn eject`
+For Rent
+-Flat
+-House
+-Garage/Storage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Calendar to view Real Estate - make appointment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-Fill form
+-Client & company receives e-mails
+-If Company confirm appointment -> customer receive second email
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Datastructure for db:
 
-## Learn More
+# Advertisement
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+isForSale: Boolean,
+isForRent: Boolean,
+realEstateType: TEXT - can select from categories
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+adress
+postcode
+city
+price
+Year of construction
+year of last renovation
+Living space
+Number of rooms/bedrooms/bathrooms
+description
+Status: Available/sold
+Energy label
+Heating
+Warm water - Boiler/central
+Location Description
+Garden - optional
+Type of parking
 
-### Code Splitting
+Extras(especially for rent):
+e.g.:
+optical internet
+free parking
+city view/nature view / cannal view
+air conditioner
+bath
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# User
 
-### Analyzing the Bundle Size
+username: TEXT,
+password: TEXT,
+email: TEXT,
+phoneNumber: Text,
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+-Roles
+isAdmin: Boolean,
+isREAgency: Boolean,
+isREManager: Boolean,
+isREAgent: Boolean,
+isDevCompany: Boolean,
+isPrivatePerson: Boolean,
 
-### Making a Progressive Web App
+# Calendar
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Used to make a new appointment:
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Each calendar event has:
+-hasOne Customer
+-hasOne Seller
+-date: Date
+-time: time
+-message: TEXT
+-customer PhoneNumber
+-customer Email
+-canceledByCustomer: Boolean
+-canceledBySeller: Boolean
