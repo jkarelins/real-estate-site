@@ -1,9 +1,9 @@
-What's this project is all about
+# What's this project is about
 
 Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
 Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill form to make online appointment request.
 
-Technologies Used
+# Technologies Used
 
 - React
 - Redux
@@ -12,7 +12,7 @@ Technologies Used
 - Express
 - PostgresQL
 
-# Users
+# User roles
 
 Admin
 -full site management, adds management & user management -> admin panel
@@ -54,7 +54,7 @@ For Rent
 
 ---
 
-2. Datastructure for db:
+# Datastructure for db:
 
 # Advertisement
 
