@@ -5,13 +5,13 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 # Technologies Used
 
-- React
-- Redux
-- Redux-Thunk
-- http://github.com
-  [GitHub](http://github.com)
-- Express
-- PostgresQL
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+- [GitHub](http://github.com)
+- [Express](https://expressjs.com/)
+- [PostgresQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
 
 #
 
