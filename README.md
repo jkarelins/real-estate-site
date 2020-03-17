@@ -13,7 +13,13 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 - [PostgresQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/)
 
-#
+# Basic Design mockups for project
+
+### ![Image of Single advertisement page](https://github.com/jkarelins/real-estate-site/blob/master/images/One_Advertisement_page.png?raw=true)
+
+### ![Image of Search Page](https://github.com/jkarelins/real-estate-site/blob/master/images/Search_page.png?raw=true)
+
+### ![Top Visited Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/Top_rated_real_estate.png?raw=true)
 
 ## User roles
 
