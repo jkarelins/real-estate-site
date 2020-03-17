@@ -29,7 +29,7 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ## User roles
 
-![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/user-roles.png?raw=true)
+![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/user-roles-updated.png?raw=true)
 
 ## Advertisements
 
