@@ -31,7 +31,7 @@ const advertsFetchSuccess = adverts => ({
 
 export const fetchEvents = page => dispatch => {
   axios
-    .get(`${baseUrl}/event/all?offset=${page}`)
+    .get(`${baseUrl}/advert/all?offset=${page}`)
     .then(response => {
       dispatch(advertsFetchSuccess(response));
     })
