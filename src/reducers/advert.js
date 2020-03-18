@@ -28,6 +28,12 @@ export default function eventReducer(state = initialState, action) {
         advertsCount: count
       };
     }
+    case "FETCH_ONE_ADVERT": {
+      return {
+        ...state,
+        selectedAdvert: action.advert
+      };
+    }
     default: {
       return state;
     }

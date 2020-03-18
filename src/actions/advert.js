@@ -3,6 +3,7 @@ const baseUrl = "http://localhost:4000";
 
 const CREATE_NEW_ADVERT = "CREATE_NEW_ADVERT";
 const FETCH_ALL_ADVERTS = "FETCH_ALL_ADVERTS";
+const FETCH_ONE_ADVERT = "FETCH_ONE_ADVERT";
 
 const advertCreateSuccess = advert => ({
   type: CREATE_NEW_ADVERT,
@@ -29,11 +30,25 @@ const advertsFetchSuccess = adverts => ({
   adverts
 });
 
-export const fetchEvents = page => dispatch => {
+export const fetchAdverts = page => dispatch => {
   axios
     .get(`${baseUrl}/advert/all?offset=${page}`)
     .then(response => {
       dispatch(advertsFetchSuccess(response));
+    })
+    .catch(console.error);
+};
+
+const advertFetchSuccess = advert => ({
+  type: FETCH_ONE_ADVERT,
+  advert
+});
+
+export const fetchAdvert = id => dispatch => {
+  axios
+    .get(`${baseUrl}/advert/${id}`)
+    .then(res => {
+      dispatch(advertFetchSuccess(res.data));
     })
     .catch(console.error);
 };
