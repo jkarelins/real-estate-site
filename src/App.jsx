@@ -7,6 +7,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import UserPage from "./components/userpage/UserPage";
 import MainPage from "./components/mainpage/MainPage";
+import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/user" component={UserPage} />
+          <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
