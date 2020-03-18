@@ -13,7 +13,6 @@ class LoginForm extends Component {
 
   login = e => {
     e.preventDefault();
-    console.log(this.state);
     this.props.loginUser(this.state);
     this.setState(initialState);
   };
