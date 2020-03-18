@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import Login from "./components/login/Login";
-
 import store from "./store";
+
+import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import UserPage from "./components/userpage/UserPage";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/user" component={UserPage} />
         </Switch>
       </Provider>
     );

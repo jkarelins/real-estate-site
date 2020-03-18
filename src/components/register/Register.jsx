@@ -26,11 +26,10 @@ class SignUpForm extends Component {
         error: "Please select account type you want create"
       });
     }
-    if (!this.state.password || this.state.password.length <= 8) {
+    if (!this.state.password || this.state.password.length < 8) {
       return this.setState({
         ...this.state,
-        error:
-          "Input a valid password. Password should be longer then 8 symbols"
+        error: "Password should be 8 symbols long or more"
       });
     }
     if (this.state.password !== this.state.repeatPassword) {
@@ -47,7 +46,7 @@ class SignUpForm extends Component {
   canSignUp = () => {
     this.props.createUser(this.state);
     this.setState(initialState);
-    this.props.history.push("/");
+    this.props.history.push("/user");
   };
 
   handleChange = e => {
