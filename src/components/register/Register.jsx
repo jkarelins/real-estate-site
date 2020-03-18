@@ -12,7 +12,9 @@ const initialState = {
   role: "",
   showPrivateMenu: false,
   showCompanyMenu: false,
-  error: ""
+  error: "",
+  companyName: "",
+  kvkNumber: 0
 };
 
 class SignUpForm extends Component {
@@ -155,6 +157,39 @@ class SignUpForm extends Component {
                           onChange={this.handleRadioButton}
                         />
                       </label>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {this.state.role === "agencyAgent" ? (
+                    <div className="form-group">
+                      <label htmlFor="companyName">Agency Name</label>
+                      <input
+                        type="text"
+                        name="companyName"
+                        placeholder="Company Name"
+                        className="form-control"
+                        value={this.state.companyName}
+                        onChange={e => this.handleChange(e)}
+                        required
+                      />
+                      <small className="form-text text-muted">
+                        Start typing your company name and select one from list.
+                      </small>
+                    </div>
+                  ) : this.state.role === "agencyManager" ? (
+                    <div className="form-group">
+                      <label htmlFor="companyName">Agency Name</label>
+                      <input
+                        type="text"
+                        name="companyName"
+                        placeholder="Company Name"
+                        className="form-control"
+                        value={this.state.companyName}
+                        onChange={e => this.handleChange(e)}
+                        required
+                      />
                     </div>
                   ) : (
                     ""
