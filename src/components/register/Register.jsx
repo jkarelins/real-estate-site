@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { createUser } from "../../actions/user";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const initialState = {
   username: "",
@@ -14,6 +15,8 @@ const initialState = {
   showCompanyMenu: false,
   error: "",
   companyName: "",
+  companyArr: [],
+  companySelected: false,
   kvkNumber: 0
 };
 
@@ -79,6 +82,27 @@ class SignUpForm extends Component {
       showPrivateMenu: false,
       showCompanyMenu: true,
       role: ""
+    });
+  };
+
+  searchAgency = () => {
+    axios
+      .get(`http://localhost:4000/agency/findby?name=${this.state.companyName}`)
+      .then(res => {
+        this.setState({
+          ...this.state,
+          companyArr: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  selectCompany = companyName => {
+    this.setState({
+      ...this.state,
+      companyArr: [],
+      companySelected: true,
+      companyName
     });
   };
 
@@ -174,9 +198,31 @@ class SignUpForm extends Component {
                         onChange={e => this.handleChange(e)}
                         required
                       />
-                      <small className="form-text text-muted">
-                        Start typing your company name and select one from list.
-                      </small>
+                      <button type="button" onClick={this.searchAgency}>
+                        Search
+                      </button>
+                      {this.state.companyArr.length !== 0 ? (
+                        <ul>
+                          {this.state.companyArr.map((company, i) => (
+                            <li
+                              key={i}
+                              onClick={() => this.selectCompany(company.name)}
+                            >
+                              {company.name}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : this.state.companySelected ? (
+                        ""
+                      ) : (
+                        <small>
+                          <ol>
+                            <li>Input keyword to search for company</li>
+                            <li>Press Search</li>
+                            <li>Select your company name from list</li>
+                          </ol>
+                        </small>
+                      )}
                     </div>
                   ) : this.state.role === "agencyManager" ? (
                     <div className="form-group">
