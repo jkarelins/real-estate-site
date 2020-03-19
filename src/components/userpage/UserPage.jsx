@@ -18,33 +18,45 @@ class UserPage extends Component {
         </div>
       );
     } else {
-      switch (this.props.user.user.role) {
-        case "agencyAgent": {
-          return (
-            <div>
-              <AgentPage />
-              <AddNewAdvert />
-            </div>
-          );
+      if (this.props.user.user) {
+        if (this.props.user.justRegistered) {
+          return <h4>Thank you for registration.</h4>;
+        } else {
+          switch (this.props.user.user.role) {
+            case "agencyAgent": {
+              return (
+                <div>
+                  <AgentPage />
+                  <AddNewAdvert />
+                </div>
+              );
+            }
+            case "agencyManager": {
+              return (
+                <div>
+                  <ManagerPage />
+                  <AddNewAdvert />
+                </div>
+              );
+            }
+            case "privatePerson": {
+              return (
+                <div>
+                  <PrivatePersPage />
+                  <AddNewAdvert />
+                </div>
+              );
+            }
+            default:
+              return (
+                <h1>
+                  Something went wrong try log out, and log in one more time.
+                </h1>
+              );
+          }
         }
-        case "agencyManager": {
-          return (
-            <div>
-              <ManagerPage />
-              <AddNewAdvert />
-            </div>
-          );
-        }
-        case "privatePerson": {
-          return (
-            <div>
-              <PrivatePersPage />
-              <AddNewAdvert />
-            </div>
-          );
-        }
-        default:
-          return <h1>Hello</h1>;
+      } else {
+        return <h4>Loading...</h4>;
       }
     }
   }
