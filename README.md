@@ -33,6 +33,8 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ## Advertisements
 
+![Advertisement data structure](https://github.com/jkarelins/real-estate-site/blob/master/images/advert-data-table.png?raw=true)
+
 #### Sell
 
 - Flat
