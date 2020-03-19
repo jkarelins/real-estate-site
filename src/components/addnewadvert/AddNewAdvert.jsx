@@ -32,6 +32,7 @@ class AddNewAdvert extends Component {
             value={this.state.description}
             onChange={this.handleChange}
             placeholder="Description"
+            required
           />
           <input
             type="text"
@@ -39,6 +40,7 @@ class AddNewAdvert extends Component {
             value={this.state.postcode}
             onChange={this.handleChange}
             placeholder="Postcode"
+            required
           />
           <input type="submit" value="Add New" />
         </form>

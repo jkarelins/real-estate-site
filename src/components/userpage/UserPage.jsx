@@ -34,7 +34,6 @@ class UserPage extends Component {
               return (
                 <div>
                   <ManagerPage />
-                  <AddNewAdvert />
                 </div>
               );
             }
