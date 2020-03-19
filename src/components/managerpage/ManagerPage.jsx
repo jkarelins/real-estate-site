@@ -4,6 +4,7 @@ import { addAdverts } from "../../actions/user";
 import { getAgencyAgents, toggleAgentAcc } from "../../actions/advert";
 import ManagersList from "./ManagersList";
 import TopUpAgencyBalance from "./TopUpAgencyBalance";
+import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 
 const initialState = {
   addExtra: 0
@@ -44,6 +45,7 @@ class ManagerPage extends Component {
           Welcome back: {this.props.user.email} - you are loged in as manager of
           "{this.props.user.agency.name}" company
         </h4>
+        <AddNewAdvert />
         <p>
           {this.props.user.freeAdvertLimit !== 0
             ? `Thank you for registration. You can paste ${this.props.user.freeAdvertLimit} free advertisements`
