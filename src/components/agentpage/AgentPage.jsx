@@ -1,22 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 
 class AgentPage extends Component {
   render() {
     if (this.props.user) {
-      return (
-        <div>
-          <h4>
-            Welcome back: {this.props.user.email} - you are loged in as agent of
-            "{this.props.user.agency.name}" company
-          </h4>
-          <p>
-            {!this.props.user.agencyConfirmedByManager
-              ? "Your profile is not confirmed yet. Contact your manager"
-              : "Your account is confirmed, you can use it"}
-          </p>
-        </div>
-      );
+      if (!this.props.user.agentConfirmedByManager) {
+        return <h4>Sorry. Your account is suspended by your manager.</h4>;
+      } else {
+        return (
+          <div>
+            <h4>
+              Welcome back: {this.props.user.email} - you are loged in as agent
+              of "{this.props.user.agency.name}" company
+            </h4>
+            {!this.props.user.agentConfirmedByManager ? (
+              "Your profile is not confirmed yet. Contact your manager"
+            ) : (
+              <Fragment>
+                "Your account is confirmed by manager"
+                <AddNewAdvert />
+              </Fragment>
+            )}
+          </div>
+        );
+      }
     }
   }
 }

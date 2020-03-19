@@ -43,6 +43,18 @@ export default function eventReducer(state = initialState, action) {
         agencyAgents
       };
     }
+    case "TOGGLE_AGENT_CONFIRMATION": {
+      const agencyAgents = state.agencyAgents.map(agent => {
+        if (agent.id === action.agent.id) {
+          return { ...action.agent };
+        }
+        return agent;
+      });
+      return {
+        ...state,
+        agencyAgents
+      };
+    }
     default: {
       return state;
     }

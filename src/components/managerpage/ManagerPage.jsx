@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAgencyAgents } from "../../actions/advert";
+import { getAgencyAgents, toggleAgentAcc } from "../../actions/advert";
+import ManagersList from "./ManagersList";
 
 class ManagerPage extends Component {
   componentDidMount() {
@@ -8,17 +9,12 @@ class ManagerPage extends Component {
       this.props.getAgencyAgents();
     }
   }
+
+  toggleAccount = (agentId, action) => {
+    this.props.toggleAgentAcc(agentId, action);
+  };
+
   render() {
-    const managersList = this.props.agents
-      ? this.props.agents.length !== 0
-        ? this.props.agents.map((agent, i) => (
-            <p key={i}>
-              {agent.username} - {agent.email}
-              {agent.isVe}
-            </p>
-          ))
-        : "Sorry, you have no managers yet."
-      : "Something went wrong";
     return (
       <div>
         <h4>
@@ -26,7 +22,10 @@ class ManagerPage extends Component {
           "{this.props.user.agency.name}" company
         </h4>
         <p>Your agency agents:</p>
-        {managersList}
+        <ManagersList
+          agents={this.props.agents}
+          toggleAccount={this.toggleAccount}
+        />
       </div>
     );
   }
@@ -39,4 +38,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getAgencyAgents })(ManagerPage);
+export default connect(mapStateToProps, { getAgencyAgents, toggleAgentAcc })(
+  ManagerPage
+);

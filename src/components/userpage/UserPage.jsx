@@ -27,7 +27,6 @@ class UserPage extends Component {
               return (
                 <div>
                   <AgentPage />
-                  <AddNewAdvert />
                 </div>
               );
             }

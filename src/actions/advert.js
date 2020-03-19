@@ -5,6 +5,7 @@ const CREATE_NEW_ADVERT = "CREATE_NEW_ADVERT";
 const FETCH_ALL_ADVERTS = "FETCH_ALL_ADVERTS";
 const FETCH_ONE_ADVERT = "FETCH_ONE_ADVERT";
 const GET_AGENCY_AGENTS = "GET_AGENCY_AGENTS";
+const TOGGLE_AGENT_CONFIRMATION = "TOGGLE_AGENT_CONFIRMATION";
 
 const advertCreateSuccess = advert => ({
   type: CREATE_NEW_ADVERT,
@@ -70,4 +71,23 @@ export const getAgencyAgents = () => (dispatch, getState) => {
       dispatch(gotAgencyAgents(response.data));
     })
     .catch(console.error);
+};
+
+const toggleAgentSuccess = agent => ({
+  type: TOGGLE_AGENT_CONFIRMATION,
+  agent
+});
+
+export const toggleAgentAcc = (id, action) => (dispatch, getState) => {
+  const { userReducer } = getState();
+  const { jwt } = userReducer;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+  axios
+    .get(`${baseUrl}/agency/agent/${id}?action=${action}`)
+    .then(response => {
+      console.log(response);
+      dispatch(toggleAgentSuccess(response.data));
+    })
+    .catch(err => console.log(err));
 };
