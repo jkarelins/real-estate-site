@@ -5,6 +5,7 @@ const FETCH_USER_TICKETS = "FETCH_USER_TICKETS";
 const LOG_OUT_USER = "LOG_OUT_USER";
 const USER_ACTION_ERROR = "USER_ACTION_ERROR";
 const CLEAR_ERRORS = "CLEAR_ERRORS";
+const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
 
 const baseUrl = "http://localhost:4000";
 
@@ -68,4 +69,22 @@ const userLogOutSuccess = () => ({
 
 export const logMeOut = () => dispatch => {
   dispatch(userLogOutSuccess());
+};
+
+const creditAddSuccess = user => ({
+  type: ADD_EXTRA_ADVERTS,
+  user
+});
+
+export const addAdverts = data => (dispatch, getState) => {
+  const { userReducer } = getState();
+  const { jwt } = userReducer;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+  axios
+    .post(`${baseUrl}/user/addcredits`, { ...data })
+    .then(response => {
+      dispatch(creditAddSuccess(response.data));
+    })
+    .catch(console.error);
 };
