@@ -5,7 +5,6 @@ class PrivatePersPage extends Component {
   render() {
     return (
       <div>
-        hello
         <h4>
           Welcome back: {this.props.user.email} - you are loged in as private
           person.

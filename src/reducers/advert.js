@@ -34,6 +34,15 @@ export default function eventReducer(state = initialState, action) {
         selectedAdvert: action.advert
       };
     }
+    case "GET_AGENCY_AGENTS": {
+      const agencyAgents = action.agency.users.filter(
+        agent => agent.role === "agencyAgent"
+      );
+      return {
+        ...state,
+        agencyAgents
+      };
+    }
     default: {
       return state;
     }
