@@ -11,6 +11,12 @@ export default function userReducer(state = initialState, action) {
     case "LOG_OUT_USER": {
       return initialState;
     }
+    case "ADD_EXTRA_ADVERTS": {
+      return {
+        ...state,
+        user: { ...state.user, paidAdvertLimit: action.user.paidAdvertLimit }
+      };
+    }
     default: {
       return state;
     }
