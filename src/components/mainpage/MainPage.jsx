@@ -19,15 +19,12 @@ class MainPage extends Component {
     } else {
       return (
         <div>
-          <h4>Main page is here</h4>
           {this.props.allAdverts.map((advert, i) => (
-            <div>
-              <p key={i}>
-                <Link to={`/advert/${advert.id}`}>
-                  {advert.description} -> {advert.postcode}
-                </Link>
-              </p>
-            </div>
+            <p key={i}>
+              <Link to={`/advert/${advert.id}`}>
+                {advert.description} -> {advert.postcode}
+              </Link>
+            </p>
           ))}
         </div>
       );

@@ -17,6 +17,16 @@ export default function userReducer(state = initialState, action) {
         user: { ...state.user, paidAdvertLimit: action.user.paidAdvertLimit }
       };
     }
+    case "CREATE_NEW_ADVERT": {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          paidAdvertLimit: action.user.paidAdvertLimit,
+          freeAdvertLimit: action.user.freeAdvertLimit
+        }
+      };
+    }
     default: {
       return state;
     }

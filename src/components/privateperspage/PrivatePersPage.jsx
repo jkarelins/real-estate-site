@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addAdverts } from "../../actions/user";
+import UserHasNoCredits from "./UserHasNoCredits";
+import UserHasCredits from "./UserHasCredits";
 
 const initialState = {
   addExtra: 0
@@ -25,37 +27,28 @@ class PrivatePersPage extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <h4>
-          Welcome back: {this.props.user.username} - you are loged in as private
-          person.
-        </h4>
-        <p>As private person you can publish 1 free advertisement monthly.</p>
-        <p>
-          You can publish more {this.props.user.freeAdvertLimit} free
-          advertisement.
-        </p>
-        <p>
-          You also have {this.props.user.paidAdvertLimit} paid advertisement
-          limit.
-        </p>
-        <form onSubmit={e => this.addAdverts(e)}>
-          <label htmlFor="addAdverts">
-            Buy more advertisements
-            <input
-              type="number"
-              min="1"
-              max="20"
-              name="addExtra"
-              value={this.state.addExtra}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Add" />
-        </form>
-      </div>
-    );
+    if (
+      this.props.user.paidAdvertLimit === 0 &&
+      this.props.user.freeAdvertLimit === 0
+    ) {
+      return (
+        <UserHasNoCredits
+          user={this.props.user}
+          addAdverts={this.addAdverts}
+          handleChange={this.handleChange}
+          addExtra={this.state.addExtra}
+        />
+      );
+    } else {
+      return (
+        <UserHasCredits
+          user={this.props.user}
+          addAdverts={this.addAdverts}
+          handleChange={this.handleChange}
+          addExtra={this.state.addExtra}
+        />
+      );
+    }
   }
 }
 

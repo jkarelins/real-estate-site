@@ -9,7 +9,8 @@ const TOGGLE_AGENT_CONFIRMATION = "TOGGLE_AGENT_CONFIRMATION";
 
 const advertCreateSuccess = advert => ({
   type: CREATE_NEW_ADVERT,
-  advert
+  advert: { ...advert.newAdvert },
+  user: { ...advert.user }
 });
 
 export const createAdvert = data => (dispatch, getState) => {
