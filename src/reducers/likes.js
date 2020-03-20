@@ -24,6 +24,12 @@ export default function eventReducer(state = initialState, action) {
         )
       };
     }
+    case "GET_USER_FAVORITES": {
+      return {
+        ...state,
+        userFavorites: action.likes
+      };
+    }
     default: {
       return state;
     }
