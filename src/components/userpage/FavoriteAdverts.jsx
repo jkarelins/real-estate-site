@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { getFavorites } from "../../actions/likes";
 
 class FavoriteAdverts extends Component {
@@ -14,21 +16,30 @@ class FavoriteAdverts extends Component {
       return <h4>Please Login first.</h4>;
     } else {
       if (!this.props.favorites) {
-        return (
-          <div>
-            <h4>You have not any favorite advertisements yet</h4>
-          </div>
-        );
+        return <h4>Loading...</h4>;
       } else {
-        return (
-          <div>
-            <ul>
-              {this.props.favorites.map((likedAdvert, i) => (
-                <li key={i}>{likedAdvert.advert.postcode}</li>
-              ))}
-            </ul>
-          </div>
-        );
+        if (this.props.favorites.length === 0) {
+          return (
+            <div>
+              <h4>You have not added favorite advertisements yet</h4>
+            </div>
+          );
+        } else {
+          console.log(this.props.favorites);
+          return (
+            <div>
+              <ul>
+                {this.props.favorites.map((likedAdvert, i) => (
+                  <li key={i}>
+                    <Link to={`/advert/${likedAdvert.advertId}`}>
+                      {likedAdvert.advert.postcode}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
       }
     }
   }
