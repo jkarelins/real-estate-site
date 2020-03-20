@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
+import AddAppointment from "./AddAppointment";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -31,6 +32,17 @@ class SelectedAdvert extends Component {
           ) : (
             ""
           )}
+          <div>
+            {this.props.user ? (
+              this.props.user.user.id !== this.props.advert.userId ? (
+                <AddAppointment />
+              ) : (
+                ""
+              )
+            ) : (
+              <AddAppointment />
+            )}
+          </div>
         </div>
       );
     }
