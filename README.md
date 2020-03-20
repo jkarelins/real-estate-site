@@ -27,13 +27,7 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ![Top Visited Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/Top_rated_real_estate.png?raw=true)
 
-## User roles
-
-![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/user-roles-updated.png?raw=true)
-
 ## Advertisements
-
-![Advertisement data structure](https://github.com/jkarelins/real-estate-site/blob/master/images/advert-data-table.png?raw=true)
 
 #### Sell
 
@@ -58,28 +52,30 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 # Datastructure for db
 
-## Advertisement
+#### Advertisement
 
-isForSale: Boolean,
-isForRent: Boolean,
-realEstateType: TEXT - can select from categories
+![Advertisement data structure](https://github.com/jkarelins/real-estate-site/blob/master/images/advert-data-table.png?raw=true)
 
-adress
-postcode
-city
-price
-Year of construction
-year of last renovation
-Living space
-Number of rooms/bedrooms/bathrooms
-description
-Status: Available/sold
-Energy label
-Heating
-Warm water - Boiler/central
-Location Description
-Garden - optional
-Type of parking
+-isForSale: Boolean,
+-isForRent: Boolean,
+-realEstateType: TEXT - can select from categories
+
+-adress
+-postcode
+-city
+-price
+-Year of construction
+-year of last renovation
+-Living space
+-Number of rooms/bedrooms/bathrooms
+-description
+-Status: Available/sold
+-Energy label
+-Heating
+-Warm water - Boiler/central
+-Location Description
+-Garden - optional
+-Type of parking
 
 Extras(especially for rent):
 e.g.:
@@ -96,13 +92,9 @@ password: TEXT,
 email: TEXT,
 phoneNumber: Text,
 
--Roles
-isAdmin: Boolean,
-isREAgency: Boolean,
-isREManager: Boolean,
-isREAgent: Boolean,
-isDevCompany: Boolean,
-isPrivatePerson: Boolean,
+#### User roles
+
+![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/user-roles-updated.png?raw=true)
 
 ## Calendar
 
