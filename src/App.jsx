@@ -8,6 +8,7 @@ import Register from "./components/register/Register";
 import UserPage from "./components/userpage/UserPage";
 import MainPage from "./components/mainpage/MainPage";
 import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
+import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 
 class App extends Component {
   render() {
@@ -18,7 +19,10 @@ class App extends Component {
         <br />
         <Link to="/login">Login</Link> <br />
         <Link to="/register">Register</Link>
+        <br />
+        <Link to="/favorites">My Favorite Adverts</Link>
         <Switch>
+          <Route path="/favorites" component={FavoriteAdverts} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/user" component={UserPage} />
