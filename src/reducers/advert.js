@@ -50,9 +50,16 @@ export default function eventReducer(state = initialState, action) {
         }
         return agent;
       });
+
       return {
         ...state,
         agencyAgents
+      };
+    }
+    case "GET_MY_ADVERTS": {
+      return {
+        ...state,
+        myAdverts: [...action.adverts]
       };
     }
     default: {
