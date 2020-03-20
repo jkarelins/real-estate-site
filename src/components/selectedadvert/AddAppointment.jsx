@@ -20,24 +20,21 @@ export default class AddAppointment extends Component {
 
   onTimeChange = time => this.setState({ ...this.state, time });
 
+  submitAppointment = e => {
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div>
         <h5>New appointment</h5>
-        <form>
+        <form onSubmit={e => this.submitAppointment}>
           <input
             type="date"
             name="date"
             value={this.state.date}
             onChange={this.handleChange}
           />
-          {/* <input
-            type="time"
-            step="900"
-            name="time"
-            value={this.state.time}
-            onChange={this.handleChange}
-          /> */}
           <TimePicker onChange={this.onTimeChange} value={this.state.time} />
           <br />
           <input
@@ -71,6 +68,7 @@ export default class AddAppointment extends Component {
             onChange={this.handleChange}
           />
           <br />
+          <input type="submit" value="New Appointment" />
         </form>
       </div>
     );
