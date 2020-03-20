@@ -16,6 +16,14 @@ export default function eventReducer(state = initialState, action) {
         likedAdverts: [...state.likedAdverts, action.liked]
       };
     }
+    case "DISLIKE_ADVERT": {
+      return {
+        ...state,
+        likedAdverts: state.likedAdverts.filter(
+          advert => advert.id !== action.advertId
+        )
+      };
+    }
     default: {
       return state;
     }

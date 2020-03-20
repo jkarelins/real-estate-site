@@ -18,18 +18,13 @@ class SelectedAdvert extends Component {
     if (!this.props.advert) {
       return <h1>Sorry this advert is not found</h1>;
     } else {
-      // const chekIfLiked = this.props.liked.find(
-      //   advert => advert.advertId === this.props.advert.id
-      // );
-      // console.log(chekIfLiked);
-
       return (
         <div>
           <h1>{this.props.advert.postcode}</h1>
           <p>{this.props.advert.description}</p>
           {this.props.user ? (
             this.props.liked ? (
-              ""
+              <button onClick={this.likeAdvert}>DisLike</button>
             ) : (
               <button onClick={this.likeAdvert}>Like</button>
             )
