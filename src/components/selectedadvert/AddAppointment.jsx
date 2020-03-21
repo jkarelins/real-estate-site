@@ -3,11 +3,12 @@ import TimePicker from "react-time-picker";
 
 const initialState = {
   date: "",
-  time: "12:00",
   email: "",
   phone: "",
   name: "",
-  text: ""
+  text: "",
+  hours: 0,
+  minutes: 0
 };
 export default class AddAppointment extends Component {
   state = initialState;
@@ -16,6 +17,7 @@ export default class AddAppointment extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state);
   };
 
   onTimeChange = time => this.setState({ ...this.state, time });
@@ -35,8 +37,11 @@ export default class AddAppointment extends Component {
             value={this.state.date}
             onChange={this.handleChange}
           />
-          <TimePicker onChange={this.onTimeChange} value={this.state.time} />
           <br />
+          <select name="hours" onChange={this.handleChange}>
+            <option value="0">0</option>
+            <option value="1">1</option>
+          </select>
           <input
             type="email"
             name="email"
