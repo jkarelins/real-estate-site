@@ -2,12 +2,16 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
+import { checkAppointment } from "../../actions/appointment";
 import AddAppointment from "./AddAppointment";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchAdvert(id);
+    if (this.props.user) {
+      this.props.checkAppointment();
+    }
   }
 
   likeAdvert = () => {
@@ -32,7 +36,11 @@ class SelectedAdvert extends Component {
         <div>
           {this.props.user ? (
             this.props.user.user.id !== this.props.advert.userId ? (
-              <AddAppointment />
+              this.props.isAppointment ? (
+                <h4>you have created appointment for this advertisement</h4>
+              ) : (
+                <AddAppointment />
+              )
             ) : (
               ""
             )
@@ -99,7 +107,10 @@ function mapStateToProps(state) {
       myAdverts: state.advertReducer.myAdverts,
       liked: state.likeReducer.likedAdverts.find(
         advert => advert.advertId === state.advertReducer.selectedAdvert.id
-      )
+      ),
+      isAppointment: state.appointmentReducer.checkedAppointment
+        ? state.appointmentReducer.checkedAppointment.found
+        : true
     };
   }
   return {
@@ -107,6 +118,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchAdvert, likeAdvert })(
-  SelectedAdvert
-);
+export default connect(mapStateToProps, {
+  fetchAdvert,
+  likeAdvert,
+  checkAppointment
+})(SelectedAdvert);

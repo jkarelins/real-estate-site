@@ -4,16 +4,12 @@ const initialState = {
 
 export default function eventReducer(state = initialState, action) {
   switch (action.type) {
-    // case "NEW_APPOINTMENT": {
-    //   return {
-    //     ...state,
-    //     appointments: [
-    //       ...state.appointments,
-    //       { ...action.appointment.appointment }
-    //     ],
-    //     randomAddress: action.appointment.randomAddress
-    //   };
-    // }
+    case "NEW_APPOINTMENT": {
+      return {
+        ...state,
+        checkedAppointment: { found: true }
+      };
+    }
     case "GET_ONE_APPOINTMENT": {
       return {
         ...state,
@@ -33,10 +29,15 @@ export default function eventReducer(state = initialState, action) {
         }
         return appointment;
       });
-
       return {
         ...state,
         appointments
+      };
+    }
+    case "CHECK_APPOINTMENT": {
+      return {
+        ...state,
+        checkedAppointment: action.appointment
       };
     }
     default: {
