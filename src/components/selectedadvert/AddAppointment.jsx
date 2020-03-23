@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TimePicker from "react-time-picker";
 
 const initialState = {
   date: "",
@@ -10,6 +9,7 @@ const initialState = {
   hours: 0,
   minutes: 0
 };
+
 export default class AddAppointment extends Component {
   state = initialState;
 
@@ -17,13 +17,21 @@ export default class AddAppointment extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
 
   onTimeChange = time => this.setState({ ...this.state, time });
 
   submitAppointment = e => {
     e.preventDefault();
+  };
+
+  getHours = max => {
+    const hours = [...Array(max).keys()];
+    return hours.map(hour => (
+      <option value={hour} key={hour}>
+        {hour}
+      </option>
+    ));
   };
 
   render() {
@@ -38,10 +46,21 @@ export default class AddAppointment extends Component {
             onChange={this.handleChange}
           />
           <br />
+          <label htmlFor="hours">Hours:</label>
           <select name="hours" onChange={this.handleChange}>
-            <option value="0">0</option>
-            <option value="1">1</option>
+            {this.getHours(24)}
           </select>
+          <label htmlFor="minutes">
+            {" "}
+            :{" "}
+            <select name="minutes" onChange={this.handleChange}>
+              <option value="0">0</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
+            </select>
+            minutes
+          </label>
           <input
             type="email"
             name="email"
