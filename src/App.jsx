@@ -11,6 +11,7 @@ import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import ShowAppointment from "./components/appointment/ShowAppointment";
+import MyAppointments from "./components/appointment/MyAppointments";
 
 class App extends Component {
   render() {
@@ -25,6 +26,8 @@ class App extends Component {
         <Link to="/favorites">My Favorite Adverts</Link>
         <br />
         <Link to="/myadverts">My Adverts</Link>
+        <br />
+        <Link to="/appointment">My Appointments</Link>
         <Switch>
           <Route path="/myadverts" component={MyAdverts} />
           <Route path="/favorites" component={FavoriteAdverts} />
@@ -33,6 +36,7 @@ class App extends Component {
           <Route path="/user" component={UserPage} />
           <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/appointment/:randAddress" component={ShowAppointment} />
+          <Route path="/appointment" exact component={MyAppointments} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>

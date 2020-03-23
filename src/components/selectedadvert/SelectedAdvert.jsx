@@ -37,7 +37,7 @@ class SelectedAdvert extends Component {
               ""
             )
           ) : (
-            <AddAppointment />
+            "Please login first"
           )}
         </div>
       </div>

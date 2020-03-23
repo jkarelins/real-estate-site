@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { createNewAppointment } from "../../actions/appointment";
 import { Fragment } from "react";
 
@@ -46,16 +45,6 @@ class AddAppointment extends Component {
       return (
         <Fragment>
           <h4>Thank you, your appointment request was sent.</h4>
-          {this.props.appCreated ? (
-            <div>
-              Please save link to see your appointment status later:{" "}
-              <Link to={`/appointment/${this.props.randomAddress}`}>
-                Appointment Link
-              </Link>
-            </div>
-          ) : (
-            ""
-          )}
         </Fragment>
       );
     } else {
@@ -68,6 +57,7 @@ class AddAppointment extends Component {
               name="date"
               value={this.state.date}
               onChange={this.handleChange}
+              required
             />
             <br />
             <label htmlFor="hours">Hours:</label>
@@ -91,6 +81,7 @@ class AddAppointment extends Component {
               placeholder="email"
               value={this.state.email}
               onChange={this.handleChange}
+              required
             />
             <br />
             <input
@@ -99,6 +90,7 @@ class AddAppointment extends Component {
               placeholder="phone nr."
               value={this.state.phone}
               onChange={this.handleChange}
+              required
             />
             <br />
             <input
@@ -107,6 +99,7 @@ class AddAppointment extends Component {
               placeholder="Name"
               value={this.state.name}
               onChange={this.handleChange}
+              required
             />
             <br />
             <textarea
@@ -114,6 +107,7 @@ class AddAppointment extends Component {
               placeholder="Message"
               value={this.state.text}
               onChange={this.handleChange}
+              required
             />
             <br />
             <input type="submit" value="New Appointment" />
@@ -129,8 +123,7 @@ function mapStateToProps(state) {
     appCreated: state.appointmentReducer.appointments.some(
       appointment =>
         appointment.advertId === state.advertReducer.selectedAdvert.id
-    ),
-    randomAddress: state.appointmentReducer.randomAddress
+    )
   };
 }
 
