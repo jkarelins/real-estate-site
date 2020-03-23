@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { createNewAppointment } from "../../actions/appointment";
+import { Fragment } from "react";
 
 const initialState = {
   date: "",
@@ -41,7 +43,21 @@ class AddAppointment extends Component {
 
   render() {
     if (this.props.appCreated) {
-      return <h4>Thank you, your appointment request was sent.</h4>;
+      return (
+        <Fragment>
+          <h4>Thank you, your appointment request was sent.</h4>
+          {this.props.appCreated ? (
+            <div>
+              Please save link to see your appointment status later:{" "}
+              <Link to={`/appointment/${this.props.randomAddress}`}>
+                Appointment Link
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
+        </Fragment>
+      );
     } else {
       return (
         <div>
@@ -113,7 +129,8 @@ function mapStateToProps(state) {
     appCreated: state.appointmentReducer.appointments.some(
       appointment =>
         appointment.advertId === state.advertReducer.selectedAdvert.id
-    )
+    ),
+    randomAddress: state.appointmentReducer.randomAddress
   };
 }
 

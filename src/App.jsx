@@ -10,6 +10,7 @@ import MainPage from "./components/mainpage/MainPage";
 import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
+import ShowAppointment from "./components/appointment/ShowAppointment";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/user" component={UserPage} />
           <Route path="/advert/:id" component={SelectedAdvert} />
+          <Route path="/appointment/:randAddress" component={ShowAppointment} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
