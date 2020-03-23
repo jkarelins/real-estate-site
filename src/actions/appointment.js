@@ -4,6 +4,7 @@ const baseUrl = "http://localhost:4000";
 const NEW_APPOINTMENT = "NEW_APPOINTMENT";
 const GET_ONE_APPOINTMENT = "GET_ONE_APPOINTMENT";
 const GET_APPOINTMENTS = "GET_APPOINTMENTS";
+const CANCEL_APPOINTMENT = "CANCEL_APPOINTMENT";
 
 const appointmentCreateSuccess = appointment => ({
   type: NEW_APPOINTMENT,
@@ -60,9 +61,8 @@ export const getAppointments = () => (dispatch, getState) => {
     .catch(console.error);
 };
 
-// ___________________________________________________________________
 const appointmentCanceled = appointment => ({
-  type: NEW_APPOINTMENT,
+  type: CANCEL_APPOINTMENT,
   appointment
 });
 
@@ -72,11 +72,10 @@ export const cancelAppointment = id => (dispatch, getState) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
   axios
-    .delete(`${baseUrl}/appointment/${id}`)
+    .put(`${baseUrl}/appointment/${id}`)
 
     .then(response => {
-      console.log(response);
-      // dispatch(appointmentCreateSuccess(response.data));
+      dispatch(appointmentCanceled(response.data));
     })
     .catch(console.error);
 };
