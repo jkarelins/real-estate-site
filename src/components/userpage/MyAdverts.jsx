@@ -26,7 +26,6 @@ class FavoriteAdverts extends Component {
             </div>
           );
         } else {
-          console.log(this.props.userAdverts);
           return (
             <div>
               <ul>
