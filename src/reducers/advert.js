@@ -29,6 +29,7 @@ export default function eventReducer(state = initialState, action) {
       };
     }
     case "FETCH_ONE_ADVERT": {
+      console.log(action.advert.advert_extras);
       return {
         ...state,
         selectedAdvert: action.advert
@@ -71,6 +72,30 @@ export default function eventReducer(state = initialState, action) {
             ...state.selectedAdvert.advert_images,
             { image: { ...action.image } }
           ]
+        }
+      };
+    }
+    case "ONE_EXTRA_ADDED": {
+      return {
+        ...state,
+        selectedAdvert: {
+          ...state.selectedAdvert,
+          advert_extras: [
+            ...state.selectedAdvert.advert_extras,
+            { extraId: action.extra.id, extra: action.extra }
+          ]
+        }
+      };
+    }
+    case "ONE_EXTRA_REMOVED": {
+      const advert_extras = state.selectedAdvert.advert_extras.filter(
+        advertCon => advertCon.extraId !== action.extra.id
+      );
+      return {
+        ...state,
+        selectedAdvert: {
+          ...state.selectedAdvert,
+          advert_extras
         }
       };
     }

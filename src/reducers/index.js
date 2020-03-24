@@ -5,6 +5,7 @@ import advertReducer from "./advert";
 import likeReducer from "./likes";
 import appointmentReducer from "./appointment";
 import imageReducer from "./image";
+import extraReducer from "./extra";
 
 export default combineReducers({
   userReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   advertReducer,
   likeReducer,
   appointmentReducer,
-  imageReducer
+  imageReducer,
+  extraReducer
 });

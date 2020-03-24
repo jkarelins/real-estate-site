@@ -6,6 +6,7 @@ import { checkAppointment } from "../../actions/appointment";
 import AddAppointment from "./AddAppointment";
 import ImagesUpload from "../image/ImagesUpload";
 import ImageGallery from "../image/ImageGallery";
+import AdvertExtras from "../extras/AdvertExtras";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ class SelectedAdvert extends Component {
         )}
 
         <ImageGallery advert={this.props.advert} />
+        <AdvertExtras advert={this.props.advert} myAdvert={false} />
 
         <div>
           {this.props.user ? (
@@ -73,6 +75,7 @@ class SelectedAdvert extends Component {
             <h4>{mySelectedAdvert.address}</h4>
             <h5>{mySelectedAdvert.postcode}</h5>
             <ImageGallery advert={this.props.advert} />
+            <AdvertExtras advert={this.props.advert} myAdvert={true} />
 
             <h6>Appointments:</h6>
             {mySelectedAdvert.advert_appointments.map(appCon => {
