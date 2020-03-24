@@ -29,7 +29,6 @@ export default function eventReducer(state = initialState, action) {
       };
     }
     case "FETCH_ONE_ADVERT": {
-      console.log(action.advert.advert_extras);
       return {
         ...state,
         selectedAdvert: action.advert
@@ -72,6 +71,18 @@ export default function eventReducer(state = initialState, action) {
             ...state.selectedAdvert.advert_images,
             { image: { ...action.image } }
           ]
+        }
+      };
+    }
+    case "DELETE_ONE_IMAGE": {
+      const advert_images = state.selectedAdvert.advert_images.filter(
+        image => image.imageId !== action.image.id
+      );
+      return {
+        ...state,
+        selectedAdvert: {
+          ...state.selectedAdvert,
+          advert_images
         }
       };
     }

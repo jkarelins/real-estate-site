@@ -37,7 +37,7 @@ class SelectedAdvert extends Component {
           ""
         )}
 
-        <ImageGallery advert={this.props.advert} />
+        <ImageGallery advert={this.props.advert} myAdvert={false} />
         <AdvertExtras advert={this.props.advert} myAdvert={false} />
 
         <div>
@@ -74,7 +74,7 @@ class SelectedAdvert extends Component {
             <ImagesUpload />
             <h4>{mySelectedAdvert.address}</h4>
             <h5>{mySelectedAdvert.postcode}</h5>
-            <ImageGallery advert={this.props.advert} />
+            <ImageGallery advert={this.props.advert} myAdvert={true} />
             <AdvertExtras advert={this.props.advert} myAdvert={true} />
 
             <h6>Appointments:</h6>
