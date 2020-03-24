@@ -4,12 +4,14 @@ import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
 import { checkAppointment } from "../../actions/appointment";
 import AddAppointment from "./AddAppointment";
+import ImagesUpload from "../image/ImagesUpload";
+import ImageGallery from "../image/ImageGallery";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchAdvert(id);
-    if (this.props.user) {
+    if (this.props.user && this.props.advert) {
       this.props.checkAppointment();
     }
   }
@@ -33,6 +35,9 @@ class SelectedAdvert extends Component {
         ) : (
           ""
         )}
+
+        <ImageGallery advert={this.props.advert} />
+
         <div>
           {this.props.user ? (
             this.props.user.user.id !== this.props.advert.userId ? (
@@ -64,8 +69,11 @@ class SelectedAdvert extends Component {
 
         return (
           <Fragment>
+            <ImagesUpload />
             <h4>{mySelectedAdvert.address}</h4>
             <h5>{mySelectedAdvert.postcode}</h5>
+            <ImageGallery advert={this.props.advert} />
+
             <h6>Appointments:</h6>
             {mySelectedAdvert.advert_appointments.map(appCon => {
               if (appCon) {

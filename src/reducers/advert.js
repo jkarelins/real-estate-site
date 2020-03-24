@@ -62,6 +62,18 @@ export default function eventReducer(state = initialState, action) {
         myAdverts: [...action.adverts]
       };
     }
+    case "ADD_NEW_IMAGE": {
+      return {
+        ...state,
+        selectedAdvert: {
+          ...state.selectedAdvert,
+          advert_images: [
+            ...state.selectedAdvert.advert_images,
+            { image: { ...action.image } }
+          ]
+        }
+      };
+    }
     default: {
       return state;
     }

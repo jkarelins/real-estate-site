@@ -4,11 +4,13 @@ import errorReducer from "./error";
 import advertReducer from "./advert";
 import likeReducer from "./likes";
 import appointmentReducer from "./appointment";
+import imageReducer from "./image";
 
 export default combineReducers({
   userReducer,
   errorReducer,
   advertReducer,
   likeReducer,
-  appointmentReducer
+  appointmentReducer,
+  imageReducer
 });
