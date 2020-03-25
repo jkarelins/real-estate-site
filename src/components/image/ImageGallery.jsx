@@ -29,7 +29,6 @@ class ImageGallery extends Component {
   };
 
   render() {
-    // console.log(this.props.advert.advert_images);
     if (this.props.myAdvert) {
       return (
         <div>

@@ -69,7 +69,7 @@ export default function eventReducer(state = initialState, action) {
           ...state.selectedAdvert,
           advert_images: [
             ...state.selectedAdvert.advert_images,
-            { image: { ...action.image } }
+            { image: { ...action.image }, imageId: action.image.id }
           ]
         }
       };
