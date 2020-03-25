@@ -1,25 +1,46 @@
 import React, { Component } from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import Leaflet from "leaflet";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
-const position = [51.505, -0.09];
-const map = (
-  <Map center={position} zoom={13}>
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    />
-    <Marker position={position}>
-      <Popup>
-        A pretty CSS3 popup.
-        <br />
-        Easily customizable.
-      </Popup>
-    </Marker>
-  </Map>
-);
+Leaflet.Icon.Default.imagePath = "../node_modules/leaflet";
 
-export default class ViewMap extends Component {
+delete Leaflet.Icon.Default.prototype._getIconUrl;
+
+Leaflet.Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+});
+
+export default class MapDisplay extends Component {
+  state = {
+    lat: 52.3932325,
+    lng: 4.6426905,
+    zoom: 20
+  };
+
   render() {
-    return <div>{map}</div>;
+    if (this.props.lat && this.props.lon) {
+      const position = [this.props.lat, this.props.lon];
+
+      return (
+        <Map
+          center={position}
+          zoom={this.state.zoom}
+          style={{ height: "400px" }}
+        >
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position}>
+            <Popup>Son Konum</Popup>
+          </Marker>
+        </Map>
+      );
+    } else {
+      return <h4>Loading...</h4>;
+    }
   }
 }

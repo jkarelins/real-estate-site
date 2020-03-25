@@ -7,6 +7,7 @@ import AddAppointment from "./AddAppointment";
 import ImagesUpload from "../image/ImagesUpload";
 import ImageGallery from "../image/ImageGallery";
 import AdvertExtras from "../extras/AdvertExtras";
+import ViewMap from "../map/ViewMap";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -55,6 +56,7 @@ class SelectedAdvert extends Component {
             "Please login first"
           )}
         </div>
+        <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
       </div>
     );
   };
