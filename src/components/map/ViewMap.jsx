@@ -31,6 +31,7 @@ export default class MapDisplay extends Component {
   state = initialState;
 
   componentDidMount = async () => {
+    // IF NETWORK LAG IS GROWING, MAYBE YOU NEED TO INCREASE TIME IN TIMER
     await timeOut(2000).then(() => {
       this.setState({
         ...this.state,

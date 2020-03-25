@@ -12,7 +12,15 @@ import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import ShowAppointment from "./components/appointment/ShowAppointment";
 import MyAppointments from "./components/appointment/MyAppointments";
-import ViewMap from "./components/map/ViewMap";
+// import Pay from "./components/pay/Pay";
+import CheckoutForm from "./components/pay/CheckoutForm";
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe("pk_test_pdg00O8tdW99El1V9yrNQrRE00GeePoRWx");
 
 class App extends Component {
   render() {
@@ -38,7 +46,9 @@ class App extends Component {
           <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/appointment/:randAddress" component={ShowAppointment} />
           <Route path="/appointment" exact component={MyAppointments} />
-          <Route path="/map" component={ViewMap} />
+          <Elements stripe={stripePromise}>
+            <Route path="/pay" component={CheckoutForm} />
+          </Elements>
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
