@@ -71,20 +71,7 @@ export const logMeOut = () => dispatch => {
   dispatch(userLogOutSuccess());
 };
 
-const creditAddSuccess = user => ({
+export const creditAddSuccess = user => ({
   type: ADD_EXTRA_ADVERTS,
   user
 });
-
-export const addAdverts = data => (dispatch, getState) => {
-  const { userReducer } = getState();
-  const { jwt } = userReducer;
-  axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
-
-  axios
-    .post(`${baseUrl}/user/addcredits`, { ...data })
-    .then(response => {
-      dispatch(creditAddSuccess(response.data));
-    })
-    .catch(console.error);
-};

@@ -37,6 +37,8 @@ class App extends Component {
         <Link to="/myadverts">My Adverts</Link>
         <br />
         <Link to="/appointment">My Appointments</Link>
+        <br />
+        <Link to="pay">Top Up my account</Link>
         <Switch>
           <Route path="/myadverts" component={MyAdverts} />
           <Route path="/favorites" component={FavoriteAdverts} />
@@ -49,6 +51,8 @@ class App extends Component {
           <Elements stripe={stripePromise}>
             <Route path="/pay" component={CheckoutForm} />
           </Elements>
+          {/* <Route path="/pay" component={Pay} /> */}
+
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>

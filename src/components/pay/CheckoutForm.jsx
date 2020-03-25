@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { useStore, useDispatch } from "react-redux";
+import { creditAddSuccess } from "../../actions/user";
 
 import CardSection from "./CardSection";
 
@@ -12,15 +14,15 @@ const state = {
 };
 
 export default function CheckoutForm() {
+  const { userReducer } = useStore().getState();
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
 
   const handleSubmit = async event => {
     event.preventDefault();
 
     if (!stripe || !elements || !state.foundUserId) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -28,7 +30,7 @@ export default function CheckoutForm() {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: "Jenny Rosen"
+          name: userReducer.user.email
         }
       }
     });
@@ -39,66 +41,48 @@ export default function CheckoutForm() {
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === "succeeded") {
+        const { jwt } = userReducer;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
         axios
-          .post("http://localhost:4000/payment/confirmed", { ...result })
+          .post(`http://localhost:4000/user/addcredits`, { ...result })
           .then(res => {
-            console.log(res);
+            dispatch(creditAddSuccess(res.data));
+            state.requested = false;
+            state.foundUserId = false;
           })
           .catch(console.error);
-        console.log(result);
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
       }
     }
   };
 
   useEffect(() => {
-    if (!state.amountInCents) {
-      state.amountInCents = 1000;
-    } else if (!state.requested) {
-      state.requested = true;
-      axios
-        .get(`http://localhost:4000/payment/${state.amountInCents}`)
-        .then(res => {
-          // console.log(res.data);
-          state.userId = res.data.client_secret;
-          state.foundUserId = true;
-        })
-        .catch(console.error);
+    if (userReducer) {
+      if (!state.amountInCents) {
+        state.amountInCents = 1000;
+      } else if (!state.requested) {
+        state.requested = true;
+        const { jwt } = userReducer;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+        axios
+          .get(`http://localhost:4000/payment/${state.amountInCents}`)
+          .then(res => {
+            // console.log(res.data);
+            state.userId = res.data.client_secret;
+            state.foundUserId = true;
+          })
+          .catch(console.error);
+      }
     }
   });
 
-  return (
+  return userReducer ? (
     <form onSubmit={handleSubmit}>
       <CardSection />
       <button disabled={!stripe}>Confirm order</button>
     </form>
+  ) : (
+    "Sorry to TopUp your account, you should login first"
   );
 }
-
-// {
-//   paymentIntent: id: "pi_1GQdg0KdV0217vKMluG1zsFm";
-//   object: "payment_intent";
-//   amount: 1000;
-//   canceled_at: null;
-//   cancellation_reason: null;
-//   capture_method: "automatic";
-//   client_secret: "pi_1GQdg0KdV0217vKMluG1zsFm_secret_kelVtnrbN3XzninfspqLr9SXR";
-//   confirmation_method: "automatic";
-//   created: 1585159804;
-//   currency: "eur";
-//   description: null;
-//   last_payment_error: null;
-//   livemode: false;
-//   next_action: null;
-//   payment_method: "pm_1GQdgNKdV0217vKMEzCdyF2M";
-//   payment_method_types: ["card"];
-//   receipt_email: null;
-//   setup_future_usage: null;
-//   shipping: null;
-//   source: null;
-//   status: "succeeded";
-// }

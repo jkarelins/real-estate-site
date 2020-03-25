@@ -6,10 +6,18 @@ import {
   ElementsConsumer
 } from "@stripe/react-stripe-js";
 import "./pay.css";
+import axios from "axios";
+const baseUrl = "http://localhost:4000";
 
-const stripePromise = loadStripe("pk_test_pdg00O8tdW99El1V9yrNQrRE00GeePoRWx");
+// const stripePromise = loadStripe("pk_test_pdg00O8tdW99El1V9yrNQrRE00GeePoRWx");
+let stripePromise = null;
 
 class CheckoutForm extends React.Component {
+  state = {
+    stripePromise: null,
+    keyReceived: false
+  };
+
   handleSubmit = async event => {
     event.preventDefault();
     const { stripe, elements } = this.props;
@@ -25,8 +33,24 @@ class CheckoutForm extends React.Component {
     }
   };
 
+  componentDidMount = () => {
+    const amountInCents = 1000;
+    axios
+      .get(`${baseUrl}/payment/${amountInCents}`)
+      .then(res => {
+        stripePromise = loadStripe(res.data.client_secret);
+      })
+      .catch(console.error);
+  };
+
+  // componentDidUpdate = () => {
+  //   if(this.state.keyReceived){
+  //     this.setState()
+  //   }
+  // }
   render() {
     const { stripe } = this.props;
+    console.log(this.props);
     return (
       <form onSubmit={this.handleSubmit}>
         <CardElement />
