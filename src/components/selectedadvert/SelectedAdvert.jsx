@@ -101,6 +101,9 @@ class SelectedAdvert extends Component {
                 return <h4>Sorry no appointments found</h4>;
               }
             })}
+            <hr />
+            <h4>Map</h4>
+            <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
           </Fragment>
         );
       } else {
