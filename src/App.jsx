@@ -12,7 +12,7 @@ import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import ShowAppointment from "./components/appointment/ShowAppointment";
 import MyAppointments from "./components/appointment/MyAppointments";
-// import Images from "./components/Images";
+import ViewMap from "./components/map/ViewMap";
 
 class App extends Component {
   render() {
@@ -38,7 +38,7 @@ class App extends Component {
           <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/appointment/:randAddress" component={ShowAppointment} />
           <Route path="/appointment" exact component={MyAppointments} />
-          {/* <Route path="/images" component={Images} /> */}
+          <Route path="/map" component={ViewMap} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
