@@ -31,7 +31,6 @@ class ManagerPage extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // console.log(prevProps);
     if (
       prevProps.user.agency.advertBalance !==
       this.props.user.agency.advertBalance
