@@ -13,17 +13,35 @@ Leaflet.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png")
 });
 
+const initialState = {
+  zoom: 20,
+  updated: false
+};
+
+//TIMER TO PREVENT NEW PROPS RECEIVING LAG
+const timeOut = async t => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Completed in ${t}`);
+    }, t);
+  });
+};
+
 export default class MapDisplay extends Component {
-  state = {
-    lat: 52.3932325,
-    lng: 4.6426905,
-    zoom: 20
+  state = initialState;
+
+  componentDidMount = async () => {
+    await timeOut(2000).then(() => {
+      this.setState({
+        ...this.state,
+        updated: true
+      });
+    });
   };
 
   render() {
-    if (this.props.lat && this.props.lon) {
+    if (this.state.updated) {
       const position = [this.props.lat, this.props.lon];
-
       return (
         <Map
           center={position}
@@ -40,7 +58,7 @@ export default class MapDisplay extends Component {
         </Map>
       );
     } else {
-      return <h4>Loading...</h4>;
+      return <h4>Loading Map. Please wait.</h4>;
     }
   }
 }
