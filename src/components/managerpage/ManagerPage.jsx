@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addAdverts } from "../../actions/user";
 import { getAgencyAgents, toggleAgentAcc } from "../../actions/advert";
 import ManagersList from "./ManagersList";
-import TopUpAgencyBalance from "./TopUpAgencyBalance";
 import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 
 const initialState = {
@@ -21,15 +19,6 @@ class ManagerPage extends Component {
 
   toggleAccount = (agentId, action) => {
     this.props.toggleAgentAcc(agentId, action);
-  };
-
-  addAdverts = e => {
-    e.preventDefault();
-    const data = {
-      addExtra: this.state.addExtra
-    };
-    this.props.addAdverts(data);
-    this.setState(initialState);
   };
 
   handleChange = e => {
@@ -55,12 +44,6 @@ class ManagerPage extends Component {
           Your agency balance is {this.props.user.agency.advertBalance}{" "}
           advertisements
         </p>
-        <TopUpAgencyBalance
-          user={this.props.user}
-          addAdverts={this.addAdverts}
-          handleChange={this.handleChange}
-          addExtra={this.state.addExtra}
-        />
         <p>Your agency agents:</p>
         <ManagersList
           agents={this.props.agents}
@@ -80,6 +63,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getAgencyAgents,
-  toggleAgentAcc,
-  addAdverts
+  toggleAgentAcc
 })(ManagerPage);

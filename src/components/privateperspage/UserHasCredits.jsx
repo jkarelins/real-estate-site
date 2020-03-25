@@ -18,20 +18,6 @@ export default class UserHasCredits extends Component {
             You also have {this.props.user.paidAdvertLimit} paid advertisement
             limit.
           </p>
-          <form onSubmit={e => this.props.addAdverts(e)}>
-            <label htmlFor="addAdverts">
-              Buy more advertisements
-              <input
-                type="number"
-                min="1"
-                max="20"
-                name="addExtra"
-                value={this.props.addExtra}
-                onChange={this.props.handleChange}
-              />
-            </label>
-            <input type="submit" value="Add" />
-          </form>
         </Fragment>
       );
     } else {
