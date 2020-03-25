@@ -14,6 +14,7 @@ class ImagesUpload extends Component {
   };
 
   uploadImage = () => {
+    if (!this.state.selectedFile) return;
     let fd = new FormData();
     fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
     this.props.uploadImage(fd);
