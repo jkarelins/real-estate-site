@@ -11,6 +11,7 @@ import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import MyAppointments from "./components/appointment/MyAppointments";
+import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
   render() {
