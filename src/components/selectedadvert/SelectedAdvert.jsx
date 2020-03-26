@@ -80,10 +80,10 @@ class SelectedAdvert extends Component {
             <AdvertExtras advert={this.props.advert} myAdvert={true} />
 
             <h6>Appointments:</h6>
-            {mySelectedAdvert.advert_appointments.map(appCon => {
+            {mySelectedAdvert.advert_appointments.map((appCon, i) => {
               if (appCon) {
                 return (
-                  <div>
+                  <div key={i}>
                     <p>
                       Date: {appCon.appointment.date}, time{" "}
                       {appCon.appointment.hours}:{appCon.appointment.minutes}{" "}

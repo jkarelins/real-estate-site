@@ -18,26 +18,32 @@ const initialState = {
   updated: false
 };
 
-//TIMER TO PREVENT NEW PROPS RECEIVING LAG
-const timeOut = async t => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`Completed in ${t}`);
-    }, t);
-  });
-};
-
 export default class MapDisplay extends Component {
   state = initialState;
 
+  timeOut = async t => {
+    return new Promise((resolve, reject) => {
+      this.timerHandle = setTimeout(() => {
+        resolve(`Completed in ${t}`);
+      }, t);
+    });
+  };
+
   componentDidMount = async () => {
     // IF NETWORK LAG IS GROWING, MAYBE YOU NEED TO INCREASE TIME IN TIMER
-    await timeOut(2000).then(() => {
+    await this.timeOut(2000).then(() => {
       this.setState({
         ...this.state,
         updated: true
       });
     });
+  };
+
+  componentWillUnmount = () => {
+    if (this.timerHandle) {
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
   };
 
   render() {

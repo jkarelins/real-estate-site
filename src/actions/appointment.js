@@ -6,6 +6,7 @@ const GET_ONE_APPOINTMENT = "GET_ONE_APPOINTMENT";
 const GET_APPOINTMENTS = "GET_APPOINTMENTS";
 const CANCEL_APPOINTMENT = "CANCEL_APPOINTMENT";
 const CHECK_APPOINTMENT = "CHECK_APPOINTMENT";
+const APPOINTMENT_WAS_EDITED = "APPOINTMENT_WAS_EDITED";
 
 const appointmentCreateSuccess = appointment => ({
   type: NEW_APPOINTMENT,
@@ -95,6 +96,27 @@ export const checkAppointment = () => (dispatch, getState) => {
     .get(`${baseUrl}/appointment/${advertReducer.selectedAdvert.id}/advert`)
     .then(res => {
       dispatch(AppointmentChecked(res.data));
+    })
+    .catch(console.error);
+};
+
+const appointmentEditSuccess = appointment => ({
+  type: APPOINTMENT_WAS_EDITED,
+  appointment
+});
+
+export const changeAppointment = (data, appId) => (dispatch, getState) => {
+  const { userReducer } = getState();
+  const { jwt } = userReducer;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+  axios
+    .put(`${baseUrl}/appointment/${appId}/edit`, {
+      ...data
+    })
+
+    .then(response => {
+      dispatch(appointmentEditSuccess(response.data));
     })
     .catch(console.error);
 };

@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getAppointments, cancelAppointment } from "../../actions/appointment";
+import ShowAppointment from "./ShowAppointment";
 
-class ShowAppointment extends Component {
+class MyAppointment extends Component {
+  state = {
+    update: false
+  };
   componentDidMount = () => {
     if (this.props.user) {
       this.props.getAppointments();
@@ -14,26 +18,26 @@ class ShowAppointment extends Component {
   };
 
   render() {
-    console.log(this.props.appointments);
     if (this.props.appointments) {
       const { appointments, canceled } = this.props;
       return (
         <Fragment>
           <h4>Active Appointments</h4>
           {appointments.map((appointment, i) => (
-            <div key={i}>
-              <h5>{appointment.date}</h5>
-              <button onClick={() => this.cancelAppointment(appointment.id)}>
-                Cancel
-              </button>
-            </div>
+            <ShowAppointment
+              key={i}
+              appointment={appointment}
+              cancelAppointment={this.cancelAppointment}
+            />
           ))}
           <hr />
           <h4>Canceled Appointments</h4>
           {canceled.map((appointment, i) => (
-            <div key={i}>
-              <h5>{appointment.date}</h5>
-            </div>
+            <ShowAppointment
+              key={i}
+              appointment={appointment}
+              cancelAppointment={this.cancelAppointment}
+            />
           ))}
         </Fragment>
       );
@@ -56,5 +60,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getAppointments, cancelAppointment })(
-  ShowAppointment
+  MyAppointment
 );
