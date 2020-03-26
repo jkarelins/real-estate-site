@@ -14,6 +14,7 @@ class ShowAppointment extends Component {
   };
 
   render() {
+    console.log(this.props.appointments);
     if (this.props.appointments) {
       const { appointments, canceled } = this.props;
       return (
