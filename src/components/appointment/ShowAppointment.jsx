@@ -19,7 +19,8 @@ class ShowAppointment extends Component {
 
   componentDidMount = () => {
     const date = new Date(this.props.appointment.date);
-    const configuredDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+    const configuredDate = `${date.getMonth() +
+      1}-${date.getDate()}-${date.getFullYear()}`;
     this.setState({ ...this.props.appointment, date: configuredDate });
   };
 

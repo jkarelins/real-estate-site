@@ -63,43 +63,53 @@ export default function eventReducer(state = initialState, action) {
       };
     }
     case "APPOINTMENT_WAS_EDITED": {
-      const editedAppointments = state.myAdverts.map(advert => {
+      if (state.myAdverts) {
+        const editedAppointments = state.myAdverts.map(advert => {
+          return {
+            ...advert,
+            advert_appointments: advert.advert_appointments.map(addApp => {
+              if (addApp.appointmentId === action.appointment.id) {
+                return {
+                  ...addApp,
+                  appointment: action.appointment
+                };
+              }
+              return addApp;
+            })
+          };
+        });
         return {
-          ...advert,
-          advert_appointments: advert.advert_appointments.map(addApp => {
-            if (addApp.appointmentId === action.appointment.id) {
-              return {
-                ...addApp,
-                appointment: action.appointment
-              };
-            }
-            return addApp;
-          })
+          ...state,
+          myAdverts: editedAppointments
         };
-      });
+      }
       return {
-        ...state,
-        myAdverts: editedAppointments
+        ...state
       };
     }
     case "CANCEL_APPOINTMENT": {
-      const editedAppointments = state.myAdverts.map(advert => {
+      if (state.myAdverts) {
+        const editedAppointments = state.myAdverts.map(advert => {
+          return {
+            ...advert,
+            advert_appointments: advert.advert_appointments.map(addApp => {
+              if (addApp.appointmentId === action.appointment.id) {
+                return {
+                  ...addApp,
+                  appointment: action.appointment
+                };
+              }
+              return addApp;
+            })
+          };
+        });
         return {
-          ...advert,
-          advert_appointments: advert.advert_appointments.map(addApp => {
-            if (addApp.appointmentId === action.appointment.id) {
-              return {
-                ...addApp,
-                appointment: action.appointment
-              };
-            }
-            return addApp;
-          })
+          ...state,
+          myAdverts: editedAppointments
         };
-      });
+      }
       return {
-        ...state,
-        myAdverts: editedAppointments
+        ...state
       };
     }
     case "ADD_NEW_IMAGE": {
