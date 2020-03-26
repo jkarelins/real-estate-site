@@ -9,6 +9,7 @@ const initialState = {
   isForRent: false,
   price: 0,
   address: "",
+  city: "",
   postcode: "",
   sqrMeter: 0,
   cubicMeter: 0,

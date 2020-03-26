@@ -54,6 +54,15 @@ export default class AdvertForm extends Component {
           <br />
           <input
             type="text"
+            name="city"
+            value={this.props.formValues.city}
+            onChange={this.props.handleChange}
+            placeholder="City Name"
+            required
+          />
+          <br />
+          <input
+            type="text"
             name="postcode"
             value={this.props.formValues.postcode}
             onChange={this.props.handleChange}
