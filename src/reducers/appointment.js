@@ -22,6 +22,17 @@ export default function eventReducer(state = initialState, action) {
         appointments: action.appointments
       };
     }
+    case "APPOINTMENT_WAS_EDITED": {
+      const updatedUpointments = state.appointments.map(appointment =>
+        appointment.id === action.appointment.id
+          ? action.appointment
+          : appointment
+      );
+      return {
+        ...state,
+        appointments: [...updatedUpointments]
+      };
+    }
     case "CANCEL_APPOINTMENT": {
       const appointments = state.appointments.map(appointment => {
         if (appointment.id === action.appointment.id) {

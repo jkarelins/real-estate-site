@@ -2,12 +2,14 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
-import { checkAppointment } from "../../actions/appointment";
+import { checkAppointment, cancelAppointment } from "../../actions/appointment";
+
 import AddAppointment from "./AddAppointment";
 import ImagesUpload from "../image/ImagesUpload";
 import ImageGallery from "../image/ImageGallery";
 import AdvertExtras from "../extras/AdvertExtras";
 import ViewMap from "../map/ViewMap";
+import ShowAppointment from "../appointment/ShowAppointment";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -21,6 +23,10 @@ class SelectedAdvert extends Component {
   likeAdvert = () => {
     const { id } = this.props.match.params;
     this.props.likeAdvert(id);
+  };
+
+  cancelAppointment = id => {
+    this.props.cancelAppointment(id);
   };
 
   contentForAll = () => {
@@ -70,6 +76,26 @@ class SelectedAdvert extends Component {
         const mySelectedAdvert = this.props.myAdverts.find(
           advert => advert.id === id
         );
+        const activeAppointments = mySelectedAdvert.advert_appointments
+          .filter(appCon => {
+            if (appCon) {
+              if (appCon.appointment.status === "published") {
+                return true;
+              }
+            }
+            return false;
+          })
+          .map(appCon => appCon.appointment);
+        const canceledAppointments = mySelectedAdvert.advert_appointments
+          .filter(appCon => {
+            if (appCon) {
+              if (appCon.appointment.status === "canceled") {
+                return true;
+              }
+            }
+            return false;
+          })
+          .map(appCon => appCon.appointment);
 
         return (
           <Fragment>
@@ -77,31 +103,30 @@ class SelectedAdvert extends Component {
             <h4>{mySelectedAdvert.address}</h4>
             <h5>{mySelectedAdvert.postcode}</h5>
             <ImageGallery advert={this.props.advert} myAdvert={true} />
+            <hr />
+
             <AdvertExtras advert={this.props.advert} myAdvert={true} />
 
-            <h6>Appointments:</h6>
-            {mySelectedAdvert.advert_appointments.map(appCon => {
-              if (appCon) {
-                return (
-                  <div>
-                    <p>
-                      Date: {appCon.appointment.date}, time{" "}
-                      {appCon.appointment.hours}:{appCon.appointment.minutes}{" "}
-                      <br />
-                      Requestor: {appCon.appointment.name},{" "}
-                      {appCon.appointment.email}, phone:{" "}
-                      {appCon.appointment.phone}
-                    </p>
-                    <p>{appCon.appointment.text}</p>
-
-                    <hr />
-                  </div>
-                );
-              } else {
-                return <h4>Sorry no appointments found</h4>;
-              }
-            })}
+            <h4>Active Appointments:</h4>
+            {activeAppointments.map((app, i) => (
+              <ShowAppointment
+                key={i}
+                appointment={app}
+                cancelAppointment={this.cancelAppointment}
+              />
+            ))}
             <hr />
+
+            <h4>Canceled Appointments</h4>
+            {canceledAppointments.map((app, i) => (
+              <ShowAppointment
+                key={i}
+                appointment={app}
+                cancelAppointment={this.cancelAppointment}
+              />
+            ))}
+            <hr />
+
             <h4>Map</h4>
             <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
           </Fragment>
@@ -137,5 +162,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchAdvert,
   likeAdvert,
-  checkAppointment
+  checkAppointment,
+  cancelAppointment
 })(SelectedAdvert);
