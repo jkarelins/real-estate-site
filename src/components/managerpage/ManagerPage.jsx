@@ -25,6 +25,7 @@ class ManagerPage extends Component {
   };
 
   topUp = () => {
+    if (this.state.amountInEUR < 1) return;
     this.setState({
       topUp: true,
       success: false
