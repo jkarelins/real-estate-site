@@ -96,6 +96,7 @@ class SelectedAdvert extends Component {
             return false;
           })
           .map(appCon => appCon.appointment);
+
         return (
           <Fragment>
             <ImagesUpload />

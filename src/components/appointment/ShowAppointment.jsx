@@ -18,7 +18,9 @@ class ShowAppointment extends Component {
   state = initialState;
 
   componentDidMount = () => {
-    this.setState(this.props.appointment);
+    const date = new Date(this.props.appointment.date);
+    const configuredDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+    this.setState({ ...this.props.appointment, date: configuredDate });
   };
 
   handleChange = e => {
@@ -58,7 +60,7 @@ class ShowAppointment extends Component {
       return (
         <div>
           <p>
-            Planed: {appointment.date} @{appointment.hours} :{" "}
+            Planed: {this.state.date} @{appointment.hours} :{" "}
             {appointment.minutes}
             <br />
             Planed by : {appointment.name} - {appointment.email}
@@ -93,7 +95,7 @@ class ShowAppointment extends Component {
       return (
         <div>
           <div>
-            <h5>New appointment</h5>
+            <h5>Edit appointment</h5>
             <form onSubmit={e => this.submitAppointment(e)}>
               <input
                 type="date"
@@ -104,13 +106,23 @@ class ShowAppointment extends Component {
               />
               <br />
               <label htmlFor="hours">Hours:</label>
-              <select name="hours" onChange={this.handleChange} required>
+              <select
+                name="hours"
+                onChange={this.handleChange}
+                value={this.state.hours}
+                required
+              >
                 {this.getHours(24)}
               </select>
               <label htmlFor="minutes">
                 {" "}
                 :{" "}
-                <select name="minutes" onChange={this.handleChange} required>
+                <select
+                  name="minutes"
+                  onChange={this.handleChange}
+                  value={this.state.minutes}
+                  required
+                >
                   <option value="0">0</option>
                   <option value="15">15</option>
                   <option value="30">30</option>

@@ -62,6 +62,46 @@ export default function eventReducer(state = initialState, action) {
         myAdverts: [...action.adverts]
       };
     }
+    case "APPOINTMENT_WAS_EDITED": {
+      const editedAppointments = state.myAdverts.map(advert => {
+        return {
+          ...advert,
+          advert_appointments: advert.advert_appointments.map(addApp => {
+            if (addApp.appointmentId === action.appointment.id) {
+              return {
+                ...addApp,
+                appointment: action.appointment
+              };
+            }
+            return addApp;
+          })
+        };
+      });
+      return {
+        ...state,
+        myAdverts: editedAppointments
+      };
+    }
+    case "CANCEL_APPOINTMENT": {
+      const editedAppointments = state.myAdverts.map(advert => {
+        return {
+          ...advert,
+          advert_appointments: advert.advert_appointments.map(addApp => {
+            if (addApp.appointmentId === action.appointment.id) {
+              return {
+                ...addApp,
+                appointment: action.appointment
+              };
+            }
+            return addApp;
+          })
+        };
+      });
+      return {
+        ...state,
+        myAdverts: editedAppointments
+      };
+    }
     case "ADD_NEW_IMAGE": {
       return {
         ...state,
