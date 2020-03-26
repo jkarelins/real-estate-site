@@ -2,7 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
-import { checkAppointment } from "../../actions/appointment";
+import { checkAppointment, cancelAppointment } from "../../actions/appointment";
+
 import AddAppointment from "./AddAppointment";
 import ImagesUpload from "../image/ImagesUpload";
 import ImageGallery from "../image/ImageGallery";
@@ -22,6 +23,10 @@ class SelectedAdvert extends Component {
   likeAdvert = () => {
     const { id } = this.props.match.params;
     this.props.likeAdvert(id);
+  };
+
+  cancelAppointment = id => {
+    this.props.cancelAppointment(id);
   };
 
   contentForAll = () => {
@@ -78,6 +83,7 @@ class SelectedAdvert extends Component {
                 return true;
               }
             }
+            return false;
           })
           .map(appCon => appCon.appointment);
         const canceledAppointments = mySelectedAdvert.advert_appointments
@@ -87,9 +93,9 @@ class SelectedAdvert extends Component {
                 return true;
               }
             }
+            return false;
           })
           .map(appCon => appCon.appointment);
-        console.log(canceledAppointments);
         return (
           <Fragment>
             <ImagesUpload />
@@ -102,13 +108,21 @@ class SelectedAdvert extends Component {
 
             <h4>Active Appointments:</h4>
             {activeAppointments.map((app, i) => (
-              <ShowAppointment key={i} appointment={app} />
+              <ShowAppointment
+                key={i}
+                appointment={app}
+                cancelAppointment={this.cancelAppointment}
+              />
             ))}
             <hr />
 
             <h4>Canceled Appointments</h4>
             {canceledAppointments.map((app, i) => (
-              <ShowAppointment key={i} appointment={app} />
+              <ShowAppointment
+                key={i}
+                appointment={app}
+                cancelAppointment={this.cancelAppointment}
+              />
             ))}
             <hr />
 
@@ -147,5 +161,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchAdvert,
   likeAdvert,
-  checkAppointment
+  checkAppointment,
+  cancelAppointment
 })(SelectedAdvert);

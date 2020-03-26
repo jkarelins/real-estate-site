@@ -7,6 +7,7 @@ class MyAppointment extends Component {
   state = {
     update: false
   };
+
   componentDidMount = () => {
     if (this.props.user) {
       this.props.getAppointments();
@@ -27,7 +28,7 @@ class MyAppointment extends Component {
             <ShowAppointment
               key={i}
               appointment={appointment}
-              cancelAppointment={this.cancelAppointment}
+              cancelAppointment={() => this.cancelAppointment(appointment.id)}
             />
           ))}
           <hr />
@@ -36,7 +37,7 @@ class MyAppointment extends Component {
             <ShowAppointment
               key={i}
               appointment={appointment}
-              cancelAppointment={this.cancelAppointment}
+              cancelAppointment={() => this.cancelAppointment(appointment.id)}
             />
           ))}
         </Fragment>

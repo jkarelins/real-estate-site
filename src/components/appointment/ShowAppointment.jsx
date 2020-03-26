@@ -53,7 +53,6 @@ class ShowAppointment extends Component {
   };
 
   render() {
-    // console.log(this.state);
     if (this.props.appointment && !this.state.updateMode) {
       const { appointment } = this.props;
       return (
