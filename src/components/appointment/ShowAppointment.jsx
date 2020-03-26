@@ -21,14 +21,6 @@ class ShowAppointment extends Component {
     this.setState(this.props.appointment);
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.appointment !== this.props.appointment) {
-  //     this.setState({
-  //       ...this.state,
-  //       ...this.props.appointment
-  //     });
-  //   }
-  // }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
