@@ -6,7 +6,8 @@ import PaymentWraper from "../pay/PaymentWraper";
 
 const initialState = {
   topUp: false,
-  success: false
+  success: false,
+  amountInEUR: 0
 };
 class PrivatePersPage extends Component {
   state = initialState;
@@ -15,6 +16,12 @@ class PrivatePersPage extends Component {
     this.setState({
       topUp: true,
       success: false
+    });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     });
   };
 
@@ -31,12 +38,27 @@ class PrivatePersPage extends Component {
     return (
       <div>
         {this.state.success ? (
-          <h4>Your account was successfuly charger for 10 EUR</h4>
+          <h4>Your account was successfuly charged</h4>
+        ) : this.state.topUp ? (
+          <PaymentWraper amountInCents={+this.state.amountInEUR * 100} />
         ) : (
-          ""
+          <div>
+            <label htmlFor="topUpSum">
+              <input
+                type="number"
+                name="amountInEUR"
+                placeholder=""
+                min="1"
+                max="100"
+                step="1"
+                value={this.state.amountInEUR}
+                onChange={this.handleChange}
+              />
+              EUR
+            </label>
+            <button onClick={this.topUp}>Top Up Balance</button>
+          </div>
         )}
-        <button onClick={this.topUp}>Top Up Balance</button>
-        {this.state.topUp ? <PaymentWraper /> : ""}
         {haveCredits ? (
           <UserHasNoCredits user={this.props.user} />
         ) : (

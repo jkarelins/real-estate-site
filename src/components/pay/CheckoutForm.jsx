@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useStore, useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ const state = {
   userId: ""
 };
 
-export default function CheckoutForm() {
+export default function CheckoutForm(props) {
   const { userReducer } = useStore().getState();
   const stripe = useStripe();
   const elements = useElements();
@@ -59,7 +59,7 @@ export default function CheckoutForm() {
   useEffect(() => {
     if (userReducer) {
       if (!state.amountInCents) {
-        state.amountInCents = 1000;
+        state.amountInCents = +props.amountInCents;
       } else if (!state.requested) {
         state.requested = true;
         const { jwt } = userReducer;
@@ -77,12 +77,21 @@ export default function CheckoutForm() {
     }
   });
 
-  return userReducer ? (
-    <form onSubmit={handleSubmit}>
-      <CardSection />
-      <button disabled={!stripe}>Confirm order</button>
-    </form>
-  ) : (
-    "Sorry to TopUp your account, you should login first"
+  return (
+    <Fragment>
+      <h4>
+        You are going to top up your accunt for {state.amountInCents / 100} EUR.
+        It is {state.amountInCents / 100} new advertisements. 1 advertisement
+        price is 1 EUR.
+      </h4>
+      {userReducer ? (
+        <form onSubmit={handleSubmit}>
+          <CardSection />
+          <button disabled={!stripe}>Confirm order</button>
+        </form>
+      ) : (
+        "Sorry to TopUp your account, you should login first"
+      )}
+    </Fragment>
   );
 }

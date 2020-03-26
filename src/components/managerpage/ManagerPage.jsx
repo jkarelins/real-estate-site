@@ -7,7 +7,8 @@ import PaymentWraper from "../pay/PaymentWraper";
 
 const initialState = {
   topUp: false,
-  success: false
+  success: false,
+  amountInEUR: 0
 };
 
 class ManagerPage extends Component {
@@ -39,6 +40,12 @@ class ManagerPage extends Component {
     }
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   render() {
     return (
       <div>
@@ -56,13 +63,31 @@ class ManagerPage extends Component {
           Your agency balance is {this.props.user.agency.advertBalance}{" "}
           advertisements
         </p>
-        {this.state.success ? (
-          <h4>Your account was successfuly charger for 10 EUR</h4>
-        ) : (
-          ""
-        )}
-        <button onClick={this.topUp}>Top Up Balance</button>
-        {this.state.topUp ? <PaymentWraper /> : ""}
+
+        <div>
+          {this.state.success ? (
+            <h4>Your account was successfuly charged</h4>
+          ) : this.state.topUp ? (
+            <PaymentWraper amountInCents={+this.state.amountInEUR * 100} />
+          ) : (
+            <div>
+              <label htmlFor="topUpSum">
+                <input
+                  type="number"
+                  name="amountInEUR"
+                  placeholder=""
+                  min="1"
+                  max="100"
+                  step="1"
+                  value={this.state.amountInEUR}
+                  onChange={this.handleChange}
+                />
+                EUR
+              </label>
+              <button onClick={this.topUp}>Top Up Balance</button>
+            </div>
+          )}
+        </div>
 
         <p>Your agency agents:</p>
         <ManagersList

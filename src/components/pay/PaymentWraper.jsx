@@ -8,7 +8,7 @@ export default class PaymentWraper extends Component {
   render() {
     return (
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm amountInCents={this.props.amountInCents} />
       </Elements>
     );
   }
