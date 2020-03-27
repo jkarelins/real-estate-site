@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
@@ -35,9 +36,23 @@ class SelectedAdvert extends Component {
   };
 
   contentForAll = () => {
-    // console.log(this.props.advert);
+    console.log(this.props.advert);
     return (
       <div className="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li class="breadcrumb-item">
+              <Link>{this.props.advert.city}</Link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {this.props.advert.address}, {this.props.advert.city},{" "}
+              {this.props.advert.postcode}
+            </li>
+          </ol>
+        </nav>
         <h1>
           {this.props.advert.address}, {this.props.advert.city}
         </h1>
