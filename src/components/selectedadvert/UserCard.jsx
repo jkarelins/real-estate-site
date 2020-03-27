@@ -1,19 +1,31 @@
 import React, { Component, Fragment } from "react";
+import Moment from "react-moment";
 
 export default class UserCard extends Component {
   render() {
     if (this.props.user) {
       const { user } = this.props;
-      console.log(user);
       return (
         <div className="card">
           {user.agency ? (
             <Fragment>
-              <div className="card-header">{user.agency.name}</div>
+              <div className="card-header">
+                {user.agency.name},{" "}
+                <span className="font-italic">
+                  Published By: {user.username}
+                </span>
+              </div>
               <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  Company Registered:{" "}
+                  <Moment fromNow>{user.agency.createdAt}</Moment>
+                </li>
                 <li className="list-group-item">Email: {user.email}</li>
-                <li className="list-group-item">Phone: {user.phoneNumber}</li>
-                <li className="list-group-item">Vestibulum at eros</li>
+                {+user.phoneNumber ? (
+                  <li className="list-group-item">Phone: {user.phoneNumber}</li>
+                ) : (
+                  ""
+                )}
               </ul>
             </Fragment>
           ) : (
@@ -31,10 +43,15 @@ export default class UserCard extends Component {
                 )}
               </div>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item">Email: {user.createdAt}</li>
+                <li className="list-group-item">
+                  User Registered: <Moment fromNow>{user.createdAt}</Moment>
+                </li>
                 <li className="list-group-item">Email: {user.email}</li>
-                <li className="list-group-item">Phone: {user.phoneNumber}</li>
-                <li className="list-group-item">Vestibulum at eros</li>
+                {+user.phoneNumber ? (
+                  <li className="list-group-item">Phone: {user.phoneNumber}</li>
+                ) : (
+                  ""
+                )}
               </ul>
             </Fragment>
           )}
