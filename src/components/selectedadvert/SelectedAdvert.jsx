@@ -12,6 +12,7 @@ import AdvertExtras from "../extras/AdvertExtras";
 import ViewMap from "../map/ViewMap";
 import ShowAppointment from "../appointment/ShowAppointment";
 import UserCard from "./UserCard";
+import AdvertInformation from "./AdvertInformation";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -40,14 +41,14 @@ class SelectedAdvert extends Component {
     return (
       <div className="container mt-3">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
-            <li class="breadcrumb-item">
+            <li className="breadcrumb-item">
               <Link>{this.props.advert.city}</Link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active" aria-current="page">
               {this.props.advert.address}, {this.props.advert.city},{" "}
               {this.props.advert.postcode}
             </li>
@@ -58,12 +59,13 @@ class SelectedAdvert extends Component {
         </h1>
         <p>{this.props.advert.postcode}</p>
         <hr />
-        <h2>
-          {this.numberWithSpaces(this.props.advert.price)}{" "}
-          {this.props.advert.isForSale ? "EUR" : "EUR/month"}
-        </h2>
+
         <div className="row">
           <div className="col-12 col-md-12 col-lg-3 col-xl-3">
+            <h2>
+              {this.numberWithSpaces(this.props.advert.price)}{" "}
+              {this.props.advert.isForSale ? "EUR" : "EUR/month"}
+            </h2>
             {this.props.user ? (
               this.props.liked ? (
                 <button
@@ -103,12 +105,22 @@ class SelectedAdvert extends Component {
             <div className="col-12 mt-3">
               <UserCard user={this.props.advert.user} />
             </div>
-          </div>
-          <div className="col-12">
-            <p>{this.props.advert.description}</p>
+            <div className="col-12 mt-3">
+              <h4>Description</h4>
+              <p>{this.props.advert.description}</p>
+            </div>
           </div>
         </div>
-        <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
+        <div className="col-12 mt-3">
+          <AdvertInformation advert={this.props.advert} />
+        </div>
+        <div className="mb-5 mt-3">
+          <ViewMap
+            lat={this.props.advert.lat}
+            lon={this.props.advert.lon}
+            pointer={`${this.props.advert.address}, ${this.props.advert.city}, ${this.props.advert.postcode}`}
+          />
+        </div>
       </div>
     );
   };

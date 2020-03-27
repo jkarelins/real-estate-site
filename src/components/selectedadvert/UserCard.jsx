@@ -46,7 +46,12 @@ export default class UserCard extends Component {
                 <li className="list-group-item">
                   User Registered: <Moment fromNow>{user.createdAt}</Moment>
                 </li>
-                <li className="list-group-item">Email: {user.email}</li>
+                <li className="list-group-item">
+                  Email:{" "}
+                  <a target="new" href={`mailto: ${user.email}`}>
+                    Send Email
+                  </a>
+                </li>
                 {+user.phoneNumber ? (
                   <li className="list-group-item">Phone: {user.phoneNumber}</li>
                 ) : (

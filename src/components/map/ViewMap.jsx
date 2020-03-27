@@ -60,7 +60,7 @@ export default class MapDisplay extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker position={position}>
-            <Popup>Son Konum</Popup>
+            <Popup>{this.props.pointer}</Popup>
           </Marker>
         </Map>
       );

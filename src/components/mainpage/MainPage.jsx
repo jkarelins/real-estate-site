@@ -23,17 +23,18 @@ class MainPage extends Component {
       );
     } else {
       return (
-        <div className="container row mt-3">
+        <div className="row mt-3 d-flex justify-content-center">
           {this.props.allAdverts.map((advert, i) => {
             const advertImage =
               advert.image ||
               "https://res.cloudinary.com/dpjzmbojz/image/upload/v1585304394/No_image_3x4.svg_dqj5vw.png";
 
             return (
-              <div className="col-12 col-md-6 col-lg-4 col-xl-4" key={i}>
+              <div className="col-12 col-md-6 col-lg-4 col-xl-3 mt-3" key={i}>
                 <div className="card">
                   <img
                     className="card-img-top"
+                    style={{ maxHeight: "30vh", objectFit: "cover" }}
                     src={advertImage}
                     alt={`${advert.isForRent ? "For rent:" : "For Sale:"} ${
                       advert.address
