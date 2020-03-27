@@ -6,6 +6,13 @@ import { creditAddSuccess } from "../../actions/user";
 
 import CardSection from "./CardSection";
 
+let baseUrl = "";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
+
 const state = {
   amountInCents: 0,
   requested: false,
@@ -45,7 +52,7 @@ export default function CheckoutForm(props) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
         axios
-          .post(`http://localhost:4000/user/addcredits`, { ...result })
+          .post(`${baseUrl}/user/addcredits`, { ...result })
           .then(res => {
             dispatch(creditAddSuccess(res.data));
             state.requested = false;
@@ -66,7 +73,7 @@ export default function CheckoutForm(props) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
         axios
-          .get(`http://localhost:4000/payment/${state.amountInCents}`)
+          .get(`${baseUrl}/payment/${state.amountInCents}`)
           .then(res => {
             // console.log(res.data);
             state.userId = res.data.client_secret;

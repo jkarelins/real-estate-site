@@ -3,6 +3,12 @@ import { createUser } from "../../actions/user";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
+let baseUrl = "";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
 
 const initialState = {
   username: "",
@@ -72,6 +78,7 @@ class SignUpForm extends Component {
       ...this.state,
       showPrivateMenu: true,
       showCompanyMenu: false,
+      error: "",
       role: "privatePerson"
     });
   };
@@ -81,13 +88,14 @@ class SignUpForm extends Component {
       ...this.state,
       showPrivateMenu: false,
       showCompanyMenu: true,
+      error: "",
       role: ""
     });
   };
 
   searchAgency = () => {
     axios
-      .get(`http://localhost:4000/agency/findby?name=${this.state.companyName}`)
+      .get(`${baseUrl}/agency/findby?name=${this.state.companyName}`)
       .then(res => {
         this.setState({
           ...this.state,
@@ -102,6 +110,7 @@ class SignUpForm extends Component {
       ...this.state,
       companyArr: [],
       companySelected: true,
+      error: "",
       companyName
     });
   };
@@ -109,37 +118,48 @@ class SignUpForm extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.error ? <p>{this.state.error}</p> : ""}
+        <div className="container mt-2">
+          {this.state.error ? (
+            <div class="alert alert-warning" role="alert">
+              {this.state.error}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="d-flex flex-row justify-content-center mt-5">
           <div className="col-10 col-md-8 col-lg-6 col-xl-4">
             <div className="card p-5">
               <h4>Sign Up</h4>
               <form onSubmit={this.signUpValidation}>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    className="form-control"
+                    autoComplete="email"
+                    value={this.state.email}
+                    onChange={e => this.handleChange(e)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="username">Name & Surname</label>
                   <input
                     type="text"
                     name="username"
-                    placeholder="Username"
+                    placeholder="Your First Name & Second Name"
                     className="form-control"
+                    autoComplete="name"
                     value={this.state.username}
                     onChange={e => this.handleChange(e)}
                     required
                   />
                   <small className="form-text text-muted">
-                    Choose username for your account
+                    Please, input your First name & Second name
                   </small>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={e => this.handleChange(e)}
-                    required
-                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="phoneNumber">Phone Number</label>
@@ -147,37 +167,58 @@ class SignUpForm extends Component {
                     type="text"
                     placeholder="Phone Number"
                     name="phoneNumber"
+                    className="form-control"
                     value={this.state.phoneNumber}
                     onChange={e => this.handleChange(e)}
                   />
                 </div>
                 <div className="form-group">
-                  <button type="button" onClick={this.showPrivPersMenu}>
+                  <button
+                    type="button"
+                    className={
+                      this.state.error
+                        ? "btn btn-lg btn-danger"
+                        : "btn btn-sm btn-outline-info"
+                    }
+                    onClick={this.showPrivPersMenu}
+                  >
                     I am Private person
                   </button>
-                  <button type="button" onClick={this.showMenuForCompany}>
+                  <button
+                    type="button"
+                    className={
+                      this.state.error
+                        ? "btn btn-lg btn-danger ml-2"
+                        : "btn btn-sm btn-outline-info ml-2"
+                    }
+                    onClick={this.showMenuForCompany}
+                  >
                     Company Representative
                   </button>
 
                   {this.state.showPrivateMenu ? (
-                    <p>You have selected to create private person's profile</p>
+                    <div class="alert alert-success mt-3" role="alert">
+                      You have selected to create private person's profile
+                    </div>
                   ) : this.state.showCompanyMenu ? (
-                    <div>
+                    <div className="mt-3">
                       <label>
-                        Real Estate Agency Manager
+                        Real Estate Company Manager
                         <input
                           type="radio"
                           name="agencyManager"
                           value="agencyManager"
+                          autoComplete="organization"
                           onChange={this.handleRadioButton}
                         />
                       </label>
                       <label>
-                        Real Estate Agency Agent
+                        Real Estate Company Agent
                         <input
                           type="radio"
                           name="agencyManager"
                           value="agencyAgent"
+                          autoComplete="organization"
                           onChange={this.handleRadioButton}
                         />
                       </label>
@@ -188,7 +229,9 @@ class SignUpForm extends Component {
 
                   {this.state.role === "agencyAgent" ? (
                     <div className="form-group">
-                      <label htmlFor="companyName">Agency Name</label>
+                      <div className="text-center">
+                        <label htmlFor="companyName">Company Name</label>
+                      </div>
                       <input
                         type="text"
                         name="companyName"
@@ -198,9 +241,15 @@ class SignUpForm extends Component {
                         onChange={e => this.handleChange(e)}
                         required
                       />
-                      <button type="button" onClick={this.searchAgency}>
-                        Search
-                      </button>
+                      <div className="text-center">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-info mt-2"
+                          onClick={this.searchAgency}
+                        >
+                          Search
+                        </button>
+                      </div>
                       {this.state.companyArr.length !== 0 ? (
                         <ul>
                           {this.state.companyArr.map((company, i) => (
@@ -215,18 +264,20 @@ class SignUpForm extends Component {
                       ) : this.state.companySelected ? (
                         ""
                       ) : (
-                        <small>
-                          <ol>
-                            <li>Input keyword to search for company</li>
-                            <li>Press Search</li>
-                            <li>Select your company name from list</li>
-                          </ol>
-                        </small>
+                        <div className="mt-2">
+                          <small>
+                            <ol>
+                              <li>Input keyword to search for company</li>
+                              <li>Press Search</li>
+                              <li>Select your company name from list</li>
+                            </ol>
+                          </small>
+                        </div>
                       )}
                     </div>
                   ) : this.state.role === "agencyManager" ? (
                     <div className="form-group">
-                      <label htmlFor="companyName">Agency Name</label>
+                      <label htmlFor="companyName">Company Name</label>
                       <input
                         type="text"
                         name="companyName"
@@ -248,6 +299,7 @@ class SignUpForm extends Component {
                     name="password"
                     placeholder="Password"
                     className="form-control"
+                    autoComplete="new-password"
                     value={this.state.password}
                     onChange={e => this.handleChange(e)}
                     required
@@ -263,6 +315,7 @@ class SignUpForm extends Component {
                     name="repeatPassword"
                     placeholder="Repeat Password"
                     className="form-control"
+                    autoComplete="new-password"
                     value={this.state.repeatPassword}
                     onChange={e => this.handleChange(e)}
                     required

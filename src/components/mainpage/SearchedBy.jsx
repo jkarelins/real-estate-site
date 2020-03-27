@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAdverts } from "../../actions/advert";
+import { fetchAdvertsBySearchTerm } from "../../actions/advert";
 import { Link } from "react-router-dom";
 
 class MainPage extends Component {
   componentDidMount() {
-    if (this.props.allAdverts.length === 0) {
-      this.props.fetchAdverts(0);
+    // console.log(this.props);
+    switch (this.props.match.params.keyword) {
+      case "city":
+        this.props.fetchAdvertsBySearchTerm(
+          0,
+          this.props.match.params.keyword,
+          this.props.match.params.value
+        );
+        break;
+      default:
+        break;
     }
   }
 
@@ -67,8 +76,8 @@ class MainPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    allAdverts: state.advertReducer.allAdverts
+    allAdverts: state.advertReducer.searchedAdverts
   };
 }
 
-export default connect(mapStateToProps, { fetchAdverts })(MainPage);
+export default connect(mapStateToProps, { fetchAdvertsBySearchTerm })(MainPage);

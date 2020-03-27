@@ -1,0 +1,15 @@
+nav {
+  background-color: #dce3ee;
+}
+
+.text-link {
+  color: #3b3355;
+  text-decoration: none;
+  transition: color 1s;
+}
+
+.text-link:hover {
+  text-decoration: none;
+  color: #000505;
+  font-weight: 900;
+}

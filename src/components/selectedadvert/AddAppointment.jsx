@@ -44,74 +44,92 @@ class AddAppointment extends Component {
     if (this.props.appCreated) {
       return (
         <Fragment>
-          <h4>Thank you, your appointment request was sent.</h4>
+          <h4>Thank you, your appointment request was just sent.</h4>
         </Fragment>
       );
     } else {
       return (
-        <div>
-          <h5>New appointment</h5>
-          <form onSubmit={e => this.submitAppointment(e)}>
-            <input
-              type="date"
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-              required
-            />
-            <br />
-            <label htmlFor="hours">Hours:</label>
-            <select name="hours" onChange={this.handleChange} required>
-              {this.getHours(24)}
-            </select>
-            <label htmlFor="minutes">
-              {" "}
-              :{" "}
-              <select name="minutes" onChange={this.handleChange} required>
-                <option value="0">0</option>
-                <option value="15">15</option>
-                <option value="30">30</option>
-                <option value="45">45</option>
-              </select>
-              minutes
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <br />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="phone nr."
-              value={this.state.phone}
-              onChange={this.handleChange}
-              required
-            />
-            <br />
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <br />
-            <textarea
-              name="text"
-              placeholder="Message"
-              value={this.state.text}
-              onChange={this.handleChange}
-              required
-            />
-            <br />
-            <input type="submit" value="New Appointment" />
-          </form>
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">New appointment</h5>
+            <form onSubmit={e => this.submitAppointment(e)}>
+              <input
+                type="date"
+                name="date"
+                className="form-control"
+                value={this.state.date}
+                onChange={this.handleChange}
+                required
+              />
+              <div className="row mt-2">
+                <div className="col-5">
+                  <label htmlFor="hours">Hours:</label>
+                  <select
+                    class="custom-select"
+                    name="hours"
+                    onChange={this.handleChange}
+                    required
+                  >
+                    {this.getHours(24)}
+                  </select>
+                </div>
+                <div className="col-5">
+                  <label htmlFor="minutes">Minutes</label>
+                  <select
+                    name="minutes"
+                    onChange={this.handleChange}
+                    class="custom-select"
+                    required
+                  >
+                    <option value="0">0</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                  </select>
+                </div>
+              </div>
+              <input
+                type="email"
+                name="email"
+                className="form-control mt-2"
+                placeholder="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                type="tel"
+                name="phone"
+                className="form-control mt-2"
+                placeholder="phone nr."
+                value={this.state.phone}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="name"
+                className="form-control mt-2"
+                placeholder="Name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                required
+              />
+              <textarea
+                name="text"
+                placeholder="Message"
+                className="form-control mt-2"
+                value={this.state.text}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                className="btn btn-sm btn-success mt-2"
+                type="submit"
+                value="New Appointment"
+              />
+            </form>
+          </div>
         </div>
       );
     }

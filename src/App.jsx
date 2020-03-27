@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import store from "./store";
 
+import Header from "./components/header/Header";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import UserPage from "./components/userpage/UserPage";
@@ -11,22 +12,15 @@ import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import MyAppointments from "./components/appointment/MyAppointments";
+import SearchedBy from "./components/mainpage/SearchedBy";
+
+import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <h1>Hello world of RE</h1>
-        <Link to="/">Home</Link>
-        <br />
-        <Link to="/login">Login</Link> <br />
-        <Link to="/register">Register</Link>
-        <br />
-        <Link to="/favorites">My Favorite Adverts</Link>
-        <br />
-        <Link to="/myadverts">My Adverts</Link>
-        <br />
-        <Link to="/appointment">My Appointments</Link>
+        <Header />
         <Switch>
           <Route path="/myadverts" component={MyAdverts} />
           <Route path="/favorites" component={FavoriteAdverts} />
@@ -35,6 +29,7 @@ class App extends Component {
           <Route path="/user" component={UserPage} />
           <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/appointment" exact component={MyAppointments} />
+          <Route path="/search/:keyword/:value" component={SearchedBy} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
