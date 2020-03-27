@@ -1,11 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { logMeOut } from "../../actions/user";
+
 import "./header.css";
-import { Fragment } from "react";
 
 class Header extends Component {
+  logoutUser = e => {
+    e.preventDefault();
+    this.props.logMeOut();
+  };
   render() {
     return (
       <nav className="navbar navbar-light navbar-expand-lg navbar-light">
@@ -32,6 +37,16 @@ class Header extends Component {
                   <Link className="text-link" to="/appointment">
                     My Appointments
                   </Link>
+                </li>
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/user">
+                    My Account
+                  </Link>
+                </li>
+                <li className="nav-item mr-2 my-2">
+                  <a className="text-link" onClick={this.logoutUser} href="/">
+                    Logout
+                  </a>
                 </li>
               </Fragment>
             ) : (
@@ -67,4 +82,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { logMeOut })(Header);
