@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchExtras, addExtra, removeExtra } from "../../actions/extra";
+import "./advertextras.css";
 
 const initialState = {
   text: ""
@@ -46,7 +47,7 @@ class AdvertExtras extends Component {
     if (this.props.myAdvert) {
       return (
         <div>
-          <h4>This Advertisement Extras</h4>
+          <h4>Advantages</h4>
           {this.props.advert.advert_extras.map((extraCon, i) => (
             <span key={i} onClick={() => this.removeExtra(extraCon.extra.id)}>
               {extraCon.extra.text}{" "}
@@ -79,9 +80,11 @@ class AdvertExtras extends Component {
     } else {
       return (
         <div>
-          <h4>This Advertisement Extras</h4>
+          <h4>Advantages</h4>
           {this.props.advert.advert_extras.map((extraCon, i) => (
-            <span key={i}>{extraCon.extra.text} </span>
+            <p className="btn btn-sm btn-outline-info ml-1 allextras" key={i}>
+              {extraCon.extra.text}
+            </p>
           ))}
           <hr />
         </div>

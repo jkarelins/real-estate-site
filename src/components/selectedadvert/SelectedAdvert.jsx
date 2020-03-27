@@ -6,10 +6,11 @@ import { checkAppointment, cancelAppointment } from "../../actions/appointment";
 
 import AddAppointment from "./AddAppointment";
 import ImagesUpload from "../image/ImagesUpload";
-import ImageGallery from "../image/ImageGallery";
+import ImageGallery from "../image/imagegallery/ImageGallery";
 import AdvertExtras from "../extras/AdvertExtras";
 import ViewMap from "../map/ViewMap";
 import ShowAppointment from "../appointment/ShowAppointment";
+import UserCard from "./UserCard";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -29,38 +30,68 @@ class SelectedAdvert extends Component {
     this.props.cancelAppointment(id);
   };
 
+  numberWithSpaces = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   contentForAll = () => {
+    // console.log(this.props.advert);
     return (
-      <div>
-        <h1>{this.props.advert.postcode}</h1>
-        <p>{this.props.advert.description}</p>
-        {this.props.user ? (
-          this.props.liked ? (
-            <button onClick={this.likeAdvert}>DisLike</button>
-          ) : (
-            <button onClick={this.likeAdvert}>Like</button>
-          )
-        ) : (
-          ""
-        )}
-
-        <ImageGallery advert={this.props.advert} myAdvert={false} />
-        <AdvertExtras advert={this.props.advert} myAdvert={false} />
-
-        <div>
-          {this.props.user ? (
-            this.props.user.user.id !== this.props.advert.userId ? (
-              this.props.isAppointment ? (
-                <h4>you have created appointment for this advertisement</h4>
+      <div className="container mt-3">
+        <h1>
+          {this.props.advert.address}, {this.props.advert.city}
+        </h1>
+        <p>{this.props.advert.postcode}</p>
+        <hr />
+        <h2>
+          {this.numberWithSpaces(this.props.advert.price)}{" "}
+          {this.props.advert.isForSale ? "EUR" : "EUR/month"}
+        </h2>
+        <div className="row">
+          <div className="col-12 col-md-12 col-lg-3 col-xl-3">
+            {this.props.user ? (
+              this.props.liked ? (
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={this.likeAdvert}
+                >
+                  DisLike
+                </button>
               ) : (
-                <AddAppointment />
+                <button className="btn btn-success" onClick={this.likeAdvert}>
+                  Like
+                </button>
               )
             ) : (
               ""
-            )
-          ) : (
-            "Please login first"
-          )}
+            )}
+            <hr />
+            <AdvertExtras advert={this.props.advert} myAdvert={false} />
+            <div>
+              {this.props.user ? (
+                this.props.user.user.id !== this.props.advert.userId ? (
+                  this.props.isAppointment ? (
+                    <h4>you have created appointment for this advertisement</h4>
+                  ) : (
+                    <AddAppointment />
+                  )
+                ) : (
+                  ""
+                )
+              ) : (
+                "To make appointment you should Login or SignUp"
+              )}
+            </div>
+          </div>
+          <div className="col-12 col-md-12 col-lg-8 col-xl-8 ml-auto">
+            <ImageGallery advert={this.props.advert} myAdvert={false} />
+            <div className="col-12 mt-3">
+              <UserCard user={this.props.advert.user} />
+            </div>
+          </div>
+          <div className="col-12">
+            <p>{this.props.advert.description}</p>
+          </div>
         </div>
         <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
       </div>

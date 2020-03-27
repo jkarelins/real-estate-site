@@ -18,7 +18,6 @@ class Header extends Component {
                     Home
                   </Link>
                 </li>
-
                 <li className="nav-item mr-2 my-2">
                   <Link className="text-link" to="/favorites">
                     My Favorite Adverts
@@ -37,6 +36,11 @@ class Header extends Component {
               </Fragment>
             ) : (
               <Fragment>
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/">
+                    Home
+                  </Link>
+                </li>
                 <li className="nav-item mr-2 my-2">
                   <Link className="text-link" to="/login">
                     Login
