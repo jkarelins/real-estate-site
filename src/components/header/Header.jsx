@@ -11,29 +11,30 @@ class Header extends Component {
       <nav className="navbar navbar-light navbar-expand-lg navbar-light">
         <div className="" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item mr-2 my-2">
-              <Link className="text-link" to="/">
-                Home
-              </Link>
-            </li>
-
-            <li className="nav-item mr-2 my-2">
-              <Link className="text-link" to="/favorites">
-                My Favorite Adverts
-              </Link>
-            </li>
-            <li className="nav-item mr-2 my-2">
-              <Link className="text-link" to="/myadverts">
-                My Adverts
-              </Link>
-            </li>
-            <li className="nav-item mr-2 my-2">
-              <Link className="text-link" to="/appointment">
-                My Appointments
-              </Link>
-            </li>
             {this.props.user ? (
-              ""
+              <Fragment>
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/">
+                    Home
+                  </Link>
+                </li>
+
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/favorites">
+                    My Favorite Adverts
+                  </Link>
+                </li>
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/myadverts">
+                    My Adverts
+                  </Link>
+                </li>
+                <li className="nav-item mr-2 my-2">
+                  <Link className="text-link" to="/appointment">
+                    My Appointments
+                  </Link>
+                </li>
+              </Fragment>
             ) : (
               <Fragment>
                 <li className="nav-item mr-2 my-2">
