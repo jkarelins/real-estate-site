@@ -3,6 +3,12 @@ import { createUser } from "../../actions/user";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
+let baseUrl = "";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
 
 const initialState = {
   username: "",
@@ -87,7 +93,7 @@ class SignUpForm extends Component {
 
   searchAgency = () => {
     axios
-      .get(`http://localhost:4000/agency/findby?name=${this.state.companyName}`)
+      .get(`${baseUrl}/agency/findby?name=${this.state.companyName}`)
       .then(res => {
         this.setState({
           ...this.state,

@@ -1,5 +1,10 @@
 import axios from "axios";
-const baseUrl = "http://localhost:4000";
+let baseUrl = "";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
 
 const NEW_APPOINTMENT = "NEW_APPOINTMENT";
 const GET_ONE_APPOINTMENT = "GET_ONE_APPOINTMENT";

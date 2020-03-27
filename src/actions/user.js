@@ -6,8 +6,13 @@ const LOG_OUT_USER = "LOG_OUT_USER";
 const USER_ACTION_ERROR = "USER_ACTION_ERROR";
 const CLEAR_ERRORS = "CLEAR_ERRORS";
 const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
+let baseUrl = "";
 
-const baseUrl = "http://localhost:4000";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
 
 const userCreateError = error => ({
   type: USER_ACTION_ERROR,

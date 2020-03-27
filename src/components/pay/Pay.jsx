@@ -7,7 +7,12 @@ import {
 } from "@stripe/react-stripe-js";
 import "./pay.css";
 import axios from "axios";
-const baseUrl = "http://localhost:4000";
+let baseUrl = "";
+if (process.env.NODE_ENV === "development") {
+  baseUrl = "http://localhost:4000";
+} else {
+  baseUrl = "https://shielded-journey-92023.herokuapp.com";
+}
 
 // const stripePromise = loadStripe("pk_test_pdg00O8tdW99El1V9yrNQrRE00GeePoRWx");
 let stripePromise = null;
