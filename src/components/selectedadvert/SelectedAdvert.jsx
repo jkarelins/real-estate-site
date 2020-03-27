@@ -37,7 +37,6 @@ class SelectedAdvert extends Component {
   };
 
   contentForAll = () => {
-    console.log(this.props.advert);
     return (
       <div className="container mt-3">
         <nav aria-label="breadcrumb">
@@ -46,7 +45,9 @@ class SelectedAdvert extends Component {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link>{this.props.advert.city}</Link>
+              <Link to={`/search/city/${this.props.advert.city}`}>
+                {this.props.advert.city}
+              </Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {this.props.advert.address}, {this.props.advert.city},{" "}

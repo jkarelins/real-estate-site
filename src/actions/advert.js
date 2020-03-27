@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === "development") {
 
 const CREATE_NEW_ADVERT = "CREATE_NEW_ADVERT";
 const FETCH_ALL_ADVERTS = "FETCH_ALL_ADVERTS";
+const FETCH_SEARCHED_ADVERTS = "FETCH_SEARCHED_ADVERTS";
 const FETCH_ONE_ADVERT = "FETCH_ONE_ADVERT";
 const GET_AGENCY_AGENTS = "GET_AGENCY_AGENTS";
 const TOGGLE_AGENT_CONFIRMATION = "TOGGLE_AGENT_CONFIRMATION";
@@ -114,4 +115,22 @@ export const getMyAdverts = () => (dispatch, getState) => {
       dispatch(getMyAdvertsSuccess(response.data));
     })
     .catch(err => console.log(err));
+};
+
+const searchedAdvertsFetchSuccess = adverts => ({
+  type: FETCH_SEARCHED_ADVERTS,
+  adverts
+});
+
+export const fetchAdvertsBySearchTerm = (
+  page,
+  searchBy,
+  searchFor
+) => dispatch => {
+  axios
+    .get(`${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}`)
+    .then(response => {
+      dispatch(searchedAdvertsFetchSuccess(response));
+    })
+    .catch(console.error);
 };

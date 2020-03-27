@@ -12,6 +12,8 @@ import SelectedAdvert from "./components/selectedadvert/SelectedAdvert";
 import FavoriteAdverts from "./components/userpage/FavoriteAdverts";
 import MyAdverts from "./components/userpage/MyAdverts";
 import MyAppointments from "./components/appointment/MyAppointments";
+import SearchedBy from "./components/mainpage/SearchedBy";
+
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
@@ -27,6 +29,7 @@ class App extends Component {
           <Route path="/user" component={UserPage} />
           <Route path="/advert/:id" component={SelectedAdvert} />
           <Route path="/appointment" exact component={MyAppointments} />
+          <Route path="/search/:keyword/:value" component={SearchedBy} />
           <Route path="/" exact component={MainPage} />
         </Switch>
       </Provider>
