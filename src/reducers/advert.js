@@ -16,9 +16,19 @@ export default function eventReducer(state = initialState, action) {
     case "FETCH_ALL_ADVERTS": {
       const { data, count } = action.adverts.data;
       if (state.allAdverts) {
+        const modifiedAdverts = data.map(advert => {
+          if (advert.advert_images.length !== 0) {
+            return {
+              ...advert,
+              image: advert.advert_images[0].image.url
+            };
+          }
+          return advert;
+        });
+
         return {
           ...state,
-          allAdverts: [...state.allAdverts, ...data],
+          allAdverts: [...state.allAdverts, ...modifiedAdverts],
           advertsCount: count
         };
       }

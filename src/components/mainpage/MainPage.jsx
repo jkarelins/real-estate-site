@@ -9,6 +9,11 @@ class MainPage extends Component {
       this.props.fetchAdverts(0);
     }
   }
+
+  numberWithSpaces = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   render() {
     if (!this.props.allAdverts) {
       return (
@@ -18,14 +23,41 @@ class MainPage extends Component {
       );
     } else {
       return (
-        <div>
-          {this.props.allAdverts.map((advert, i) => (
-            <p key={i}>
-              <Link to={`/advert/${advert.id}`}>
-                {advert.description} -> {advert.postcode}
-              </Link>
-            </p>
-          ))}
+        <div className="container row mt-3">
+          {this.props.allAdverts.map((advert, i) => {
+            const advertImage =
+              advert.image ||
+              "https://res.cloudinary.com/dpjzmbojz/image/upload/v1585304394/No_image_3x4.svg_dqj5vw.png";
+
+            return (
+              <div className="col-12 col-md-6 col-lg-4 col-xl-4" key={i}>
+                <div className="card">
+                  <img
+                    className="card-img-top"
+                    src={advertImage}
+                    alt={`${advert.isForRent ? "For rent:" : "For Sale:"} ${
+                      advert.address
+                    }, ${advert.city}, ${advert.postcode}`}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      {advert.address}, {advert.city}
+                    </h5>
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      {advert.postcode}
+                    </h6>
+                    <p className="card-text">
+                      {this.numberWithSpaces(advert.price)}{" "}
+                      {advert.isForRent ? "EUR/month" : "EUR"}
+                    </p>
+                    <Link to={`/advert/${advert.id}`} className="btn btn-info">
+                      OPEN
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       );
     }
