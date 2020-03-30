@@ -70,7 +70,6 @@ export default function CheckoutForm(props) {
       } else if (!state.requested) {
         state.requested = true;
         const { jwt } = userReducer;
-        console.log(jwt, userReducer);
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
         axios
