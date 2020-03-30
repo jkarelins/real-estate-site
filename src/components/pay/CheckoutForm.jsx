@@ -70,13 +70,13 @@ export default function CheckoutForm(props) {
       } else if (!state.requested) {
         state.requested = true;
         const { jwt } = userReducer;
-        console.log(jwt);
+        console.log(jwt, userReducer);
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
         axios
           .get(`${baseUrl}/payment/${state.amountInCents}`)
           .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             state.userId = res.data.client_secret;
             state.foundUserId = true;
           })
