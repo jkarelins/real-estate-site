@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PaymentWraper from "../pay/PaymentWraper";
 import Moment from "react-moment";
 import AddNewAdvert from "../addnewadvert/AddNewAdvert";
@@ -40,24 +41,37 @@ class PrivatePersPage extends Component {
   }
 
   render() {
+    const favoriteAdverts = this.props.user.advert_user_likes.length;
     return (
       <div className="row mt-3">
         <div className="col-3">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">
-                Welcome: {this.props.user.username}
-              </h5>
+              <h4>Welcome</h4>
+              <h5 className="card-title">{this.props.user.username}</h5>
               <ul className="list-group list-group-flush">
                 {+this.props.user.freeAdvertLimit ? (
                   <li className="list-group-item">
-                    You can publish {this.props.user.freeAdvertLimit} free
-                    advertisements
+                    You can publish{" "}
+                    <span className="font-weight-bold">
+                      {this.props.user.freeAdvertLimit}
+                    </span>{" "}
+                    free advertisements
                   </li>
                 ) : (
                   ""
                 )}
-                <li className="list-group-item"></li>
+                {+this.props.user.paidAdvertLimit ? (
+                  <li className="list-group-item">
+                    You can publish{" "}
+                    <span className="font-weight-bold">
+                      {this.props.user.paidAdvertLimit}
+                    </span>{" "}
+                    paid advertisements
+                  </li>
+                ) : (
+                  ""
+                )}
                 <li className="list-group-item">
                   Registered:{" "}
                   <Moment fromNow ago>
@@ -76,6 +90,13 @@ class PrivatePersPage extends Component {
                     You have not published your phone number.
                   </li>
                 )}
+                <li className="list-group-item">
+                  <Link to="/favorites">
+                    You have{" "}
+                    <span className="font-weight-bold">{favoriteAdverts}</span>{" "}
+                    favorite adverts
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
