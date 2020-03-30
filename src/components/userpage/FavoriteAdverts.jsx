@@ -13,7 +13,11 @@ class FavoriteAdverts extends Component {
 
   render() {
     if (!this.props.user) {
-      return <h4>Please Login first.</h4>;
+      return (
+        <div className="contaner mt-3">
+          <h4>Please Login first.</h4>
+        </div>
+      );
     } else {
       if (!this.props.favorites) {
         return <h4>Loading...</h4>;
@@ -27,11 +31,9 @@ class FavoriteAdverts extends Component {
         } else {
           return (
             <div className="row mt-3 d-flex justify-content-center">
-              <ul>
-                {this.props.favorites.map((likedAdvert, i) => (
-                  <AdvertCard advert={likedAdvert.advert} key={i} />
-                ))}
-              </ul>
+              {this.props.favorites.map((likedAdvert, i) => (
+                <AdvertCard advert={likedAdvert.advert} key={i} />
+              ))}
             </div>
           );
         }
