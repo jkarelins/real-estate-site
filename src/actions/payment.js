@@ -17,6 +17,7 @@ export const requestUserSecret = amountInCents => (dispatch, getState) => {
   console.log("was here");
   const { userReducer } = getState();
   const { jwt } = userReducer;
+  console.log(jwt, userReducer);
   axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
   axios
