@@ -8,7 +8,6 @@ const CLEAR_ERRORS = "CLEAR_ERRORS";
 const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
 let baseUrl = "";
 
-console.log(process.env);
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
 } else {
