@@ -7,16 +7,23 @@ import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 const initialState = {
   topUp: false,
   success: false,
-  amountInEUR: 0
+  amountInEUR: 0,
+  error: ""
 };
 class PrivatePersPage extends Component {
   state = initialState;
 
   topUp = () => {
-    if (this.state.amountInEUR < 1) return;
+    if (this.state.amountInEUR < 1) {
+      this.setState({
+        error: "Please input value in EUR."
+      });
+      return;
+    }
     this.setState({
       topUp: true,
-      success: false
+      success: false,
+      error: ""
     });
   };
 
@@ -83,7 +90,7 @@ class PrivatePersPage extends Component {
               ) : this.state.topUp ? (
                 <PaymentWraper amountInCents={+this.state.amountInEUR * 100} />
               ) : (
-                <div>
+                <div className="row">
                   <div className="input-group mb-3 col-5">
                     <div className="input-group-prepend">
                       <span className="input-group-text">EUR</span>
@@ -103,13 +110,23 @@ class PrivatePersPage extends Component {
                       <span className="input-group-text">.00</span>
                     </div>
                   </div>
-
-                  <button
-                    onClick={this.topUp}
-                    className="btn btn-sm btn-success ml-3"
-                  >
-                    Top Up Balance
-                  </button>
+                  {this.state.error ? (
+                    <div className="input-group mb-3">
+                      <small className="text-danger col-12">
+                        {this.state.error}
+                      </small>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="input-group mb-3">
+                    <button
+                      onClick={this.topUp}
+                      className="btn btn-sm btn-success ml-3"
+                    >
+                      Top Up Balance
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
