@@ -5,7 +5,9 @@ export default class UserHasNoCredits extends Component {
     if (this.props.user) {
       return (
         <Fragment>
-          <h4>Sorry, advertisement limit reached</h4>
+          <div class="alert alert-info mt-3" role="alert">
+            Sorry, advertisement limit reached.
+          </div>
         </Fragment>
       );
     } else {

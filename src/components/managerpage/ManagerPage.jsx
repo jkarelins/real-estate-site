@@ -67,7 +67,9 @@ class ManagerPage extends Component {
 
         <div>
           {this.state.success ? (
-            <h4>Your account was successfuly charged</h4>
+            <div class="alert alert-success mt-3" role="alert">
+              Your account was successfuly charged
+            </div>
           ) : this.state.topUp ? (
             <PaymentWraper amountInCents={+this.state.amountInEUR * 100} />
           ) : (
@@ -85,7 +87,12 @@ class ManagerPage extends Component {
                 />
                 EUR
               </label>
-              <button onClick={this.topUp}>Top Up Balance</button>
+              <button
+                onClick={this.topUp}
+                className="btn btn-sm btn-success ml-3"
+              >
+                >Top Up Balance
+              </button>
             </div>
           )}
         </div>

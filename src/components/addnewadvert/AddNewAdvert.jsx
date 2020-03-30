@@ -25,7 +25,8 @@ const initialState = {
   heating: "",
   warmWater: "",
   storage: "",
-  parking: ""
+  parking: "",
+  showAddForm: false
 };
 
 class AddNewAdvert extends Component {
@@ -60,17 +61,44 @@ class AddNewAdvert extends Component {
     }
   };
 
+  showAdvertForm = () => {
+    this.setState({
+      showAddForm: !this.state.showAddForm
+    });
+  };
+
   render() {
     return (
-      <div>
-        <hr />
-        <h4>Add New advertisement</h4>
-        <AdvertForm
-          submitNewAdvert={this.submitNewAdvert}
-          handleChange={this.handleChange}
-          formValues={this.state}
-          forRentForSale={this.forRentForSale}
-        />
+      <div className="card">
+        {this.state.showAddForm ? (
+          <div className="card-body">
+            <button
+              className="btn btn-md brn btn-warning"
+              type="button"
+              onClick={this.showAdvertForm}
+            >
+              Hide Advert Form
+            </button>
+            <hr />
+            <h4>Add New advertisement</h4>
+            <AdvertForm
+              submitNewAdvert={this.submitNewAdvert}
+              handleChange={this.handleChange}
+              formValues={this.state}
+              forRentForSale={this.forRentForSale}
+            />
+          </div>
+        ) : (
+          <div className="col-4 my-3">
+            <button
+              className="btn btn-sm btn-info"
+              type="button"
+              onClick={this.showAdvertForm}
+            >
+              Add New Advert
+            </button>
+          </div>
+        )}
       </div>
     );
   }

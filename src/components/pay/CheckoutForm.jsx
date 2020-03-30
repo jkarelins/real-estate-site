@@ -86,11 +86,12 @@ export default function CheckoutForm(props) {
 
   return (
     <Fragment>
-      <h4 className="col-12">
+      <div className="alert alert-info mt-3" role="alert">
         You are going to top up your account for {state.amountInCents / 100}{" "}
         EUR. It is {state.amountInCents / 100} new advertisements. 1
         advertisement price is 1 EUR.
-      </h4>
+      </div>
+
       <div className="row">
         {userReducer ? (
           <form onSubmit={handleSubmit} className="col-12">
@@ -101,7 +102,9 @@ export default function CheckoutForm(props) {
             </button>
           </form>
         ) : (
-          "Sorry to TopUp your account, you should login first"
+          <div class="alert alert-warning mt-3" role="alert">
+            Sorry to TopUp your account, you should login first
+          </div>
         )}
       </div>
     </Fragment>
