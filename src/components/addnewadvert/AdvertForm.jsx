@@ -5,204 +5,293 @@ export default class AdvertForm extends Component {
     return (
       <Fragment>
         <form onSubmit={this.props.submitNewAdvert}>
-          <input
-            type="text"
-            name="description"
-            value={this.props.formValues.description}
-            onChange={this.props.handleChange}
-            placeholder="Description"
-            required
-          />
-          <br />
-          <button
-            type="button"
-            onClick={() => this.props.forRentForSale("sale")}
-          >
-            For Sale
-          </button>
-          <button
-            type="button"
-            onClick={() => this.props.forRentForSale("rent")}
-          >
-            For Rent
-          </button>
-          <br />
-          <label htmlFor="price">Price: </label>
-          <input
-            type="number"
-            name="price"
-            min="1"
-            step="1"
-            value={this.props.formValues.price}
-            onChange={this.props.handleChange}
-            required
-          />
-          {this.props.formValues.isForSale
-            ? "EUR"
-            : this.props.formValues.isForRent
-            ? "EUR/month"
-            : ""}
-          <br />
-          <input
-            type="text"
-            name="address"
-            value={this.props.formValues.address}
-            onChange={this.props.handleChange}
-            placeholder="Address"
-            required
-          />
-          <br />
-          <input
-            type="text"
-            name="city"
-            value={this.props.formValues.city}
-            onChange={this.props.handleChange}
-            placeholder="City Name"
-            required
-          />
-          <br />
-          <input
-            type="text"
-            name="postcode"
-            value={this.props.formValues.postcode}
-            onChange={this.props.handleChange}
-            placeholder="Postcode"
-            required
-          />
-          <br />
-          <label htmlFor="sqrMeter">Square Meter</label>
-          <input
-            type="number"
-            name="sqrMeter"
-            min="1"
-            step="1"
-            value={this.props.formValues.sqrMeter}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="cubicMeter">Cubic Meter</label>
-          <input
-            type="number"
-            name="cubicMeter"
-            min="1"
-            step="1"
-            value={this.props.formValues.cubicMeter}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="numberOfRooms">Number of Rooms</label>
-          <input
-            type="number"
-            name="nrOfRooms"
-            min="1"
-            step="1"
-            value={this.props.formValues.nrOfRooms}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="numberOfBathrooms">Number of Bathrooms</label>
-          <input
-            type="number"
-            name="nrOfBathrooms"
-            min="1"
-            step="1"
-            value={this.props.formValues.nrOfBathrooms}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="numberOfFloors">Number of Floors</label>
-          <input
-            type="number"
-            name="nrOfFloors"
-            min="1"
-            step="1"
-            value={this.props.formValues.nrOfFloors}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="locatedOnFloor">Located on Floor</label>
-          <input
-            type="number"
-            name="locatedOnFloor"
-            min="1"
-            step="1"
-            value={this.props.formValues.locatedOnFloor}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="monthlyPayment">Monthly Payments</label>
-          <input
-            type="number"
-            name="monthlyContribution"
-            min="0"
-            step="1"
-            value={this.props.formValues.monthlyContribution}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="cionstructionYear">Construction Year</label>
-          <input
-            type="number"
-            name="constructionYear"
-            min="0"
-            step="1"
-            value={this.props.formValues.constructionYear}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="renovationYear">Renovation Year</label>
-          <input
-            type="number"
-            name="renovationYear"
-            min="0"
-            step="1"
-            value={this.props.formValues.renovationYear}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="energyLabel">Energy Label</label>
-          <input
-            type="text"
-            name="energyLabel"
-            maxLength="1"
-            value={this.props.formValues.energyLabel}
-            onChange={this.props.handleChange}
-            required
-          />
-          <br />
-          <label htmlFor="heating">Heating</label>
-          <input
-            type="text"
-            name="heating"
-            value={this.props.formValues.heating}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="warmWater">Warm Water</label>
-          <input
-            type="text"
-            name="warmWater"
-            value={this.props.formValues.warmWater}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="storage">Storage</label>
-          <input
-            type="text"
-            name="storage"
-            value={this.props.formValues.storage}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <label htmlFor="parking">Parking</label>
-          <input
-            type="text"
-            name="parking"
-            value={this.props.formValues.parking}
-            onChange={this.props.handleChange}
-          />
-          <br />
-          <input type="submit" value="Add New" />
+          <div className="input-group my-3">
+            {this.props.formValues.isForSale ? (
+              <button
+                className="btn btn-sm btn-success mr-3"
+                type="button"
+                onClick={() => this.props.forRentForSale("sale")}
+              >
+                For Sale
+              </button>
+            ) : (
+              <button
+                className="btn btn-sm btn-warning mr-3"
+                type="button"
+                onClick={() => this.props.forRentForSale("sale")}
+              >
+                For Sale
+              </button>
+            )}
+            {this.props.formValues.isForRent ? (
+              <button
+                type="button"
+                className="btn btn-sm btn-success"
+                onClick={() => this.props.forRentForSale("rent")}
+              >
+                For Rent
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-sm btn-warning"
+                onClick={() => this.props.forRentForSale("rent")}
+              >
+                For Rent
+              </button>
+            )}
+          </div>
+          <div className="input-group mb-3">
+            <small>Please, Select is it For Sale or For Rent</small>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="price" className="col-6">
+              Price <span className="text-danger">*</span>
+              <input
+                type="number"
+                name="price"
+                className="form-control"
+                min="1"
+                step="1"
+                value={this.props.formValues.price}
+                onChange={this.props.handleChange}
+                required
+              />
+              {this.props.formValues.isForSale
+                ? "EUR"
+                : this.props.formValues.isForRent
+                ? "EUR/month"
+                : ""}
+            </label>
+            <label htmlFor="postcode" className="col-6">
+              City Name <span className="text-danger">*</span>
+              <input
+                type="text"
+                name="city"
+                className="form-control"
+                value={this.props.formValues.city}
+                onChange={this.props.handleChange}
+                placeholder="City Name"
+                required
+              />
+            </label>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="postcode" className="col-8">
+              Address <span className="text-danger">*</span>
+              <input
+                type="text"
+                name="address"
+                className="form-control"
+                value={this.props.formValues.address}
+                onChange={this.props.handleChange}
+                placeholder="Address"
+                required
+              />
+            </label>
+            <label htmlFor="postcode" className="col-4">
+              Postcode <span className="text-danger">*</span>
+              <input
+                type="text"
+                name="postcode"
+                className="form-control"
+                value={this.props.formValues.postcode}
+                onChange={this.props.handleChange}
+                placeholder="Postcode"
+                required
+              />
+            </label>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="cionstructionYear" className="col-6">
+              Construction Year
+              <input
+                type="number"
+                className="form-control"
+                name="constructionYear"
+                min="0"
+                step="1"
+                value={this.props.formValues.constructionYear}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="renovationYear" className="col-6">
+              Renovation Year
+              <input
+                type="number"
+                className="form-control"
+                name="renovationYear"
+                min="0"
+                step="1"
+                value={this.props.formValues.renovationYear}
+                onChange={this.props.handleChange}
+              />
+            </label>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="sqrMeter" className="col-3">
+              Square Meter <span className="text-danger">*</span>
+              <input
+                type="number"
+                className="form-control"
+                name="sqrMeter"
+                min="1"
+                step="1"
+                value={this.props.formValues.sqrMeter}
+                onChange={this.props.handleChange}
+                required
+              />
+            </label>
+            <label htmlFor="cubicMeter" className="col-3">
+              Cubic Meter
+              <input
+                type="number"
+                className="form-control"
+                name="cubicMeter"
+                min="1"
+                step="1"
+                value={this.props.formValues.cubicMeter}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="numberOfRooms" className="col-3">
+              Number of Rooms
+              <input
+                type="number"
+                className="form-control"
+                name="nrOfRooms"
+                min="1"
+                step="1"
+                value={this.props.formValues.nrOfRooms}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="numberOfBathrooms" className="col-3">
+              Number of Bathrooms
+              <input
+                type="number"
+                className="form-control"
+                name="nrOfBathrooms"
+                min="1"
+                step="1"
+                value={this.props.formValues.nrOfBathrooms}
+                onChange={this.props.handleChange}
+              />
+            </label>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="numberOfFloors" className="col-3">
+              Number of Floors
+              <input
+                type="number"
+                className="form-control"
+                name="nrOfFloors"
+                min="1"
+                step="1"
+                value={this.props.formValues.nrOfFloors}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="locatedOnFloor" className="col-3">
+              Located on Floor
+              <input
+                type="number"
+                className="form-control"
+                name="locatedOnFloor"
+                min="1"
+                step="1"
+                value={this.props.formValues.locatedOnFloor}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="monthlyPayment" className="col-3">
+              Monthly Payments
+              <input
+                type="number"
+                className="form-control"
+                name="monthlyContribution"
+                min="0"
+                step="1"
+                value={this.props.formValues.monthlyContribution}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="energyLabel" className="col-3">
+              Energy Label
+              <input
+                type="text"
+                className="form-control"
+                name="energyLabel"
+                maxLength="1"
+                value={this.props.formValues.energyLabel}
+                onChange={this.props.handleChange}
+                required
+              />
+            </label>
+          </div>
+          <div className="input-group mt-3">
+            <label htmlFor="heating" className="col-6">
+              Heating
+              <input
+                type="text"
+                className="form-control"
+                name="heating"
+                value={this.props.formValues.heating}
+                onChange={this.props.handleChange}
+              />
+            </label>
+            <label htmlFor="warmWater" className="col-6">
+              Warm Water
+              <input
+                type="text"
+                className="form-control"
+                name="warmWater"
+                value={this.props.formValues.warmWater}
+                onChange={this.props.handleChange}
+              />
+            </label>
+          </div>
+          <div className="input-group mt-3">
+            <label htmlFor="storage" className="col-6">
+              Storage
+              <input
+                type="text"
+                className="form-control"
+                name="storage"
+                value={this.props.formValues.storage}
+                onChange={this.props.handleChange}
+              />
+            </label>
+
+            <label htmlFor="parking" className="col-6">
+              Parking
+              <input
+                type="text"
+                className="form-control"
+                name="parking"
+                value={this.props.formValues.parking}
+                onChange={this.props.handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-group col-12 mt-3">
+            <label htmlFor="description">
+              Description <span className="text-danger">*</span>
+            </label>
+            <textarea
+              className="form-control"
+              id="description"
+              rows="7"
+              name="description"
+              value={this.props.formValues.description}
+              onChange={this.props.handleChange}
+              placeholder="Description"
+              required
+            />
+          </div>
+          <div className="input-group ml-3">
+            <input className="btn btn-success" type="submit" value="Add New" />
+          </div>
         </form>
       </Fragment>
     );

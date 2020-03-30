@@ -25,7 +25,9 @@ const initialState = {
   heating: "",
   warmWater: "",
   storage: "",
-  parking: ""
+  parking: "",
+  showAddForm: false,
+  error: ""
 };
 
 class AddNewAdvert extends Component {
@@ -39,6 +41,12 @@ class AddNewAdvert extends Component {
 
   submitNewAdvert = e => {
     e.preventDefault();
+    if (!this.state.isForRent && !this.state.isForSale) {
+      this.setState({
+        error: "Please select is it For Sale or For Rent"
+      });
+      return;
+    }
     this.props.createAdvert(this.state);
     this.setState(initialState);
   };
@@ -48,29 +56,65 @@ class AddNewAdvert extends Component {
       this.setState({
         ...this.state,
         isForSale: true,
-        isForRent: false
+        isForRent: false,
+        error: ""
       });
     }
     if (action === "rent") {
       this.setState({
         ...this.state,
         isForSale: false,
-        isForRent: true
+        isForRent: true,
+        error: ""
       });
     }
   };
 
+  showAdvertForm = () => {
+    this.setState({
+      showAddForm: !this.state.showAddForm
+    });
+  };
+
   render() {
     return (
-      <div>
-        <hr />
-        <h4>Add New advertisement</h4>
-        <AdvertForm
-          submitNewAdvert={this.submitNewAdvert}
-          handleChange={this.handleChange}
-          formValues={this.state}
-          forRentForSale={this.forRentForSale}
-        />
+      <div className="card">
+        {this.state.showAddForm ? (
+          <div className="card-body">
+            <button
+              className="btn btn-md brn btn-warning"
+              type="button"
+              onClick={this.showAdvertForm}
+            >
+              Hide Advert Form
+            </button>
+            <hr />
+            <h4>Add New advertisement</h4>
+            {this.state.error ? (
+              <div class="alert alert-danger my-3 mx-5" role="alert">
+                {this.state.error}
+              </div>
+            ) : (
+              ""
+            )}
+            <AdvertForm
+              submitNewAdvert={this.submitNewAdvert}
+              handleChange={this.handleChange}
+              formValues={this.state}
+              forRentForSale={this.forRentForSale}
+            />
+          </div>
+        ) : (
+          <div className="col-4 my-3">
+            <button
+              className="btn btn-sm btn-info"
+              type="button"
+              onClick={this.showAdvertForm}
+            >
+              Add New Advert
+            </button>
+          </div>
+        )}
       </div>
     );
   }

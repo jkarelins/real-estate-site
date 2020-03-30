@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 import AgentPage from "../agentpage/AgentPage";
 import ManagerPage from "../managerpage/ManagerPage";
 import PrivatePersPage from "../privateperspage/PrivatePersPage";
@@ -41,7 +40,6 @@ class UserPage extends Component {
               return (
                 <div className="container">
                   <PrivatePersPage />
-                  <AddNewAdvert />
                 </div>
               );
             }
