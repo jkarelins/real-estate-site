@@ -1,4 +1,4 @@
-/**
+/* *
 * Shows how you can use CSS to style your Element's container.
 * These classes are added to your Stripe Element by default.
 * You can override these classNames by using the options passed
@@ -9,7 +9,8 @@
 .StripeElement {
   height: 40px;
   padding: 10px 12px;
-  width: 100%;
+  width: 70%;
+  display: inline-block;
   color: #32325d;
   background-color: white;
   border: 1px solid transparent;

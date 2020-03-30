@@ -37,7 +37,7 @@ class PrivatePersPage extends Component {
       this.props.user.paidAdvertLimit === 0 &&
       this.props.user.freeAdvertLimit === 0;
     return (
-      <div>
+      <div className="col-12">
         {this.state.success ? (
           <h4>Your account was successfuly charged</h4>
         ) : this.state.topUp ? (

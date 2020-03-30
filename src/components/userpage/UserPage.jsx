@@ -39,7 +39,7 @@ class UserPage extends Component {
             }
             case "privatePerson": {
               return (
-                <div>
+                <div className="container">
                   <PrivatePersPage />
                   <AddNewAdvert />
                 </div>

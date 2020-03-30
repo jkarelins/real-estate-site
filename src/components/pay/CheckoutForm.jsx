@@ -86,19 +86,24 @@ export default function CheckoutForm(props) {
 
   return (
     <Fragment>
-      <h4>
-        You are going to top up your accunt for {state.amountInCents / 100} EUR.
-        It is {state.amountInCents / 100} new advertisements. 1 advertisement
-        price is 1 EUR.
+      <h4 className="col-12">
+        You are going to top up your account for {state.amountInCents / 100}{" "}
+        EUR. It is {state.amountInCents / 100} new advertisements. 1
+        advertisement price is 1 EUR.
       </h4>
-      {userReducer ? (
-        <form onSubmit={handleSubmit}>
-          <CardSection />
-          <button disabled={!stripe}>Confirm order</button>
-        </form>
-      ) : (
-        "Sorry to TopUp your account, you should login first"
-      )}
+      <div className="row">
+        {userReducer ? (
+          <form onSubmit={handleSubmit} className="col-12">
+            <CardSection />
+            <br />
+            <button disabled={!stripe} className="btn btn-success">
+              Confirm order
+            </button>
+          </form>
+        ) : (
+          "Sorry to TopUp your account, you should login first"
+        )}
+      </div>
     </Fragment>
   );
 }

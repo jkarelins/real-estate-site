@@ -25,10 +25,14 @@ const CARD_ELEMENT_OPTIONS = {
 
 function CardSection() {
   return (
-    <label>
-      Card details
-      <CardElement options={CARD_ELEMENT_OPTIONS} />
-    </label>
+    <div className="row">
+      <div className="col-12">
+        <h4>Card details</h4>
+      </div>
+      <div className="col-12">
+        <CardElement options={CARD_ELEMENT_OPTIONS} />
+      </div>
+    </div>
   );
 }
 
