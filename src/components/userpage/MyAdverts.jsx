@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getMyAdverts } from "../../actions/advert";
+import AdvertCard from "../advertcard/AdvertCard";
 
 class FavoriteAdverts extends Component {
   componentDidMount() {
@@ -20,21 +21,17 @@ class FavoriteAdverts extends Component {
       } else {
         if (this.props.userAdverts.length === 0) {
           return (
-            <div>
+            <div className="container mt-3">
               <h4>You have not added advertisements yet</h4>
               <Link to="/user">Add Adevertisements</Link>
             </div>
           );
         } else {
           return (
-            <div>
-              <ul>
-                {this.props.userAdverts.map((advert, i) => (
-                  <li key={i}>
-                    <Link to={`/advert/${advert.id}`}>{advert.postcode}</Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="row mt-3 d-flex justify-content-center">
+              {this.props.userAdverts.map((advert, i) => (
+                <AdvertCard key={i} advert={advert} />
+              ))}
             </div>
           );
         }

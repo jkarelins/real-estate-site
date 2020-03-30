@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { getFavorites } from "../../actions/likes";
+import AdvertCard from "../advertcard/AdvertCard";
 
 class FavoriteAdverts extends Component {
   componentDidMount() {
@@ -20,20 +20,16 @@ class FavoriteAdverts extends Component {
       } else {
         if (this.props.favorites.length === 0) {
           return (
-            <div>
+            <div className="contaner mt-3">
               <h4>You have not added favorite advertisements yet</h4>
             </div>
           );
         } else {
           return (
-            <div>
+            <div className="row mt-3 d-flex justify-content-center">
               <ul>
                 {this.props.favorites.map((likedAdvert, i) => (
-                  <li key={i}>
-                    <Link to={`/advert/${likedAdvert.advertId}`}>
-                      {likedAdvert.advert.postcode}
-                    </Link>
-                  </li>
+                  <AdvertCard advert={likedAdvert.advert} key={i} />
                 ))}
               </ul>
             </div>
