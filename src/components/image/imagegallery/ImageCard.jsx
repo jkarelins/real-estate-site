@@ -7,7 +7,7 @@ export default class ImageCard extends Component {
         <div className="card col-4">
           <img
             src={this.props.imageCon.image.url}
-            className={`card-img-top img-fluid my-auto ${
+            className={`card-img-top img-fluid m-auto ${
               this.props.imageId === this.props.imageCon.image.id
                 ? "toRemove"
                 : ""
@@ -27,6 +27,19 @@ export default class ImageCard extends Component {
         </div>
       );
     } else {
+      return (
+        <div className="card col-4">
+          <img
+            src={this.props.imageCon.image.url}
+            className="card-img-top img-fluid m-auto"
+            alt={`${this.props.advert.address}, property ${
+              this.props.advert.isForSale ? "for sale - " : "for rent - "
+            }${this.props.advert.price}${
+              this.props.advert.isForSale ? "EUR" : "EUR/month"
+            }`}
+          />
+        </div>
+      );
     }
   }
 }

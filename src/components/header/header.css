@@ -5,7 +5,7 @@ nav {
 .text-link {
   color: #3b3355;
   text-decoration: none;
-  transition: color 1s;
+  transition: all 0.25s;
 }
 
 .text-link:hover {

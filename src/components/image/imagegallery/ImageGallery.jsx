@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeImage } from "../../../actions/images";
 import "./gallery.css";
@@ -18,7 +18,6 @@ class ImageGallery extends Component {
       publicId,
       imageId
     });
-    // console.log(publicId);
   };
 
   cancelDelete = () => {
@@ -64,7 +63,7 @@ class ImageGallery extends Component {
           ) : (
             ""
           )}
-          <div className="row">
+          <div className="row mx-3">
             {this.props.advert.advert_images.map((imageCon, i) => (
               <ImageCard
                 imageCon={imageCon}
@@ -84,17 +83,7 @@ class ImageGallery extends Component {
             <h4>Gallery</h4>
           </div>
           {this.props.advert.advert_images.map((imageCon, i) => (
-            <div className="col-4" key={i}>
-              <img
-                src={imageCon.image.url}
-                className="img-fluid"
-                alt={`${this.props.advert.address}, property ${
-                  this.props.advert.isForSale ? "for sale - " : "for rent - "
-                }${this.props.advert.price}${
-                  this.props.advert.isForSale ? "EUR" : "EUR/month"
-                }`}
-              />
-            </div>
+            <ImageCard imageCon={imageCon} key={i} advert={this.props.advert} />
           ))}
         </div>
       );

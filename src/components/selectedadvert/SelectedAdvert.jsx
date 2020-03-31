@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAdvert } from "../../actions/advert";
@@ -181,19 +181,30 @@ class SelectedAdvert extends Component {
             <h1>{mySelectedAdvert.address}</h1>
             <h2>{mySelectedAdvert.postcode}</h2>
             <ImagesUpload />
-
-            <ImageGallery advert={this.props.advert} myAdvert={true} />
+            <div className="card my-3">
+              <div className="card-body">
+                <ImageGallery advert={this.props.advert} myAdvert={true} />
+              </div>
+            </div>
             <hr />
-            <AdvertExtras advert={this.props.advert} myAdvert={true} />
-
-            <h4>Active Appointments:</h4>
-            {activeAppointments.map((app, i) => (
-              <ShowAppointment
-                key={i}
-                appointment={app}
-                cancelAppointment={this.cancelAppointment}
-              />
-            ))}
+            <div className="card">
+              <div className="card-body">
+                <AdvertExtras advert={this.props.advert} myAdvert={true} />
+              </div>
+            </div>
+            <hr />
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Active Appointments</h5>
+                {activeAppointments.map((app, i) => (
+                  <ShowAppointment
+                    key={i}
+                    appointment={app}
+                    cancelAppointment={this.cancelAppointment}
+                  />
+                ))}
+              </div>
+            </div>
             <hr />
 
             <h4>Canceled Appointments</h4>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { changeAppointment } from "../../actions/appointment";
 
@@ -59,16 +59,16 @@ class ShowAppointment extends Component {
     if (this.props.appointment && !this.state.updateMode) {
       const { appointment } = this.props;
       return (
-        <div>
-          <p>
-            Planed: {this.state.date} @{appointment.hours} :{" "}
+        <Fragment>
+          <p className="card-text">
+            Planed Appointment Time: {this.state.date} @ {appointment.hours} :{" "}
             {appointment.minutes}
             <br />
-            Planed by : {appointment.name} - {appointment.email}
+            Requested By: {appointment.name} - {appointment.email}
             <br />
-            tel: {appointment.phone}
+            Phone Nr.: {appointment.phone}
           </p>
-          <p>
+          <p className="card-text">
             {appointment.text}
             <br />
             Was created: {appointment.createdAt}, last changes:{" "}
@@ -78,111 +78,152 @@ class ShowAppointment extends Component {
             ""
           ) : (
             <div>
-              <button onClick={() => this.updateMode("enableEdit")}>
-                Edit
+              <button
+                className="btn btn-sm btn-warning"
+                onClick={() => this.updateMode("enableEdit")}
+              >
+                EDIT
               </button>
               <button
+                className="btn btn-sm btn-danger ml-2"
                 onClick={() => this.props.cancelAppointment(appointment.id)}
               >
-                Cancel
+                CANCEL
               </button>
             </div>
           )}
-        </div>
+          <hr />
+        </Fragment>
       );
     } else if (this.props.appointment && this.state.updateMode) {
-      const { appointment } = this.props;
-
       return (
         <div>
           <div>
             <h5>Edit appointment</h5>
+            <hr />
             <form onSubmit={e => this.submitAppointment(e)}>
-              <input
-                type="date"
-                name="date"
-                value={this.state.date}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <label htmlFor="hours">Hours:</label>
-              <select
-                name="hours"
-                onChange={this.handleChange}
-                value={this.state.hours}
-                required
-              >
-                {this.getHours(24)}
-              </select>
-              <label htmlFor="minutes">
-                {" "}
-                :{" "}
-                <select
-                  name="minutes"
+              <div className="col-4">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Date: </span>
+                  </div>
+                  <input
+                    type="date"
+                    name="date"
+                    className="form-control"
+                    value={this.state.date}
+                    onChange={this.handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-6 mt-3">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Hours: </span>
+                  </div>
+                  <select
+                    name="hours"
+                    className="custom-select"
+                    onChange={this.handleChange}
+                    value={this.state.hours}
+                    required
+                  >
+                    {this.getHours(24)}
+                  </select>
+                  <select
+                    name="minutes"
+                    className="custom-select"
+                    onChange={this.handleChange}
+                    value={this.state.minutes}
+                    required
+                  >
+                    <option value="0">0</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                  </select>
+                  <div className="input-group-append">
+                    <span className="input-group-text"> minutes</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-6 mt-3">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Email: </span>
+                  </div>
+                  <input
+                    type="text"
+                    readOnly
+                    name="email"
+                    className="form-control"
+                    value={this.state.email}
+                  />
+                </div>
+              </div>
+              <div className="col-6 mt-3">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Phone number: </span>
+                  </div>
+                  <input
+                    type="text"
+                    readOnly
+                    name="phone"
+                    className="form-control"
+                    value={this.state.phone}
+                  />
+                </div>
+              </div>
+              <div className="col-6 mt-3">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Phone number: </span>
+                  </div>
+                  <input
+                    type="text"
+                    readOnly
+                    name="name"
+                    className="form-control"
+                    value={this.state.name}
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group mx-3 mt-3">
+                <label>Appointment Text</label>
+                <textarea
+                  name="text"
+                  rows="7"
+                  placeholder="Message"
+                  className="form-control"
+                  value={this.state.text}
                   onChange={this.handleChange}
-                  value={this.state.minutes}
                   required
-                >
-                  <option value="0">0</option>
-                  <option value="15">15</option>
-                  <option value="30">30</option>
-                  <option value="45">45</option>
-                </select>
-                minutes
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="phone nr."
-                value={this.state.phone}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <textarea
-                name="text"
-                placeholder="Message"
-                value={this.state.text}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <input type="submit" value="Save Changes" />
+                />
+              </div>
+
+              <div className="mt-3 ml-3">
+                <input
+                  type="submit"
+                  className="btn btn-success"
+                  value="Save Changes"
+                />
+                {this.props.appointment.status === "canceled" ? (
+                  ""
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-warning ml-3"
+                    onClick={() => this.updateMode("cancelEdit")}
+                  >
+                    Cancel Edit
+                  </button>
+                )}
+              </div>
             </form>
           </div>
-          {this.props.appointment.status === "canceled" ? (
-            ""
-          ) : (
-            <div>
-              <button onClick={() => this.updateMode("cancelEdit")}>
-                Cancel Edit
-              </button>
-              <button
-                onClick={() => this.props.cancelAppointment(appointment.id)}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
         </div>
       );
     } else {
