@@ -31,12 +31,14 @@ export default class MapDisplay extends Component {
 
   componentDidMount = async () => {
     // IF NETWORK LAG IS GROWING, MAYBE YOU NEED TO INCREASE TIME IN TIMER
-    await this.timeOut(2000).then(() => {
-      this.setState({
-        ...this.state,
-        updated: true
-      });
-    });
+    await this.timeOut(2000)
+      .then(() => {
+        this.setState({
+          ...this.state,
+          updated: true
+        });
+      })
+      .catch(console.error);
   };
 
   componentWillUnmount = () => {
