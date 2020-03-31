@@ -140,13 +140,6 @@ class ImagesUpload extends Component {
             </div>
           </div>
         </div>
-
-        <div>
-          <h4>Images</h4>
-          {this.props.images.map((image, i) => (
-            <img key={i} src={image.url} alt="" width="150" height="150" />
-          ))}
-        </div>
       </Fragment>
     );
   }

@@ -161,13 +161,29 @@ class SelectedAdvert extends Component {
           .map(appCon => appCon.appointment);
 
         return (
-          <div className="container">
+          <div className="container mt-3">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/user">My Account</Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/myadverts">My advertisements</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  {mySelectedAdvert.address}
+                </li>
+              </ol>
+            </nav>
+            <h1>{mySelectedAdvert.address}</h1>
+            <h2>{mySelectedAdvert.postcode}</h2>
             <ImagesUpload />
-            <h4>{mySelectedAdvert.address}</h4>
-            <h5>{mySelectedAdvert.postcode}</h5>
+
             <ImageGallery advert={this.props.advert} myAdvert={true} />
             <hr />
-
             <AdvertExtras advert={this.props.advert} myAdvert={true} />
 
             <h4>Active Appointments:</h4>
