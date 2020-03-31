@@ -112,6 +112,7 @@ export const getMyAdverts = () => (dispatch, getState) => {
   axios
     .get(`${baseUrl}/advert/myadvert`)
     .then(response => {
+      // console.log(response.data);
       dispatch(getMyAdvertsSuccess(response.data));
     })
     .catch(err => console.log(err));

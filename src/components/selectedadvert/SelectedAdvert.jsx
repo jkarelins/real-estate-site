@@ -129,13 +129,13 @@ class SelectedAdvert extends Component {
   render() {
     if (!this.props.advert) {
       return (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
           >Sorry this advert is not found
         </div>
       );
     } else if (this.props.advert && this.props.myAdverts) {
       const { id } = this.props.advert;
-      if (this.props.myAdverts.some(advert => advert.id === id)) {
+      if (this.props.myAdvertIds.includes(id)) {
         const mySelectedAdvert = this.props.myAdverts.find(
           advert => advert.id === id
         );
@@ -161,7 +161,7 @@ class SelectedAdvert extends Component {
           .map(appCon => appCon.appointment);
 
         return (
-          <Fragment>
+          <div className="container">
             <ImagesUpload />
             <h4>{mySelectedAdvert.address}</h4>
             <h5>{mySelectedAdvert.postcode}</h5>
@@ -192,7 +192,7 @@ class SelectedAdvert extends Component {
 
             <h4>Map</h4>
             <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
-          </Fragment>
+          </div>
         );
       } else {
         return this.contentForAll();
@@ -209,6 +209,7 @@ function mapStateToProps(state) {
       user: state.userReducer,
       advert: state.advertReducer.selectedAdvert,
       myAdverts: state.advertReducer.myAdverts,
+      myAdvertIds: state.advertReducer.myAdvertIds,
       liked: state.likeReducer.likedAdverts.find(
         advert => advert.advertId === state.advertReducer.selectedAdvert.id
       ),

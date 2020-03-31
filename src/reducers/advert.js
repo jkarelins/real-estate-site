@@ -94,7 +94,8 @@ export default function eventReducer(state = initialState, action) {
     case "GET_MY_ADVERTS": {
       return {
         ...state,
-        myAdverts: [...action.adverts]
+        myAdverts: [...action.adverts],
+        myAdvertIds: [...action.adverts.map(advert => advert.id)]
       };
     }
     case "APPOINTMENT_WAS_EDITED": {
