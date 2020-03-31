@@ -33,9 +33,7 @@ class ImageGallery extends Component {
     if (this.props.myAdvert) {
       return (
         <div className="row mt-3">
-          <div className="col-12">
-            <h4>Gallery</h4>
-          </div>
+          <div className="col-12"></div>
           {this.state.readyToDelete ? (
             <div className="col-12 text-center">
               <div className="col-12">
@@ -79,9 +77,7 @@ class ImageGallery extends Component {
     } else {
       return (
         <div className="row">
-          <div className="col-12">
-            <h4>Gallery</h4>
-          </div>
+          <div className="col-12"></div>
           {this.props.advert.advert_images.map((imageCon, i) => (
             <ImageCard imageCon={imageCon} key={i} advert={this.props.advert} />
           ))}

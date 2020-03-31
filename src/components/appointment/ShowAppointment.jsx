@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import Moment from "react-moment";
+
 import { changeAppointment } from "../../actions/appointment";
 
 const initialState = {
@@ -71,8 +73,8 @@ class ShowAppointment extends Component {
           <p className="card-text">
             {appointment.text}
             <br />
-            Was created: {appointment.createdAt}, last changes:{" "}
-            {appointment.updatedAt}
+            Was created: <Moment fromNow>{appointment.createdAt}</Moment>, last
+            changes: <Moment fromNow>{appointment.updatedAt}</Moment>
           </p>
           {this.props.appointment.status === "canceled" ? (
             ""
