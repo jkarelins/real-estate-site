@@ -22,6 +22,7 @@ class ImagesUpload extends Component {
   };
 
   handleImage = e => {
+    if (!e.target.files[0]) return;
     this.setState({
       selectedFile: e.target.files[0],
       error: "",
@@ -43,19 +44,19 @@ class ImagesUpload extends Component {
       pleaseWait: "Please wait loading an Image"
     });
 
-    setTimeout(this.repeatingFunc, 500);
+    setTimeout(this.loadingProgress, 400);
 
     await this.timeOut(5000).then(() => {
       this.setState(initialState);
     });
   };
 
-  repeatingFunc = async () => {
+  loadingProgress = async () => {
     if (this.state.progress >= 1000) {
       return;
     }
     this.setState({ progress: this.state.progress + 100 });
-    setTimeout(this.repeatingFunc, 500);
+    setTimeout(this.loadingProgress, 400);
   };
 
   componentWillUnmount = () => {
