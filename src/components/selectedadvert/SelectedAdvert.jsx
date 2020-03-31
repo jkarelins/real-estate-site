@@ -128,7 +128,11 @@ class SelectedAdvert extends Component {
 
   render() {
     if (!this.props.advert) {
-      return <h1>Sorry this advert is not found</h1>;
+      return (
+        <div class="alert alert-danger" role="alert">
+          >Sorry this advert is not found
+        </div>
+      );
     } else if (this.props.advert && this.props.myAdverts) {
       const { id } = this.props.advert;
       if (this.props.myAdverts.some(advert => advert.id === id)) {

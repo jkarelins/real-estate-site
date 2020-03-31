@@ -44,7 +44,7 @@ class PrivatePersPage extends Component {
     const favoriteAdverts = this.props.user.advert_user_likes.length;
     return (
       <div className="row mt-3">
-        <div className="col-3">
+        <div className="col-12 col-sm-12 col-md-12 col-xl-3">
           <div className="card">
             <div className="card-body">
               <h4>Welcome</h4>
@@ -101,7 +101,7 @@ class PrivatePersPage extends Component {
             </div>
           </div>
         </div>
-        <div className="col-9">
+        <div className="col-12 col-sm-12 col-md-12 col-xl-9">
           <div className="card">
             <div className="card-body">
               {this.state.success ? (
