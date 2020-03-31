@@ -31,9 +31,17 @@ class FavoriteAdverts extends Component {
         } else {
           return (
             <div className="row mt-3 d-flex justify-content-center">
-              {this.props.favorites.map((likedAdvert, i) => (
-                <AdvertCard advert={likedAdvert.advert} key={i} />
-              ))}
+              {this.props.favorites.map((likedAdvert, i) => {
+                if (
+                  likedAdvert.advert.advert_images &&
+                  likedAdvert.advert.advert_images.length !== 0
+                ) {
+                  likedAdvert.advert.image =
+                    likedAdvert.advert.advert_images[0].image.url;
+                  console.log(likedAdvert);
+                }
+                return <AdvertCard advert={likedAdvert.advert} key={i} />;
+              })}
             </div>
           );
         }

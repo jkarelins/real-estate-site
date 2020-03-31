@@ -6,7 +6,8 @@ const initialState = {
   selectedFile: null,
   localUrl: null,
   error: "",
-  pleaseWait: ""
+  pleaseWait: "",
+  progress: 0
 };
 
 class ImagesUpload extends Component {
@@ -42,9 +43,19 @@ class ImagesUpload extends Component {
       pleaseWait: "Please wait loading an Image"
     });
 
+    setTimeout(this.repeatingFunc, 500);
+
     await this.timeOut(5000).then(() => {
       this.setState(initialState);
     });
+  };
+
+  repeatingFunc = async () => {
+    if (this.state.progress >= 1000) {
+      return;
+    }
+    this.setState({ progress: this.state.progress + 100 });
+    setTimeout(this.repeatingFunc, 500);
   };
 
   componentWillUnmount = () => {
@@ -69,10 +80,32 @@ class ImagesUpload extends Component {
           <div className="card mt-3">
             {this.state.localUrl ? (
               <Fragment>
+                {this.state.pleaseWait ? (
+                  <Fragment>
+                    <div className="alert alert-success" role="alert">
+                      {this.state.pleaseWait}
+                    </div>
+                    <div className="progress my-2">
+                      <div
+                        className="progress-bar"
+                        role="progressbar"
+                        style={{ width: this.state.progress }}
+                        aria-valuenow={this.state.progress}
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        {Math.round(this.state.progress / 10)}%
+                      </div>
+                    </div>
+                  </Fragment>
+                ) : (
+                  ""
+                )}
                 <img
-                  className="card-img-top"
+                  style={{ maxHeight: "300px", objectFit: "cover" }}
+                  className="card-img-top "
                   src={this.state.localUrl}
-                  alt="You are going to upload this image"
+                  alt="Your selected upload"
                 />
                 <hr />
                 <button
@@ -89,8 +122,8 @@ class ImagesUpload extends Component {
             <div className="card-body">
               <h5 className="card-title">Upload Image</h5>
               <p className="card-text">
-                Please select image you want upload. Check it on preview, and
-                press Upload
+                Please select image you want to upload. Check it on preview, and
+                press Upload.
               </p>
 
               <div className="input-group mb-3">
@@ -99,24 +132,15 @@ class ImagesUpload extends Component {
                   <input
                     type="file"
                     className="custom-file-input"
-                    id="inputGroupFile01"
+                    onChange={this.handleImage}
                   />
-                  <label
-                    className="custom-file-label"
-                    htmlFor="inputGroupFile01"
-                  >
-                    Choose file
-                  </label>
+                  <label className="custom-file-label">Choose file</label>
                 </div>
               </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <input type="file" onChange={this.handleImage} />
-                </li>
-              </ul>
             </div>
           </div>
         </div>
+
         <div>
           <h4>Images</h4>
           {this.props.images.map((image, i) => (
