@@ -32,7 +32,7 @@ class ImagesUpload extends Component {
           </button>
         </div>
         <div>
-          <h4>Added Images</h4>
+          <h4>Images</h4>
           {this.props.images.map((image, i) => (
             <img key={i} src={image.url} alt="" width="150" height="150" />
           ))}
