@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { fetchAdvert } from "../../actions/advert";
 import { likeAdvert } from "../../actions/likes";
 import { checkAppointment, cancelAppointment } from "../../actions/appointment";
@@ -13,6 +14,8 @@ import ViewMap from "../map/ViewMap";
 import ShowAppointment from "../appointment/ShowAppointment";
 import UserCard from "./UserCard";
 import AdvertInformation from "./AdvertInformation";
+
+import "./selectedadvert.css";
 
 class SelectedAdvert extends Component {
   componentDidMount() {
@@ -161,37 +164,86 @@ class SelectedAdvert extends Component {
           .map(appCon => appCon.appointment);
 
         return (
-          <div className="container">
+          <div className="container mt-3">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/user">My Account</Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/myadverts">My advertisements</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  {mySelectedAdvert.address}
+                </li>
+              </ol>
+            </nav>
+            <h1>{mySelectedAdvert.address}</h1>
+            <h2>{mySelectedAdvert.postcode}</h2>
             <ImagesUpload />
-            <h4>{mySelectedAdvert.address}</h4>
-            <h5>{mySelectedAdvert.postcode}</h5>
-            <ImageGallery advert={this.props.advert} myAdvert={true} />
+            <div className="card my-3">
+              <div className="card-body">
+                <h5 className="card-title activeAppoint">Gallery</h5>
+                <ImageGallery advert={this.props.advert} myAdvert={true} />
+              </div>
+            </div>
             <hr />
-
-            <AdvertExtras advert={this.props.advert} myAdvert={true} />
-
-            <h4>Active Appointments:</h4>
-            {activeAppointments.map((app, i) => (
-              <ShowAppointment
-                key={i}
-                appointment={app}
-                cancelAppointment={this.cancelAppointment}
-              />
-            ))}
+            <div className="card">
+              <div className="card-body">
+                <AdvertExtras advert={this.props.advert} myAdvert={true} />
+              </div>
+            </div>
             <hr />
-
-            <h4>Canceled Appointments</h4>
-            {canceledAppointments.map((app, i) => (
-              <ShowAppointment
-                key={i}
-                appointment={app}
-                cancelAppointment={this.cancelAppointment}
-              />
-            ))}
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title activeAppoint">
+                  Active Appointments
+                </h5>
+                <p>
+                  You are going to see active appointments for this
+                  advertisement here.
+                </p>
+                {activeAppointments.map((app, i) => (
+                  <ShowAppointment
+                    key={i}
+                    appointment={app}
+                    cancelAppointment={this.cancelAppointment}
+                  />
+                ))}
+              </div>
+            </div>
             <hr />
-
-            <h4>Map</h4>
-            <ViewMap lat={this.props.advert.lat} lon={this.props.advert.lon} />
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title canceledAppoint">
+                  Canceled Appointments
+                </h5>
+                <p>
+                  You are going to see canceled appointments for this
+                  advertisement here.
+                </p>
+                {canceledAppointments.map((app, i) => (
+                  <ShowAppointment
+                    key={i}
+                    appointment={app}
+                    cancelAppointment={this.cancelAppointment}
+                  />
+                ))}
+              </div>
+            </div>
+            <hr />
+            <div className="card mb-5">
+              <div className="card-body p-3">
+                <h5 className="card-title">Map</h5>
+                <ViewMap
+                  lat={this.props.advert.lat}
+                  lon={this.props.advert.lon}
+                />
+              </div>
+            </div>
           </div>
         );
       } else {

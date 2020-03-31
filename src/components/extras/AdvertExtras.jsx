@@ -47,32 +47,50 @@ class AdvertExtras extends Component {
     if (this.props.myAdvert) {
       return (
         <div>
-          <h4>Advantages</h4>
+          <h4>This advantages are going to be shown on your advertisement</h4>
+          <p>To remove advantages from your advertisement, just click on it.</p>
           {this.props.advert.advert_extras.map((extraCon, i) => (
-            <span key={i} onClick={() => this.removeExtra(extraCon.extra.id)}>
-              {extraCon.extra.text}{" "}
-            </span>
+            <button
+              className="btn btn-sm btn-outline-success ml-1 allextras"
+              key={i}
+              onClick={() => this.removeExtra(extraCon.extra.id)}
+            >
+              {extraCon.extra.text}
+            </button>
           ))}
           <hr />
           <div>
-            <h4>All Extras</h4>
+            <h4>Top adventages you can add, to your advertisement</h4>
+            <p>
+              Just choose one from the list and click on it. Or create new one.
+            </p>
             {this.props.extras.map((extra, i) => (
-              <span key={i} onClick={() => this.addExtra(extra.id, extra.text)}>
-                {extra.text}{" "}
-              </span>
+              <button
+                className="btn btn-sm btn-outline-info ml-1 allextras"
+                key={i}
+                onClick={() => this.addExtra(extra.id, extra.text)}
+              >
+                {extra.text}
+              </button>
             ))}
           </div>
           <hr />
-          <div>
-            <h4>Add New</h4>
-            <form onSubmit={e => this.addNew(e)}>
+          <div className="col-5">
+            <h4>Add New Advantage</h4>
+            <p>Just add new Advantage, if you can not find one in the list</p>
+            <form onSubmit={e => this.addNew(e)} className="input-group">
               <input
                 type="text"
                 name="text"
+                className="form-control"
                 value={this.state.text}
                 onChange={this.handleChange}
               />
-              <input type="submit" value="Add New" />
+              <input
+                type="submit"
+                value="Add New"
+                className="btn btn-sm btn-success ml-3"
+              />
             </form>
           </div>
         </div>

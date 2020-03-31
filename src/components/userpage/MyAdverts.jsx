@@ -29,9 +29,12 @@ class FavoriteAdverts extends Component {
         } else {
           return (
             <div className="row mt-3 d-flex justify-content-center">
-              {this.props.userAdverts.map((advert, i) => (
-                <AdvertCard key={i} advert={advert} />
-              ))}
+              {this.props.userAdverts.map((advert, i) => {
+                if (advert.advert_images && advert.advert_images.length !== 0) {
+                  advert.image = advert.advert_images[0].image.url;
+                }
+                return <AdvertCard key={i} advert={advert} />;
+              })}
             </div>
           );
         }
