@@ -16,10 +16,12 @@ if (process.env.NODE_ENV === "development") {
   baseUrl = "https://shielded-journey-92023.herokuapp.com";
 }
 
-const userCreateError = error => ({
-  type: USER_ACTION_ERROR,
-  error: error.data.message
-});
+const userCreateError = error => {
+  return {
+    type: USER_ACTION_ERROR,
+    error: error.data.message
+  };
+};
 
 const userCreateSuccess = user => ({
   type: SIGN_UP_USER,

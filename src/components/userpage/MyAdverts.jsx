@@ -14,7 +14,21 @@ class FavoriteAdverts extends Component {
 
   render() {
     if (!this.props.user) {
-      return <h4>Please Login first.</h4>;
+      return (
+        <div className="row mt-3 text-center">
+          <div className="col-12">
+            <h4>Now you can Login to access your account.</h4>
+          </div>
+          <div className="col-12">
+            <Link className="btn btn-outline-success" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-outline-info ml-1" to="/register">
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      );
     } else {
       if (!this.props.userAdverts) {
         return <h4>Loading...</h4>;

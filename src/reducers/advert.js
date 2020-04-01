@@ -196,6 +196,9 @@ export default function eventReducer(state = initialState, action) {
         }
       };
     }
+    case "LOG_OUT_USER": {
+      return initialState;
+    }
     default: {
       return state;
     }

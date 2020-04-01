@@ -10,6 +10,13 @@ class MainPage extends Component {
     }
   }
 
+  // IF USER PUSH LOGOUT, CLEAR STATE OF ADVERT IN REDUCER, AND FETCH ONE MORE TIME
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      this.props.fetchAdverts(0);
+    }
+  }
+
   render() {
     if (!this.props.allAdverts) {
       return (
@@ -31,7 +38,8 @@ class MainPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    allAdverts: state.advertReducer.allAdverts
+    allAdverts: state.advertReducer.allAdverts,
+    user: state.userReducer
   };
 }
 
