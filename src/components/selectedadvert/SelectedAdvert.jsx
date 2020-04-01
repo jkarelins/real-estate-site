@@ -136,8 +136,13 @@ class SelectedAdvert extends Component {
   render() {
     if (!this.props.advert) {
       return (
-        <div className="alert alert-danger" role="alert">
-          Sorry this advert is not found
+        <div className="mt-2 d-flex justify-content-center">
+          <div className="col-6">
+            <div className="alert alert-warning" role="alert">
+              Looks like you just logged out. And we can not show you this
+              advertisement.
+            </div>
+          </div>
         </div>
       );
     } else if (this.props.advert && this.props.myAdverts) {

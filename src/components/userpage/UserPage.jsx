@@ -42,7 +42,7 @@ class UserPage extends Component {
           switch (this.props.user.user.role) {
             case "agencyAgent": {
               return (
-                <div>
+                <div className="container">
                   <AgentPage />
                 </div>
               );
