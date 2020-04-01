@@ -1,4 +1,6 @@
 import axios from "axios";
+import { newError } from "./error";
+
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
@@ -32,7 +34,7 @@ export const createNewAppointment = data => (dispatch, getState) => {
     .then(response => {
       dispatch(appointmentCreateSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const gotAppointment = appointment => ({
@@ -46,7 +48,7 @@ export const getAppointment = randAddress => dispatch => {
     .then(res => {
       dispatch(gotAppointment(res.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const gotAppointments = appointments => ({
@@ -65,7 +67,7 @@ export const getAppointments = () => (dispatch, getState) => {
       const appointments = res.data.map(app => app.appointment);
       dispatch(gotAppointments(appointments));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const appointmentCanceled = appointment => ({
@@ -84,7 +86,7 @@ export const cancelAppointment = id => (dispatch, getState) => {
     .then(response => {
       dispatch(appointmentCanceled(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const AppointmentChecked = appointment => ({
@@ -102,7 +104,7 @@ export const checkAppointment = () => (dispatch, getState) => {
     .then(res => {
       dispatch(AppointmentChecked(res.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const appointmentEditSuccess = appointment => ({
@@ -123,5 +125,5 @@ export const changeAppointment = (data, appId) => (dispatch, getState) => {
     .then(response => {
       dispatch(appointmentEditSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };

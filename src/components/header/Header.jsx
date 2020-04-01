@@ -2,7 +2,8 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { logMeOut, clearErrors } from "../../actions/user";
+import { logMeOut } from "../../actions/user";
+import { clearErrors } from "../../actions/error";
 
 import "./header.css";
 
@@ -75,21 +76,55 @@ class Header extends Component {
           </div>
         </nav>
         {this.props.error ? (
-          <div className="mt-2 d-flex justify-content-center">
-            <div className="col-6">
-              <div className="alert alert-danger" role="alert">
-                {this.props.error}
-                <button
-                  type="button"
-                  className="close"
-                  aria-label="Close"
-                  onClick={this.props.clearErrors}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+          this.props.error.actionErr ? (
+            <div className="mt-2 d-flex justify-content-center">
+              <div className="col-6">
+                <div className="alert alert-warning" role="alert">
+                  {this.props.error.actionErr}
+                  <button
+                    type="button"
+                    className="close"
+                    aria-label="Close"
+                    onClick={this.props.clearErrors}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ) : this.props.error.userErr ? (
+            <div className="mt-2 d-flex justify-content-center">
+              <div className="col-6">
+                <div className="alert alert-danger" role="alert">
+                  {this.props.error.userErr}
+                  <button
+                    type="button"
+                    className="close"
+                    aria-label="Close"
+                    onClick={this.props.clearErrors}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-2 d-flex justify-content-center">
+              <div className="col-6">
+                <div className="alert alert-warning" role="alert">
+                  Unexpected error. Please contact us: technical@support.com
+                  <button
+                    type="button"
+                    className="close"
+                    aria-label="Close"
+                    onClick={this.props.clearErrors}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
         ) : (
           ""
         )}

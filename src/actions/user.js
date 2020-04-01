@@ -1,10 +1,11 @@
 import axios from "axios";
+import { clearErrors } from "./error";
+
 const SIGN_UP_USER = "SIGN_UP_USER";
 const LOG_IN_USER = "LOG_IN__USER";
 const FETCH_USER_TICKETS = "FETCH_USER_TICKETS";
 const LOG_OUT_USER = "LOG_OUT_USER";
 const USER_ACTION_ERROR = "USER_ACTION_ERROR";
-const CLEAR_ERRORS = "CLEAR_ERRORS";
 const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
 let baseUrl = "";
 
@@ -23,10 +24,6 @@ const userCreateSuccess = user => ({
   type: SIGN_UP_USER,
   user
 });
-
-export const clearErrors = () => dispatch => {
-  dispatch({ type: CLEAR_ERRORS });
-};
 
 export const createUser = data => dispatch => {
   axios
@@ -64,7 +61,7 @@ export const fetchUserTickets = userId => dispatch => {
     .then(response => {
       dispatch(userTicketsFetchSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(userCreateError(err.response)));
 };
 
 const userLogOutSuccess = () => ({

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { newError } from "./error";
+
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
@@ -21,7 +23,7 @@ export const fetchExtras = () => (dispatch, getState) => {
     .then(response => {
       dispatch(fetchExtrasSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const addExtrasSuccess = extra => ({
@@ -40,7 +42,7 @@ export const addExtra = text => (dispatch, getState) => {
     .then(response => {
       dispatch(addExtrasSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const ExtraRemoveSuccess = extra => ({
@@ -59,5 +61,5 @@ export const removeExtra = extraId => (dispatch, getState) => {
     .then(response => {
       dispatch(ExtraRemoveSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };

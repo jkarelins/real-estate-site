@@ -1,4 +1,6 @@
 import axios from "axios";
+import { newError } from "./error";
+
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
@@ -34,7 +36,7 @@ export const likeAdvert = id => (dispatch, getState) => {
     .then(response => {
       dispatch(likeAdvertSuccess(response.data));
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const gotUserFavorites = likes => ({
@@ -52,5 +54,5 @@ export const getFavorites = () => (dispatch, getState) => {
     .then(response => {
       dispatch(gotUserFavorites(response.data));
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch(newError(err.response)));
 };
