@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "development") {
 
 const userCreateError = error => ({
   type: USER_ACTION_ERROR,
-  error
+  error: error.data.message
 });
 
 const userCreateSuccess = user => ({

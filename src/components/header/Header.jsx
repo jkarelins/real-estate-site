@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { logMeOut } from "../../actions/user";
+import { logMeOut, clearErrors } from "../../actions/user";
 
 import "./header.css";
 
@@ -13,73 +13,96 @@ class Header extends Component {
   };
   render() {
     return (
-      <nav className="navbar navbar-light navbar-expand-lg navbar-light">
-        <div className="" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            {this.props.user ? (
-              <Fragment>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/favorites">
-                    My Favorite Adverts
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/myadverts">
-                    My Adverts
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/appointment">
-                    My Appointments
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/user">
-                    My Account
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <a className="text-link" onClick={this.logoutUser} href="/">
-                    Logout
-                  </a>
-                </li>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/login">
-                    Login
-                  </Link>
-                </li>
-                <li className="nav-item mr-2 my-2">
-                  <Link className="text-link" to="/register">
-                    Register
-                  </Link>
-                </li>
-              </Fragment>
-            )}
-          </ul>
-          <ul className="navbar-nav ml-auto"></ul>
-        </div>
-      </nav>
+      <Fragment>
+        {" "}
+        <nav className="navbar navbar-light navbar-expand-lg navbar-light">
+          <div className="" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              {this.props.user ? (
+                <Fragment>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/favorites">
+                      My Favorite Adverts
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/myadverts">
+                      My Adverts
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/appointment">
+                      My Appointments
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/user">
+                      My Account
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <a className="text-link" onClick={this.logoutUser} href="/">
+                      Logout
+                    </a>
+                  </li>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <Link className="text-link" to="/register">
+                      Register
+                    </Link>
+                  </li>
+                </Fragment>
+              )}
+            </ul>
+            <ul className="navbar-nav ml-auto"></ul>
+          </div>
+        </nav>
+        {this.props.error ? (
+          <div className="mt-2 d-flex justify-content-center">
+            <div className="col-6">
+              <div className="alert alert-danger" role="alert">
+                {this.props.error}
+                <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={this.props.clearErrors}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </Fragment>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.userReducer
+    user: state.userReducer,
+    error: state.errorReducer
   };
 }
 
-export default connect(mapStateToProps, { logMeOut })(Header);
+export default connect(mapStateToProps, { logMeOut, clearErrors })(Header);

@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { logMeOut } from "../../actions/user";
+
 import AgentPage from "../agentpage/AgentPage";
 import ManagerPage from "../managerpage/ManagerPage";
 import PrivatePersPage from "../privateperspage/PrivatePersPage";
 
 class UserPage extends Component {
+  componentDidUpdate() {
+    if (this.props.user) {
+      if (this.props.user.justRegistered) {
+        this.props.logMeOut();
+      }
+    }
+  }
+
   render() {
     if (!this.props.user) {
       return (
         <div className="row mt-3 text-center">
           <div className="col-12">
-            <h4>This page is only for users. Please Login or sign up first.</h4>
+            <h4>Now you can Login to access your account.</h4>
           </div>
           <div className="col-12">
             <Link className="btn btn-outline-success" to="/login">
@@ -71,4 +82,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps, { logMeOut })(UserPage);

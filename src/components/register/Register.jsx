@@ -120,7 +120,7 @@ class SignUpForm extends Component {
       <Fragment>
         <div className="container mt-2">
           {this.state.error ? (
-            <div class="alert alert-warning" role="alert">
+            <div className="alert alert-warning" role="alert">
               {this.state.error}
             </div>
           ) : (
@@ -128,7 +128,7 @@ class SignUpForm extends Component {
           )}
         </div>
         <div className="d-flex flex-row justify-content-center mt-5">
-          <div className="col-10 col-md-8 col-lg-6 col-xl-4">
+          <div className="col-10 col-md-8 col-lg-8 col-xl-5">
             <div className="card p-5">
               <h4>Sign Up</h4>
               <form onSubmit={this.signUpValidation}>
@@ -197,7 +197,7 @@ class SignUpForm extends Component {
                   </button>
 
                   {this.state.showPrivateMenu ? (
-                    <div class="alert alert-success mt-3" role="alert">
+                    <div className="alert alert-success mt-3" role="alert">
                       You have selected to create private person's profile
                     </div>
                   ) : this.state.showCompanyMenu ? (
