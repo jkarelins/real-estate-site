@@ -7,6 +7,7 @@ const FETCH_USER_TICKETS = "FETCH_USER_TICKETS";
 const LOG_OUT_USER = "LOG_OUT_USER";
 const USER_ACTION_ERROR = "USER_ACTION_ERROR";
 const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
+
 let baseUrl = "";
 
 if (process.env.NODE_ENV === "development") {

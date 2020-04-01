@@ -16,12 +16,18 @@ class Header extends Component {
   };
 
   componentDidUpdate = () => {
+    if (this.handleTimer) {
+      clearTimeout(this.handleTimer);
+    }
     if (this.props.success) {
-      setTimeout(this.props.clearSuccess, 5000);
+      this.handleTimer = setTimeout(this.props.clearSuccess, 5000);
     }
 
     if (this.props.error) {
-      setTimeout(this.props.clearErrors, 5000);
+      if (this.handleTimer) {
+        clearTimeout(this.handleTimer);
+      }
+      this.handleTimer = setTimeout(this.props.clearErrors, 5000);
     }
   };
 
