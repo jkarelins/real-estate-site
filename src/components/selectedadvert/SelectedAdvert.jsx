@@ -137,7 +137,7 @@ class SelectedAdvert extends Component {
     if (!this.props.advert) {
       return (
         <div className="alert alert-danger" role="alert">
-          >Sorry this advert is not found
+          Sorry this advert is not found
         </div>
       );
     } else if (this.props.advert && this.props.myAdverts) {
