@@ -1,4 +1,6 @@
 import axios from "axios";
+import { newError } from "./error";
+
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
@@ -32,7 +34,7 @@ export const createAdvert = data => (dispatch, getState) => {
     .then(response => {
       dispatch(advertCreateSuccess(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const advertsFetchSuccess = adverts => ({
@@ -46,7 +48,7 @@ export const fetchAdverts = page => dispatch => {
     .then(response => {
       dispatch(advertsFetchSuccess(response));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const advertFetchSuccess = advert => ({
@@ -60,7 +62,7 @@ export const fetchAdvert = id => dispatch => {
     .then(res => {
       dispatch(advertFetchSuccess(res.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const gotAgencyAgents = agency => ({
@@ -78,7 +80,7 @@ export const getAgencyAgents = () => (dispatch, getState) => {
     .then(response => {
       dispatch(gotAgencyAgents(response.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const toggleAgentSuccess = agent => ({
@@ -133,5 +135,5 @@ export const fetchAdvertsBySearchTerm = (
     .then(response => {
       dispatch(searchedAdvertsFetchSuccess(response));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };

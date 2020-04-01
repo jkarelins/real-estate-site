@@ -1,4 +1,6 @@
 import axios from "axios";
+import { newError } from "./error";
+
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:4000";
@@ -25,7 +27,7 @@ export const uploadImage = data => (dispatch, getState) => {
     .then(res => {
       dispatch(uploadImageSuccess(res.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
 
 const removeImageSuccess = image => ({
@@ -44,5 +46,5 @@ export const removeImage = (publicId, imageId) => (dispatch, getState) => {
     .then(res => {
       dispatch(removeImageSuccess(res.data));
     })
-    .catch(console.error);
+    .catch(err => dispatch(newError(err.response)));
 };
