@@ -51,7 +51,7 @@ class AdvertExtras extends Component {
           <p>To remove advantages from your advertisement, just click on it.</p>
           {this.props.advert.advert_extras.map((extraCon, i) => (
             <button
-              className="btn btn-sm btn-outline-success ml-1 allextras"
+              className="btn btn-sm btn-outline-success ml-1 allextras mt-1"
               key={i}
               onClick={() => this.removeExtra(extraCon.extra.id)}
             >
@@ -66,7 +66,7 @@ class AdvertExtras extends Component {
             </p>
             {this.props.extras.map((extra, i) => (
               <button
-                className="btn btn-sm btn-outline-info ml-1 allextras"
+                className="btn btn-sm btn-outline-info ml-1 allextras mt-1"
                 key={i}
                 onClick={() => this.addExtra(extra.id, extra.text)}
               >
@@ -75,7 +75,7 @@ class AdvertExtras extends Component {
             ))}
           </div>
           <hr />
-          <div className="col-5">
+          <div className="col-12 col-md-12 col-lg-6 col-xl-5">
             <h4>Add New Advantage</h4>
             <p>Just add new Advantage, if you can not find one in the list</p>
             <form onSubmit={e => this.addNew(e)} className="input-group">
@@ -100,7 +100,10 @@ class AdvertExtras extends Component {
         <div>
           <h4>Advantages</h4>
           {this.props.advert.advert_extras.map((extraCon, i) => (
-            <p className="btn btn-sm btn-outline-info ml-1 allextras" key={i}>
+            <p
+              className="btn btn-sm btn-outline-info ml-1 allextras mt-1"
+              key={i}
+            >
               {extraCon.extra.text}
             </p>
           ))}

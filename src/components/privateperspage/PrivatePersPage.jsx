@@ -152,6 +152,7 @@ class PrivatePersPage extends Component {
               )}
             </div>
           </div>
+          <hr className="my-3" />
           <AddNewAdvert />
         </div>
       </div>
