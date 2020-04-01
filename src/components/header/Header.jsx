@@ -3,15 +3,28 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logMeOut } from "../../actions/user";
-import { clearErrors } from "../../actions/error";
+import { clearErrors, clearSuccess } from "../../actions/error";
 
 import "./header.css";
+import ErrorAlert from "./ErrorAlert";
+import SuccessAlert from "./SuccessAlert";
 
 class Header extends Component {
   logoutUser = e => {
     e.preventDefault();
     this.props.logMeOut();
   };
+
+  componentDidUpdate = () => {
+    if (this.props.success) {
+      setTimeout(this.props.clearSuccess, 5000);
+    }
+
+    if (this.props.error) {
+      setTimeout(this.props.clearErrors, 5000);
+    }
+  };
+
   render() {
     return (
       <Fragment>
@@ -75,59 +88,14 @@ class Header extends Component {
             <ul className="navbar-nav ml-auto"></ul>
           </div>
         </nav>
-        {this.props.error ? (
-          this.props.error.actionErr ? (
-            <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
-                <div className="alert alert-warning" role="alert">
-                  {this.props.error.actionErr}
-                  <button
-                    type="button"
-                    className="close"
-                    aria-label="Close"
-                    onClick={this.props.clearErrors}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : this.props.error.userErr ? (
-            <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
-                <div className="alert alert-danger" role="alert">
-                  {this.props.error.userErr}
-                  <button
-                    type="button"
-                    className="close"
-                    aria-label="Close"
-                    onClick={this.props.clearErrors}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
-                <div className="alert alert-warning" role="alert">
-                  Unexpected error. Please contact us: technical@support.com
-                  <button
-                    type="button"
-                    className="close"
-                    aria-label="Close"
-                    onClick={this.props.clearErrors}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          )
-        ) : (
-          ""
-        )}
+        <ErrorAlert
+          error={this.props.error}
+          clearErrors={this.props.clearErrors}
+        />
+        <SuccessAlert
+          success={this.props.success}
+          clearSuccess={this.props.clearSuccess}
+        />
       </Fragment>
     );
   }
@@ -136,8 +104,13 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     user: state.userReducer,
-    error: state.errorReducer
+    error: state.errorReducer,
+    success: state.successReducer
   };
 }
 
-export default connect(mapStateToProps, { logMeOut, clearErrors })(Header);
+export default connect(mapStateToProps, {
+  logMeOut,
+  clearErrors,
+  clearSuccess
+})(Header);
