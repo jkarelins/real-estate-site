@@ -9,11 +9,18 @@ class UserPage extends Component {
   render() {
     if (!this.props.user) {
       return (
-        <div>
-          <h4>This page is only for users. Please Login or sign up first.</h4>
-          <Link to="/login">Login</Link>
-          <br />
-          <Link to="/register">Sign Up</Link>
+        <div className="row mt-3 text-center">
+          <div className="col-12">
+            <h4>This page is only for users. Please Login or sign up first.</h4>
+          </div>
+          <div className="col-12">
+            <Link className="btn btn-outline-success" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-outline-info ml-1" to="/register">
+              Sign Up
+            </Link>
+          </div>
         </div>
       );
     } else {
@@ -31,7 +38,7 @@ class UserPage extends Component {
             }
             case "agencyManager": {
               return (
-                <div>
+                <div className="container">
                   <ManagerPage />
                 </div>
               );

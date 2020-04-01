@@ -251,16 +251,17 @@ class SignUpForm extends Component {
                         </button>
                       </div>
                       {this.state.companyArr.length !== 0 ? (
-                        <ul>
+                        <div>
                           {this.state.companyArr.map((company, i) => (
-                            <li
+                            <button
                               key={i}
+                              className="btn btn-sm btn-outline-info mt-1 ml-1"
                               onClick={() => this.selectCompany(company.name)}
                             >
                               {company.name}
-                            </li>
+                            </button>
                           ))}
-                        </ul>
+                        </div>
                       ) : this.state.companySelected ? (
                         ""
                       ) : (

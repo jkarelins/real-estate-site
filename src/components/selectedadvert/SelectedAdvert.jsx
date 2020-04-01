@@ -118,12 +118,16 @@ class SelectedAdvert extends Component {
         <div className="col-12 mt-3">
           <AdvertInformation advert={this.props.advert} />
         </div>
-        <div className="mb-5 mt-3">
-          <ViewMap
-            lat={this.props.advert.lat}
-            lon={this.props.advert.lon}
-            pointer={`${this.props.advert.address}, ${this.props.advert.city}, ${this.props.advert.postcode}`}
-          />
+        <hr />
+        <div className="card mb-5 mx-3 mt-3">
+          <div className="card-body p-3">
+            <h5 className="card-title">Map</h5>
+            <ViewMap
+              lat={this.props.advert.lat}
+              lon={this.props.advert.lon}
+              pointer={`${this.props.advert.address}, ${this.props.advert.city}, ${this.props.advert.postcode}`}
+            />
+          </div>
         </div>
       </div>
     );

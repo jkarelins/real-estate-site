@@ -65,7 +65,7 @@ class AddAppointment extends Component {
                 <div className="col-5">
                   <label htmlFor="hours">Hours:</label>
                   <select
-                    class="custom-select"
+                    className="custom-select"
                     name="hours"
                     onChange={this.handleChange}
                     required
@@ -78,7 +78,7 @@ class AddAppointment extends Component {
                   <select
                     name="minutes"
                     onChange={this.handleChange}
-                    class="custom-select"
+                    className="custom-select"
                     required
                   >
                     <option value="0">0</option>
