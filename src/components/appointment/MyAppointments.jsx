@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { getAppointments, cancelAppointment } from "../../actions/appointment";
 import ShowAppointment from "./ShowAppointment";
 
@@ -19,47 +21,65 @@ class MyAppointment extends Component {
   };
 
   render() {
-    if (this.props.appointments) {
-      const { appointments, canceled } = this.props;
-      return (
-        <div className="container mt-3">
-          <div className="card">
-            <div class="card-body">
-              <h5 className="card-title">Active Appointments</h5>
-              <hr />
-              {appointments.map((appointment, i) => (
-                <ShowAppointment
-                  key={i}
-                  appointment={appointment}
-                  cancelAppointment={() =>
-                    this.cancelAppointment(appointment.id)
-                  }
-                />
-              ))}
+    if (this.props.user) {
+      if (this.props.appointments) {
+        const { appointments, canceled } = this.props;
+        return (
+          <div className="container mt-3">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Active Appointments</h5>
+                <hr />
+                {appointments.map((appointment, i) => (
+                  <ShowAppointment
+                    key={i}
+                    appointment={appointment}
+                    cancelAppointment={() =>
+                      this.cancelAppointment(appointment.id)
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+            <hr className="my-3" />
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Canceled Appointments</h5>
+                <hr />
+                {canceled.map((appointment, i) => (
+                  <ShowAppointment
+                    key={i}
+                    appointment={appointment}
+                    cancelAppointment={() =>
+                      this.cancelAppointment(appointment.id)
+                    }
+                  />
+                ))}
+              </div>
             </div>
           </div>
-          <hr className="my-3" />
-          <div className="card">
-            <div class="card-body">
-              <h5 className="card-title">Canceled Appointments</h5>
-              <hr />
-              {canceled.map((appointment, i) => (
-                <ShowAppointment
-                  key={i}
-                  appointment={appointment}
-                  cancelAppointment={() =>
-                    this.cancelAppointment(appointment.id)
-                  }
-                />
-              ))}
-            </div>
+        );
+      } else {
+        return (
+          <div className="alert alert-info" role="alert">
+            Sorry. your appointments was not found.
           </div>
-        </div>
-      );
+        );
+      }
     } else {
       return (
-        <div className="alert alert-info" role="alert">
-          Sorry. your appointments was not found.
+        <div className="row mt-3 text-center">
+          <div className="col-12">
+            <h4>Now you can Login to access your account.</h4>
+          </div>
+          <div className="col-12">
+            <Link className="btn btn-outline-success" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-outline-info ml-1" to="/register">
+              Sign Up
+            </Link>
+          </div>
         </div>
       );
     }

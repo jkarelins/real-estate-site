@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getFavorites } from "../../actions/likes";
@@ -14,8 +15,18 @@ class FavoriteAdverts extends Component {
   render() {
     if (!this.props.user) {
       return (
-        <div className="contaner mt-3">
-          <h4>Please Login first.</h4>
+        <div className="row mt-3 text-center">
+          <div className="col-12">
+            <h4>Now you can Login to access your account.</h4>
+          </div>
+          <div className="col-12">
+            <Link className="btn btn-outline-success" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-outline-info ml-1" to="/register">
+              Sign Up
+            </Link>
+          </div>
         </div>
       );
     } else {
@@ -38,7 +49,6 @@ class FavoriteAdverts extends Component {
                 ) {
                   likedAdvert.advert.image =
                     likedAdvert.advert.advert_images[0].image.url;
-                  console.log(likedAdvert);
                 }
                 return <AdvertCard advert={likedAdvert.advert} key={i} />;
               })}
