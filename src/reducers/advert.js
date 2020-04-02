@@ -4,6 +4,7 @@ const initialState = {
 };
 
 export default function eventReducer(state = initialState, action) {
+  // console.log(action);
   switch (action.type) {
     case "CREATE_NEW_ADVERT": {
       return {
@@ -40,7 +41,7 @@ export default function eventReducer(state = initialState, action) {
     }
     case "FETCH_SEARCHED_ADVERTS": {
       const { data, count } = action.adverts.data;
-      if (state.searchedAddress) {
+      if (state.searchedAdverts) {
         const modifiedAdverts = data.map(advert => {
           if (advert.advert_images.length !== 0) {
             return {
@@ -53,7 +54,7 @@ export default function eventReducer(state = initialState, action) {
 
         return {
           ...state,
-          searchedAdverts: [...state.allAdverts, ...modifiedAdverts],
+          searchedAdverts: [...state.searchedAdverts, ...modifiedAdverts],
           advertsCount: count
         };
       }
@@ -76,6 +77,14 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         agencyAgents
+      };
+    }
+    case "CLEAR_SEARCHED_ADVERTS": {
+      return {
+        ...state,
+        searchedAdverts: [],
+        advertsCount: 0,
+        allAdverts: []
       };
     }
     case "TOGGLE_AGENT_CONFIRMATION": {

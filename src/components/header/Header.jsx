@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -10,6 +11,22 @@ import ErrorAlert from "./ErrorAlert";
 import SuccessAlert from "./SuccessAlert";
 
 class Header extends Component {
+  state = {
+    search: ""
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  searchByCityname = e => {
+    e.preventDefault();
+    this.props.history.push(`/search/city/${this.state.search}`);
+    // console.log(this.state);
+  };
+
   logoutUser = e => {
     e.preventDefault();
     this.props.logMeOut();
@@ -32,9 +49,9 @@ class Header extends Component {
   };
 
   render() {
+    // console.log(this.props.history);
     return (
       <Fragment>
-        {" "}
         <nav className="navbar navbar-light navbar-expand-lg navbar-light">
           <div className="" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
@@ -93,6 +110,25 @@ class Header extends Component {
             </ul>
             <ul className="navbar-nav ml-auto"></ul>
           </div>
+          {/* <form
+            className="form-inline ml-auto my-lg-0"
+            onSubmit={e => this.searchByCityname(e)}
+          >
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Input City Name"
+              aria-label="Search"
+              name="search"
+              onChange={this.handleChange}
+            />
+            <button
+              className="btn btn-outline-success my-2 my-sm-0"
+              type="submit"
+            >
+              Search
+            </button>
+          </form> */}
         </nav>
         <ErrorAlert
           error={this.props.error}
@@ -115,8 +151,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
-  logMeOut,
-  clearErrors,
-  clearSuccess
-})(Header);
+export default withRouter(
+  connect(mapStateToProps, {
+    logMeOut,
+    clearErrors,
+    clearSuccess
+  })(Header)
+);
