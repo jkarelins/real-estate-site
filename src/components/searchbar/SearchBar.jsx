@@ -76,14 +76,15 @@ export default class SearchBar extends Component {
     // console.log(this.props);
     return (
       <div className="container mt-3">
-        <div className="card">
-          <div className="card-body">
+        <div className="border border-secondary rounded">
+          <div className="m-3">
             <form
               // className="form-inline"
               onSubmit={e => this.searchByCityname(e)}
             >
-              <div className="row">
-                <div className="col-3">
+              <div className="input-group my-3">
+                <label htmlFor="city" className="col-12">
+                  City Name
                   <input
                     className="form-control"
                     type="search"
@@ -93,8 +94,11 @@ export default class SearchBar extends Component {
                     onChange={this.handleChange}
                     value={this.state.city}
                   />
-                </div>
-                <div className="col-2">
+                </label>
+              </div>
+              <div className="input-group my-3">
+                <label htmlFor="priceFrom" className="col-6">
+                  Minimal Price
                   <input
                     className="form-control"
                     type="number"
@@ -105,8 +109,10 @@ export default class SearchBar extends Component {
                     value={this.state.priceFrom}
                     min="1"
                   />
-                </div>
-                <div className="col-2">
+                </label>
+
+                <label htmlFor="priceTo" className="col-6">
+                  Maximal Price
                   <input
                     className="form-control"
                     type="search"
@@ -117,8 +123,8 @@ export default class SearchBar extends Component {
                     value={this.state.priceTo}
                     min="0"
                   />
-                </div>
-                <div className="col-3 my-auto">
+                </label>
+                <div className="input-group my-3 ml-5">
                   <button
                     type="button"
                     className={`btn btn-sm ${
@@ -137,12 +143,11 @@ export default class SearchBar extends Component {
                   >
                     For Sale
                   </button>
-                </div>
-                <div className="col-2 my-auto">
+
                   <input
                     type="submit"
                     value="Search"
-                    className="btn btn-outline-success"
+                    className="btn btn-outline-success ml-auto"
                   />
                 </div>
               </div>
