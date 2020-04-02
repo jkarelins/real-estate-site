@@ -139,7 +139,7 @@ class ManagerPage extends Component {
                 <PaymentWraper amountInCents={+this.state.amountInEUR * 100} />
               ) : (
                 <div className="row">
-                  <div className="input-group mb-3 col-5">
+                  <div className="input-group mb-3 col-12 col-sm-12 col-lg-5 col-xl-5">
                     <div className="input-group-prepend">
                       <span className="input-group-text">EUR</span>
                     </div>
