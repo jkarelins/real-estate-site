@@ -15,6 +15,7 @@ const FETCH_ONE_ADVERT = "FETCH_ONE_ADVERT";
 const GET_AGENCY_AGENTS = "GET_AGENCY_AGENTS";
 const TOGGLE_AGENT_CONFIRMATION = "TOGGLE_AGENT_CONFIRMATION";
 const GET_MY_ADVERTS = "GET_MY_ADVERTS";
+const CLEAR_SEARCHED_ADVERTS = "CLEAR_SEARCHED_ADVERTS";
 
 const advertCreateSuccess = advert => ({
   type: CREATE_NEW_ADVERT,
@@ -128,12 +129,33 @@ const searchedAdvertsFetchSuccess = adverts => ({
 export const fetchAdvertsBySearchTerm = (
   page,
   searchBy,
-  searchFor
+  searchFor,
+  searchObj
 ) => dispatch => {
+  // console.log(searchObj);
+  let url;
+  if (searchObj) {
+    let { priceFrom, priceTo, forRent, forSale } = searchObj;
+    priceFrom = priceFrom ? `&pricefrom=${priceFrom}` : "";
+    priceTo = priceTo ? `&priceto=${priceTo}` : "";
+    forRent = forRent ? `&forrent=true` : "";
+    forSale = forSale ? `&forsale=true` : "";
+
+    url = `${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}${priceFrom}${priceTo}${forRent}${forSale}`;
+    console.log(url);
+  } else {
+    url = `${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}`;
+    console.log(url);
+  }
   axios
-    .get(`${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}`)
+    .get(url)
     .then(response => {
+      // console.log(response);
       dispatch(searchedAdvertsFetchSuccess(response));
     })
     .catch(err => dispatch(newError(err.response)));
+};
+
+export const clearSearchedAdverts = () => dispatch => {
+  dispatch({ type: CLEAR_SEARCHED_ADVERTS });
 };

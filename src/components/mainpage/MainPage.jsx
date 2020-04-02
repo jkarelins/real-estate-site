@@ -2,25 +2,33 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchAdverts } from "../../actions/advert";
 import AdvertCard from "../advertcard/AdvertCard";
+import SearchBar from "../searchbar/SearchBar";
 
 const initialState = {
   offset: 0,
-  limit: 12
+  limit: 12,
+  noMoreAdverts: false
 };
 class MainPage extends Component {
   state = initialState;
 
   componentDidMount() {
-    if (this.props.allAdverts.length !== 0) {
-      this.setState({
-        ...this.state,
-        offset: this.props.allAdverts.length
-      });
-    } else {
-      this.setState(initialState);
-      this.props.fetchAdverts(this.state.offset);
-      this.setState({ offset: this.state.offset + this.state.limit });
-    }
+    setTimeout(() => {
+      if (this.props.allAdverts.length !== 0) {
+        this.setState({
+          ...this.state,
+          offset: this.props.allAdverts.length,
+          noMoreAdverts: true
+        });
+      } else {
+        this.setState(initialState);
+        this.props.fetchAdverts(this.state.offset);
+        this.setState({
+          offset: this.state.offset + this.state.limit,
+          noMoreAdverts: true
+        });
+      }
+    }, 500);
   }
 
   loadMore = () => {
@@ -45,6 +53,7 @@ class MainPage extends Component {
     } else {
       return (
         <Fragment>
+          <SearchBar history={this.props.history} />
           <div className="row mt-3 d-flex justify-content-center">
             {this.props.allAdverts.map((advert, i) => (
               <AdvertCard advert={advert} key={i} />
@@ -53,7 +62,11 @@ class MainPage extends Component {
 
           <div className="d-flex justify-content-center mt-3 mb-5">
             {this.props.advertsCount <= this.state.offset ? (
-              <p className="text-danger">Sorry, no more advertisements</p>
+              <p className="text-danger">
+                {this.state.noMoreAdverts
+                  ? "Sorry, no more advertisements"
+                  : "Loading..."}
+              </p>
             ) : (
               <button className="btn btn-primary" onClick={this.loadMore}>
                 Load More
