@@ -115,7 +115,6 @@ export const getMyAdverts = () => (dispatch, getState) => {
   axios
     .get(`${baseUrl}/advert/myadvert`)
     .then(response => {
-      // console.log(response.data);
       dispatch(getMyAdvertsSuccess(response.data));
     })
     .catch(err => console.log(err));
@@ -132,7 +131,6 @@ export const fetchAdvertsBySearchTerm = (
   searchFor,
   searchObj
 ) => dispatch => {
-  // console.log(searchObj);
   let url;
   if (searchObj) {
     let { priceFrom, priceTo, forRent, forSale } = searchObj;
@@ -142,15 +140,12 @@ export const fetchAdvertsBySearchTerm = (
     forSale = forSale ? `&forsale=true` : "";
 
     url = `${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}${priceFrom}${priceTo}${forRent}${forSale}`;
-    console.log(url);
   } else {
     url = `${baseUrl}/advert/all?${searchBy}=${searchFor}&offset=${page}`;
-    console.log(url);
   }
   axios
     .get(url)
     .then(response => {
-      // console.log(response);
       dispatch(searchedAdvertsFetchSuccess(response));
     })
     .catch(err => dispatch(newError(err.response)));

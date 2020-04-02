@@ -14,7 +14,7 @@ class MainPage extends Component {
   state = initialState;
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     switch (this.props.match.params.keyword) {
       case "city":
         const { keyword, value } = this.props.match.params;
