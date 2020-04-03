@@ -15,7 +15,9 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 - [PostgresQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/)
 
-# Basic Design mockups for project
+## App Screens
+
+## Basic Design mockups for project
 
 #### Image of Single advertisement page
 
