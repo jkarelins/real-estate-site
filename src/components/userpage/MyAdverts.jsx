@@ -29,6 +29,22 @@ class FavoriteAdverts extends Component {
           </div>
         </div>
       );
+    } else if (
+      !this.props.user.user.agentConfirmedByManager &&
+      this.props.user.user.role === "agencyAgent"
+    ) {
+      return (
+        <div className="container">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                Sorry. Your account is suspended or not confirmed by your
+                manager.
+              </h5>
+            </div>
+          </div>
+        </div>
+      );
     } else {
       if (!this.props.userAdverts) {
         return <h4>Loading...</h4>;
