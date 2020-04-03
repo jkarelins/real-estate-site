@@ -21,8 +21,8 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/manager-agent-roles.gif?raw=true)
 
-- Manager of Company can activate and suspend accounts of company managers.
-- Company Agent can not log in to site, after registration (while manager is not confirmed account)
+- Manager of Company can activate and suspend accounts of company agents.
+- Company Agent can not log in to site, after registration (while manager have not confirmed account)
 - Company Agents can use Company Balance to add new advertisements
 - Company manager can Top Up Balance for all company
 
