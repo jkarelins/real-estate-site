@@ -177,8 +177,8 @@ class SignUpForm extends Component {
                     type="button"
                     className={
                       this.state.error
-                        ? "btn btn-lg btn-danger"
-                        : "btn btn-sm btn-outline-info"
+                        ? "btn btn-lg btn-danger ml-2 mt-1"
+                        : "btn btn-sm btn-outline-info ml-2 mt-1"
                     }
                     onClick={this.showPrivPersMenu}
                   >
@@ -188,8 +188,8 @@ class SignUpForm extends Component {
                     type="button"
                     className={
                       this.state.error
-                        ? "btn btn-lg btn-danger ml-2"
-                        : "btn btn-sm btn-outline-info ml-2"
+                        ? "btn btn-lg btn-danger ml-2 mt-1"
+                        : "btn btn-sm btn-outline-info ml-2 mt-1"
                     }
                     onClick={this.showMenuForCompany}
                   >
