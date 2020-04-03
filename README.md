@@ -7,6 +7,9 @@
 Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
 Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill in form to make online appointment request.
 
+**Disclaimer:**
+This project was merely a learning exercise as well as my first sizeable project delving into React, Redux & other used technologies.
+
 ## Readme Content
 
 - [Technologies Used](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#technologies-used)
