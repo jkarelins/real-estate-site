@@ -13,6 +13,8 @@ This project was merely a learning exercise as well as my first sizeable project
 ## Readme Content
 
 - [Technologies Used](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#technologies-used)
+- [Terms & Conditions](https://github.com/jkarelins/real-estate-site#terms--conditions)
+- [Project Goals](https://github.com/jkarelins/real-estate-site#main-goals-of-this-project)
 - [Installation & Setup Guide](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#installation--setup-guide)
 - [App Screens](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#app-screens)
 - [Basic Mockups for Project](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#basic-mockups-for-project)
@@ -36,7 +38,7 @@ This project was merely a learning exercise as well as my first sizeable project
 
 This project was created in 2 and a half weeks. React Site & API Server was built as Portfolio project, after a Full-Stack Developer cource: [Codaisseur](https://codaisseur.com/).
 
-#### Main goals of this project:
+## Main goals of this project:
 
 - Create Full Stack App independently
   - Using new knowleges from Full Stack course
