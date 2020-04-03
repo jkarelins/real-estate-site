@@ -17,6 +17,8 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ## App Screens
 
+#### User Roles
+
 ![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/manager-agent-roles.gif?raw=true)
 
 - Manager of Company can activate and suspend accounts of company managers.
@@ -24,13 +26,23 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 - Company Agents can use Company Balance to add new advertisements
 - Company manager can Top Up Balance for all company
 
+#### Top Up Balance using Stripe
+
 ![Top Up Balance using Stripe](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/top-up-balance-stripe.gif?raw=true)
+
+#### One step to add your Advertisement
 
 ![One step to add your Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/Easy-to-add-advert.gif)
 
+#### Upload Images to your Advertisement
+
 ![Upload Images to your Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/image-upload.gif?raw=true)
 
+#### Add Extras to your Advertisement & Check finished Advertisement
+
 ![Add Extras to your Advertisement & Check finished Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/add-extras+overview.gif?raw=true)
+
+#### Check Main Page & Search for Advertisements
 
 ![Check Main Page & Search for Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/main-page&search.gif?raw=true)
 
