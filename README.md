@@ -7,6 +7,14 @@
 Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
 Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill in form to make online appointment request.
 
+## Readme Content
+
+- [Technologies Used](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#technologies-used)
+- [Installation & Setup Guide](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#installation--setup-guide)
+- [App Screens](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#app-screens)
+- [Basic Mockups for Project](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#basic-mockups-for-project)
+- [Datastructure for db](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#datastructure-for-db)
+
 ## Technologies Used
 
 - [React](https://reactjs.org/)
@@ -114,7 +122,7 @@ city view/nature view / cannal view
 air conditioner
 bath
 
-## User
+#### User
 
 username: TEXT,
 password: TEXT,
@@ -130,12 +138,13 @@ phoneNumber: Text,
 Used to make a new appointment:
 
 Each calendar event has:
--hasOne Customer
--hasOne Seller
--date: Date
--time: time
--message: TEXT
--customer PhoneNumber
--customer Email
--canceledByCustomer: Boolean
--canceledBySeller: Boolean
+
+- hasOne Customer
+- hasOne Seller
+- date: Date
+- time: time
+- message: TEXT
+- customer PhoneNumber
+- customer Email
+- canceledByCustomer: Boolean
+- canceledBySeller: Boolean
