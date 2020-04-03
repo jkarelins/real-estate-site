@@ -1,11 +1,21 @@
-# What's this project is about
+# Real Estate React client 🏘️
 
-- [Deployed Version](https://desolate-refuge-17574.herokuapp.com/)
+## What's this project is about
+
+- [🔥 Deployed Version 🔥](https://desolate-refuge-17574.herokuapp.com/)
 
 Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
-Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill form to make online appointment request.
+Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill in form to make online appointment request.
 
-# Technologies Used
+## Readme Content
+
+- [Technologies Used](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#technologies-used)
+- [Installation & Setup Guide](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#installation--setup-guide)
+- [App Screens](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#app-screens)
+- [Basic Mockups for Project](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#basic-mockups-for-project)
+- [Datastructure for db](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#datastructure-for-db)
+
+## Technologies Used
 
 - [React](https://reactjs.org/)
 - [Redux](https://redux.js.org/)
@@ -14,6 +24,25 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 - [Express](https://expressjs.com/)
 - [PostgresQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/)
+- [react-moment](https://github.com/headzoo/react-moment#readme)
+- [Leaflet](https://leafletjs.com/)
+- [Cloudinary](https://cloudinary.com/)
+- [Cloudinary-React](https://cloudinary.com/documentation/react_integration)
+
+## Installation & Setup Guide
+
+- git clone git@github.com:jkarelins/real-estate-site.git
+- cd real-estate-site
+- npm install
+- npm run start
+
+**_To run on local machine, API server should run on same local machine, using port: 4000_**
+
+- API server link: - [API server](https://github.com/jkarelins/real-estate-server)
+
+## Deployment Guide
+
+**_Before deployment API link should be changed in actions, and on payment page(CheckoutForm.jsx)._**
 
 ## App Screens
 
@@ -46,7 +75,7 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ![Check Main Page & Search for Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/main-page&search.gif?raw=true)
 
-## Basic Design mockups for project
+## Basic Mockups for Project
 
 #### Image of Single advertisement page
 
@@ -56,31 +85,6 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ![Image of Search Page](https://github.com/jkarelins/real-estate-site/blob/master/images/Search_page.png?raw=true)
 
-#### Top Visited Advertisements
-
-![Top Visited Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/Top_rated_real_estate.png?raw=true)
-
-## Advertisements
-
-#### Sell
-
-- Flat
-- House
-- Garage/Storage
-- New Projects
-
-#### For Rent
-
-- Flat
-- House
-- Garage/Storage
-
-## Calendar to view Real Estate - make appointment
-
-- Fill form
-- Client & company receives e-mails
-- If Company confirm appointment -> customer receive second email
-
 ---
 
 # Datastructure for db
@@ -89,26 +93,26 @@ Buyer of real estate can find contacts of seller. In case seller enabled online 
 
 ![Advertisement data structure](https://github.com/jkarelins/real-estate-site/blob/master/images/advert-data-table.png?raw=true)
 
--isForSale: Boolean,
--isForRent: Boolean,
--realEstateType: TEXT - can select from categories
+- isForSale: Boolean,
+- isForRent: Boolean,
+- realEstateType: TEXT - can select from categories
 
--adress
--postcode
--city
--price
--Year of construction
--year of last renovation
--Living space
--Number of rooms/bedrooms/bathrooms
--description
--Status: Available/sold
--Energy label
--Heating
--Warm water - Boiler/central
--Location Description
--Garden - optional
--Type of parking
+- adress
+- postcode
+- city
+- price
+- Year of construction
+- year of last renovation
+- Living space
+- Number of rooms/bedrooms/bathrooms
+- description
+- Status: Available/sold
+- Energy label
+- Heating
+- Warm water - Boiler/central
+- Location Description
+- Garden - optional
+- Type of parking
 
 Extras(especially for rent):
 e.g.:
@@ -118,7 +122,7 @@ city view/nature view / cannal view
 air conditioner
 bath
 
-## User
+#### User
 
 username: TEXT,
 password: TEXT,
@@ -134,16 +138,13 @@ phoneNumber: Text,
 Used to make a new appointment:
 
 Each calendar event has:
--hasOne Customer
--hasOne Seller
--date: Date
--time: time
--message: TEXT
--customer PhoneNumber
--customer Email
--canceledByCustomer: Boolean
--canceledBySeller: Boolean
 
-# Abbreviations
-
-RE - real estate
+- hasOne Customer
+- hasOne Seller
+- date: Date
+- time: time
+- message: TEXT
+- customer PhoneNumber
+- customer Email
+- canceledByCustomer: Boolean
+- canceledBySeller: Boolean
