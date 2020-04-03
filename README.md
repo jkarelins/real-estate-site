@@ -32,6 +32,27 @@ This project was merely a learning exercise as well as my first sizeable project
 - [Cloudinary](https://cloudinary.com/)
 - [Cloudinary-React](https://cloudinary.com/documentation/react_integration)
 
+## Terms & Conditions
+
+This project was created in 2 and a half weeks. React Site & API Server was built as Portfolio project, after a Full-Stack Developer cource: [Codaisseur](https://codaisseur.com/).
+
+#### Main goals of this project:
+
+- Create Full Stack App independently
+  - Using new knowleges from Full Stack course
+  - Finding and using new technologies for specific tasks
+- Brainstorm idea
+- Create Wireframes & Datastructure
+- Train Git Usage
+  - Work on different branches
+  - Create regular PR
+  - Write a small summary when you make a PR
+  - Create regular commits
+  - Make sure latest working version is always on the master branch
+- Finish the exististing functionality and polish
+- Style Project
+- Deploy project
+
 ## Installation & Setup Guide
 
 - git clone git@github.com:jkarelins/real-estate-site.git
