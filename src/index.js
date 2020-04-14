@@ -2,13 +2,26 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
+import ReactGA from "react-ga";
+
+import { createBrowserHistory } from "history";
+const trackingId = "UA-161722256-1";
+ReactGA.initialize(trackingId);
+
+const history = createBrowserHistory();
+// Initialize google analytics page view tracking
+history.listen((location) => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
+
 ReactDOM.render(
-  <BrowserRouter>
+  <Router history={history}>
     <App />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 
