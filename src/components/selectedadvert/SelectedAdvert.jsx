@@ -24,6 +24,9 @@ class SelectedAdvert extends Component {
     if (this.props.user && this.props.advert) {
       this.props.checkAppointment();
     }
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    });
   }
 
   likeAdvert = () => {
@@ -31,11 +34,11 @@ class SelectedAdvert extends Component {
     this.props.likeAdvert(id);
   };
 
-  cancelAppointment = id => {
+  cancelAppointment = (id) => {
     this.props.cancelAppointment(id);
   };
 
-  numberWithSpaces = x => {
+  numberWithSpaces = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
@@ -149,10 +152,10 @@ class SelectedAdvert extends Component {
       const { id } = this.props.advert;
       if (this.props.myAdvertIds.includes(id)) {
         const mySelectedAdvert = this.props.myAdverts.find(
-          advert => advert.id === id
+          (advert) => advert.id === id
         );
         const activeAppointments = mySelectedAdvert.advert_appointments
-          .filter(appCon => {
+          .filter((appCon) => {
             if (appCon) {
               if (appCon.appointment.status === "published") {
                 return true;
@@ -160,9 +163,9 @@ class SelectedAdvert extends Component {
             }
             return false;
           })
-          .map(appCon => appCon.appointment);
+          .map((appCon) => appCon.appointment);
         const canceledAppointments = mySelectedAdvert.advert_appointments
-          .filter(appCon => {
+          .filter((appCon) => {
             if (appCon) {
               if (appCon.appointment.status === "canceled") {
                 return true;
@@ -170,7 +173,7 @@ class SelectedAdvert extends Component {
             }
             return false;
           })
-          .map(appCon => appCon.appointment);
+          .map((appCon) => appCon.appointment);
 
         return (
           <div className="container mt-3">
@@ -272,15 +275,15 @@ function mapStateToProps(state) {
       myAdverts: state.advertReducer.myAdverts,
       myAdvertIds: state.advertReducer.myAdvertIds,
       liked: state.likeReducer.likedAdverts.find(
-        advert => advert.advertId === state.advertReducer.selectedAdvert.id
+        (advert) => advert.advertId === state.advertReducer.selectedAdvert.id
       ),
       isAppointment: state.appointmentReducer.checkedAppointment
         ? state.appointmentReducer.checkedAppointment.found
-        : true
+        : true,
     };
   }
   return {
-    user: state.userReducer
+    user: state.userReducer,
   };
 }
 
@@ -288,5 +291,5 @@ export default connect(mapStateToProps, {
   fetchAdvert,
   likeAdvert,
   checkAppointment,
-  cancelAppointment
+  cancelAppointment,
 })(SelectedAdvert);
