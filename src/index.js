@@ -6,6 +6,7 @@ import { Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import ReactGA from "react-ga";
+import 'font-awesome/css/font-awesome.min.css';
 
 import { createBrowserHistory } from "history";
 const trackingId = "UA-161722256-1";

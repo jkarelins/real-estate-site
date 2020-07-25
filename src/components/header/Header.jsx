@@ -52,8 +52,8 @@ class Header extends Component {
     // console.log(this.props.history);
     return (
       <Fragment>
-        <nav className="navbar navbar-light navbar-expand-lg navbar-light">
-          <div className="" id="navbarSupportedContent">
+        <nav className="navbar navbar-expand-lg fixed-top justify-content-end d-none d-md-flex">
+          <div className="navbarLinkContainer" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               {this.props.user ? (
                 <Fragment>
@@ -86,6 +86,9 @@ class Header extends Component {
                     <a className="text-link" onClick={this.logoutUser} href="/">
                       Logout
                     </a>
+                  </li>
+                  <li className="nav-item mr-2 my-2">
+                    <i className="fa fa-bars" aria-hidden="true"></i>
                   </li>
                 </Fragment>
               ) : (
@@ -130,6 +133,7 @@ class Header extends Component {
             </button>
           </form> */}
         </nav>
+        <div style={{height:"100px"}}></div>
         <ErrorAlert
           error={this.props.error}
           clearErrors={this.props.clearErrors}

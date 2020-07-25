@@ -1,10 +1,17 @@
 nav {
-  background-color: #dce3ee;
+  background:linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.4) 75%);
+}
+
+.navbarLinkContainer{
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-right: 2vw;
 }
 
 .text-link {
   color: #3b3355;
   text-decoration: none;
+  margin: 0 .5vw;
   transition: all 0.25s;
 }
 
