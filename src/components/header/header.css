@@ -1,5 +1,5 @@
 nav {
-  background:linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.4) 75%);
+  background:linear-gradient(to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.6) 75%);
 }
 
 .navbarLinkContainer{
@@ -9,14 +9,26 @@ nav {
 }
 
 .text-link {
-  color: #3b3355;
-  text-decoration: none;
+  color: #360000;
+  padding-bottom: 0vh;
+  border-bottom: #360000 solid 3px;
   margin: 0 .5vw;
-  transition: all 0.25s;
+  transition: all 0.2s;
 }
 
 .text-link:hover {
   text-decoration: none;
-  color: #000505;
-  font-weight: 900;
+  color: #DC143C;
+  padding-bottom: 1vh;
+  border-bottom: #DC143C solid 3px;
+  transition: all 0.2s;
+}
+
+.nav-item {
+  padding-bottom: 0vh;
+}
+
+.nav-item:hover {
+
+  transition: all 0.2s;
 }
