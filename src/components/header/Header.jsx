@@ -87,9 +87,9 @@ class Header extends Component {
                       Logout
                     </a>
                   </li>
-                  <li className="nav-item mr-2 my-2">
+                  {/* <li className="nav-item mr-2 my-2">
                     <i className="fa fa-bars" aria-hidden="true"></i>
-                  </li>
+                  </li> */}
                 </Fragment>
               ) : (
                 <Fragment>
