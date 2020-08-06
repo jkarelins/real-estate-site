@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logMeOut } from "../../actions/user";
 import { clearErrors, clearSuccess } from "../../actions/error";
+
+import DesktopMenu from "./DesktopMenu";
+import MobileMenu from './MobileMenu';
 
 import "./header.css";
 import ErrorAlert from "./ErrorAlert";
@@ -12,7 +14,10 @@ import SuccessAlert from "./SuccessAlert";
 
 class Header extends Component {
   state = {
-    search: ""
+    search: "",
+    scrolling: false,
+    prevScrollValue: 0, 
+    scrollDirection: false
   };
 
   handleChange = e => {
@@ -24,7 +29,6 @@ class Header extends Component {
   searchByCityname = e => {
     e.preventDefault();
     this.props.history.push(`/search/city/${this.state.search}`);
-    // console.log(this.state);
   };
 
   logoutUser = e => {
@@ -48,91 +52,38 @@ class Header extends Component {
     }
   };
 
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+  };
+
+  componentWillUnmount = () => {
+      window.removeEventListener('scroll', this.handleScroll);
+  };
+
+  handleScroll = (event) => {
+    if((window.scrollY - 5 > this.state.prevScrollValue) && (!this.state.scrollDirection || this.state.scrollDirection==='UP')){
+      // console.log('scrolling down');
+      this.setState({
+        scrollDirection: 'DOWN',
+        // prevScrollValue: window.scrollY
+      });
+    } else if((window.scrollY + 5 < this.state.prevScrollValue) && (!this.state.scrollDirection || this.state.scrollDirection==='DOWN')) {
+      // console.log('scrolling up');
+      this.setState({
+        scrollDirection: 'UP',
+        // prevScrollValue: window.scrollY
+      });
+    } 
+    this.setState({prevScrollValue: window.scrollY})
+  };
+
   render() {
-    // console.log(this.props.history);
     return (
       <Fragment>
-        <nav className="navbar navbar-expand-lg fixed-top justify-content-end d-none d-md-flex">
-          <div className="navbarLinkContainer" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              {this.props.user ? (
-                <Fragment>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/favorites">
-                      My Favorite Adverts
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/myadverts">
-                      My Adverts
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/appointment">
-                      My Appointments
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/user">
-                      My Account
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <a className="text-link" onClick={this.logoutUser} href="/">
-                      Logout
-                    </a>
-                  </li>
-                  {/* <li className="nav-item mr-2 my-2">
-                    <i className="fa fa-bars" aria-hidden="true"></i>
-                  </li> */}
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/login">
-                      Login
-                    </Link>
-                  </li>
-                  <li className="nav-item mr-2 my-2">
-                    <Link className="text-link" to="/register">
-                      Register
-                    </Link>
-                  </li>
-                </Fragment>
-              )}
-            </ul>
-            <ul className="navbar-nav ml-auto"></ul>
-          </div>
-          {/* <form
-            className="form-inline ml-auto my-lg-0"
-            onSubmit={e => this.searchByCityname(e)}
-          >
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Input City Name"
-              aria-label="Search"
-              name="search"
-              onChange={this.handleChange}
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form> */}
-        </nav>
+        {/* Desktop menu */}
+        <DesktopMenu scrollDirection={this.state.scrollDirection} user={this.state.user} logoutUser={this.logoutUser} />
+        {/* Mobile menu */}
+        <MobileMenu scrollDirection={this.state.scrollDirection} />
         <div style={{height:"100px"}}></div>
         <ErrorAlert
           error={this.props.error}

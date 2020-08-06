@@ -1,5 +1,20 @@
-nav {
-  background:linear-gradient(to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.6) 75%);
+.mainNav {
+  /* background:linear-gradient(to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.6) 75%); */
+  background: #A28089;
+  position: fixed;
+  width: 100vw;
+  z-index: 999;
+  height: 60px;
+}
+
+.navVisible {
+  top:0px;
+  transition: all 0.5s;
+}
+
+.navHidden {
+  top:-60px;
+  transition: all 0.5s;
 }
 
 .navbarLinkContainer{
@@ -9,19 +24,19 @@ nav {
 }
 
 .text-link {
-  color: #360000;
-  padding-bottom: 0vh;
-  border-bottom: #360000 solid 3px;
+  color: #EDF7F6;
+  padding-bottom: 1vh;
   margin: 0 .5vw;
   transition: all 0.2s;
 }
 
 .text-link:hover {
   text-decoration: none;
-  color: #DC143C;
-  padding-bottom: 1vh;
-  border-bottom: #DC143C solid 3px;
-  transition: all 0.2s;
+  padding-bottom: 0vh;
+  color: #EDF7F6;
+  border-bottom: #EDF7F6 solid 3px;
+  transition: all 0.4s;
+  opacity: 0.6;
 }
 
 .nav-item {
