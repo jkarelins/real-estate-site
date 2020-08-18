@@ -4,6 +4,8 @@ import { fetchAdverts } from "../../actions/advert";
 import AdvertCard from "../advertcard/AdvertCard";
 import SearchBar from "../searchbar/SearchBar";
 
+import './mainpage.css'
+
 const initialState = {
   offset: 0,
   limit: 12,
@@ -68,8 +70,8 @@ class MainPage extends Component {
                     : "Loading..."}
                 </p>
               ) : (
-                <button className="btn btn-primary" onClick={this.loadMore} style={{overflowAnchor: 'none'}}>
-                  Load More
+                <button className="btn btn-primary mt-3 px-5" onClick={this.loadMore} style={{overflowAnchor: 'none'}}>
+                  LOAD MORE
                 </button>
               )}
             </div>
