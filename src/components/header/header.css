@@ -49,5 +49,6 @@
 
 .mobileLink {
   font-size: 20px;
-  color: #EDF7F6
+  color: #EDF7F6;
+  font-weight: bold;
 }

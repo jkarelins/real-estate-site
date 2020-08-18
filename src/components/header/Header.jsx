@@ -77,9 +77,9 @@ class Header extends Component {
     return (
       <Fragment>
         {/* Desktop menu */}
-        <DesktopMenu scrollDirection={this.state.scrollDirection} user={this.state.user} logoutUser={this.logoutUser} />
+        <DesktopMenu scrollDirection={this.state.scrollDirection} user={this.props.user} logoutUser={this.logoutUser} />
         {/* Mobile menu */}
-        <MobileMenu scrollDirection={this.state.scrollDirection} user={this.state.user} logoutUser={this.logoutUser} />
+        <MobileMenu scrollDirection={this.state.scrollDirection} user={this.props.user} logoutUser={this.logoutUser} />
         <div style={{height:"100px"}}></div>
         <ErrorAlert
           error={this.props.error}
