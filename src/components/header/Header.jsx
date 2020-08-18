@@ -62,16 +62,12 @@ class Header extends Component {
 
   handleScroll = (event) => {
     if((window.scrollY - 5 > this.state.prevScrollValue) && (!this.state.scrollDirection || this.state.scrollDirection==='UP')){
-      // console.log('scrolling down');
       this.setState({
         scrollDirection: 'DOWN',
-        // prevScrollValue: window.scrollY
       });
     } else if((window.scrollY + 5 < this.state.prevScrollValue) && (!this.state.scrollDirection || this.state.scrollDirection==='DOWN')) {
-      // console.log('scrolling up');
       this.setState({
         scrollDirection: 'UP',
-        // prevScrollValue: window.scrollY
       });
     } 
     this.setState({prevScrollValue: window.scrollY})

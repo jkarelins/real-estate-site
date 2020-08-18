@@ -81,22 +81,24 @@ class MainPage extends Component {
     } else {
       return (
         <Fragment>
-          <div className="row mt-3 d-flex justify-content-center">
-            {this.props.allAdverts.map((advert, i) => {
-              if (advert.advert_images && advert.advert_images.length !== 0) {
-                advert.image = advert.advert_images[0].image.url;
-              }
-              return <AdvertCard advert={advert} key={i} />;
-            })}
-          </div>
-          <div className="col-12 mt-3 mb-5 text-center">
-            {this.props.advertsCount <= this.state.offset ? (
-              <p className="text-danger">Sorry, no more advertisements</p>
-            ) : (
-              <button className="btn btn-primary" onClick={this.loadMore}>
-                Load More
-              </button>
-            )}
+          <div className="container">
+            <div className="row mt-3 d-flex justify-content-center">
+              {this.props.allAdverts.map((advert, i) => {
+                if (advert.advert_images && advert.advert_images.length !== 0) {
+                  advert.image = advert.advert_images[0].image.url;
+                }
+                return <AdvertCard advert={advert} key={i} />;
+              })}
+            </div>
+            <div className="col-12 mt-3 mb-5 text-center">
+              {this.props.advertsCount <= this.state.offset ? (
+                <p className="text-danger">Sorry, no more advertisements</p>
+              ) : (
+                <button className="btn btn-primary" onClick={this.loadMore}>
+                  Load More
+                </button>
+              )}
+            </div>
           </div>
         </Fragment>
       );

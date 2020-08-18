@@ -144,7 +144,7 @@ export default class SearchBar extends Component {
               <input
                 type="submit"
                 value="Search"
-                className="btn btn-outline-success ml-2"
+                className="btn btn-outline-primary ml-2"
               />
             </div>
           </div>

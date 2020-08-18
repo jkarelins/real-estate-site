@@ -47,7 +47,7 @@ class MainPage extends Component {
     if (!this.props.allAdverts) {
       return (
         <div>
-          <h4>Main page. Sorry no events yet. Be first to add one.</h4>
+          <h4>Main page. Sorry no advertisements yet. Be first to add one.</h4>
         </div>
       );
     } else {
