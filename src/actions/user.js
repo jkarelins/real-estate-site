@@ -10,17 +10,26 @@ const ADD_EXTRA_ADVERTS = "ADD_EXTRA_ADVERTS";
 
 let baseUrl = "";
 
-if (process.env.NODE_ENV === "development") {
-  baseUrl = "http://localhost:4000";
-} else {
+// if (process.env.NODE_ENV === "development") {
+//   baseUrl = "http://localhost:4000";
+// } else {
   baseUrl = "https://shielded-journey-92023.herokuapp.com";
-}
+// }
 
 const userCreateError = error => {
-  return {
-    type: USER_ACTION_ERROR,
-    error: error.data.message
-  };
+  // console.log(error)
+  if (typeof error == 'string'){
+    return {
+      type: USER_ACTION_ERROR,
+      error: error
+    };
+  } else {
+    return {
+      type: USER_ACTION_ERROR,
+      error: error.data.message
+    };
+  }
+  
 };
 
 const userCreateSuccess = user => ({
@@ -50,7 +59,9 @@ export const loginUser = data => dispatch => {
       dispatch(userLoginSuccess(response.data));
       dispatch(clearErrors());
     })
-    .catch(err => dispatch(userCreateError(err.response)));
+    .catch(err => {
+      // console.log(err);
+      dispatch(userCreateError(err.response))});
 };
 
 const userTicketsFetchSuccess = user => ({
