@@ -7,7 +7,7 @@ export default class ErrorAlert extends Component {
         {this.props.error ? (
           this.props.error.actionErr ? (
             <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
+              <div className="col-12 col-md-6">
                 <div className="alert alert-warning" role="alert">
                   {this.props.error.actionErr}
                   <button
@@ -23,7 +23,7 @@ export default class ErrorAlert extends Component {
             </div>
           ) : this.props.error.userErr ? (
             <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
+              <div className="col-12 col-md-6">
                 <div className="alert alert-danger" role="alert">
                   {this.props.error.userErr}
                   <button
@@ -39,7 +39,7 @@ export default class ErrorAlert extends Component {
             </div>
           ) : (
             <div className="mt-2 d-flex justify-content-center">
-              <div className="col-6">
+              <div className="col-12 col-md-6">
                 <div className="alert alert-warning" role="alert">
                   Unexpected error. Please contact us: technical@support.com
                   <button

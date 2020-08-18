@@ -40,7 +40,7 @@ class LoginForm extends Component {
     return (
       <Fragment>
         <div className="d-flex flex-row justify-content-center mt-5">
-          <div className="col-10 col-md-8 col-lg-6 col-xl-4">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-3">
             <div className="card p-5">
               <h4>Login</h4>
               <form onSubmit={this.login}>

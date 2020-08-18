@@ -10,11 +10,11 @@ export default class AdvertCard extends Component {
     const { advert } = this.props;
     const advertImage =
       advert.image ||
-      "https://res.cloudinary.com/dpjzmbojz/image/upload/v1585304394/No_image_3x4.svg_dqj5vw.png";
+      "https://res.cloudinary.com/dpjzmbojz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1597782723/No_image_3x4.svg_dqj5vw.png";
 
     return (
-      <div className="col-12 col-md-6 col-lg-4 col-xl-3 mt-3">
-        <div className="card">
+      <div className="col-12 col-md-6 col-lg-4 mt-3">
+        <div className="card h-100">
           <img
             className="card-img-top"
             style={{ maxHeight: "30vh", objectFit: "cover" }}
@@ -23,8 +23,8 @@ export default class AdvertCard extends Component {
               advert.address
             }, ${advert.city}, ${advert.postcode}`}
           />
-          <div className="card-body">
-            <h5 className="card-title">
+          <div className="card-body d-flex flex-column">
+            <h5 className="card-title mt-auto">
               {advert.address}, {advert.city}
             </h5>
             <h6 className="card-subtitle mb-2 text-muted">{advert.postcode}</h6>
@@ -33,7 +33,7 @@ export default class AdvertCard extends Component {
               {advert.isForRent ? "EUR/month" : "EUR"}
             </p>
             <Link to={`/advert/${advert.id}`} className="btn btn-info">
-              OPEN
+              READ MORE
             </Link>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default class SuccessAlert extends Component {
       <div>
         {this.props.success ? (
           <div className="mt-2 d-flex justify-content-center">
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <div className="alert alert-success" role="alert">
                 {this.props.success.text}
                 <button

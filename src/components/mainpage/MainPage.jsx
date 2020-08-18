@@ -60,7 +60,6 @@ class MainPage extends Component {
                 <AdvertCard advert={advert} key={i} />
               ))}
             </div>
-
             <div className="d-flex justify-content-center mt-3 mb-5">
               {this.props.advertsCount <= this.state.offset ? (
                 <p className="text-danger">
@@ -69,7 +68,7 @@ class MainPage extends Component {
                     : "Loading..."}
                 </p>
               ) : (
-                <button className="btn btn-primary" onClick={this.loadMore}>
+                <button className="btn btn-primary" onClick={this.loadMore} style={{overflowAnchor: 'none'}}>
                   Load More
                 </button>
               )}
