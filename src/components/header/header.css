@@ -44,6 +44,10 @@
 }
 
 .nav-item:hover {
-
   transition: all 0.2s;
+}
+
+.mobileLink {
+  font-size: 20px;
+  color: #EDF7F6
 }

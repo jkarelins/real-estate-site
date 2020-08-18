@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react';
+import { Link } from "react-router-dom";
+
 
 export default class MobileMenu extends Component {
   state = {
@@ -30,20 +32,61 @@ export default class MobileMenu extends Component {
             <i className="fa fa-bars" style={{fontSize: '40px', color: '#EDF7F6'}}></i>
           </li>
         </ul>
-        <ul className="navbar-nav mr-auto" style={{marginTop: `-${this.state.margin}vh`}}>
-          <li className="nav-item mr-2 my-2">
-            <span style={{fontSize: '40px', color: '#EDF7F6'}}>Home</span>
-          </li>
-          <li className="nav-item mr-2 my-2">
-            <span style={{fontSize: '40px', color: '#EDF7F6'}}>User</span>
-          </li>
+        <ul className="navbar-nav mr-auto" style={{marginTop: `-${this.state.margin}vh`}} onClick={this.toggleMenu}>
+          {this.props.user ? (
+            <Fragment>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/favorites">
+                  My Favorite Adverts
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/myadverts">
+                  My Adverts
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/appointment">
+                  My Appointments
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/user">
+                  My Account
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <a className="mobileLink" onClick={this.props.logoutUser} href="/">
+                  Logout
+                </a>
+              </li>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item mr-2 my-2">
+                <Link className="mobileLink" to="/register">
+                  Register
+                </Link>
+              </li>
+            </Fragment>
+          )}
         </ul>
       </nav>
     )
   }
 }
-
-// Add onClick to open mobile menu
-// Add modal to footer
-// Show menu in modal
-// 
