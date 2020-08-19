@@ -94,7 +94,7 @@ class MainPage extends Component {
               {this.props.advertsCount <= this.state.offset ? (
                 <p className="text-danger">Sorry, no more advertisements</p>
               ) : (
-                <button className="btn btn-primary" onClick={this.loadMore}>
+                <button className="btn btn-primary" onClick={this.loadMore} style={{overflowAnchor: 'none'}}>
                   Load More
                 </button>
               )}

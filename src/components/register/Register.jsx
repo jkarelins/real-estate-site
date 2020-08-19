@@ -128,7 +128,7 @@ class SignUpForm extends Component {
           )}
         </div>
         <div className="d-flex flex-row justify-content-center mt-5">
-          <div className="col-10 col-md-8 col-lg-8 col-xl-5">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-3">
             <div className="card p-5">
               <h4>Sign Up</h4>
               <form onSubmit={this.signUpValidation}>
@@ -184,7 +184,7 @@ class SignUpForm extends Component {
                   >
                     I am Private person
                   </button>
-                  <button
+                  {/* <button
                     type="button"
                     className={
                       this.state.error
@@ -194,7 +194,7 @@ class SignUpForm extends Component {
                     onClick={this.showMenuForCompany}
                   >
                     Company Representative
-                  </button>
+                  </button> */}
 
                   {this.state.showPrivateMenu ? (
                     <div className="alert alert-success mt-3" role="alert">
