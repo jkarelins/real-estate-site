@@ -46,6 +46,14 @@ class SelectedAdvert extends Component {
   contentForAll = () => {
     return (
       <div className="container mt-3">
+        <Helmet>
+          <title>
+            Real Estate{this.props.advert.isForRent?" for rent ":" for sale"}{this.props.advert.city?`${this.props.advert.city}`:" The Netherlands"} 
+          </title>
+          {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+          <meta name="description" content={`Real Estate${this.props.advert.isForRent?" for rent":" for sale"}${this.props.advert.city?` ${this.props.advert.city}`:" The Netherlands"}${this.props.advert.address?` ${this.props.advert.address}`:""}${this.props.advert.postcode?`, ${this.props.advert.postcode}`:""}`} />
+          <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
+        </Helmet>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
