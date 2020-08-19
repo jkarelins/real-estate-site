@@ -5,6 +5,8 @@ import {
   clearSearchedAdverts
 } from "../../actions/advert";
 import AdvertCard from "../advertcard/AdvertCard";
+import {Helmet} from "react-helmet";
+
 
 const initialState = {
   offset: 0,
@@ -14,7 +16,7 @@ class MainPage extends Component {
   state = initialState;
 
   componentDidMount() {
-    // console.log(this.props);
+    console.log(this.props);
     switch (this.props.match.params.keyword) {
       case "city":
         const { keyword, value } = this.props.match.params;
@@ -75,12 +77,24 @@ class MainPage extends Component {
     if (!this.props.allAdverts) {
       return (
         <div>
-          <h4>Main page is here. Sorry no events yet!</h4>
+          <h4>Main page is here. Sorry no advertisements yet!</h4>
         </div>
       );
     } else {
       return (
         <Fragment>
+          <Helmet>
+            <title>
+              Real Estate in 
+              {this.props.location.state.city?` ${this.props.location.state.city}`:" The Netherlands"} 
+              {this.props.location.state.forRent?" for rent ":""}
+              {this.props.location.state.forSale?" for sale ":""}
+            </title>
+            {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+            <meta name="description" content={`Cheapest and fastest way to sell, buy and rent real 
+            estate in ${this.props.location.state.city?this.props.location.state.city:"The Netherlands"}.`} />
+            <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
+          </Helmet>
           <div className="container">
             <div className="row mt-3 d-flex justify-content-center">
               {this.props.allAdverts.map((advert, i) => {

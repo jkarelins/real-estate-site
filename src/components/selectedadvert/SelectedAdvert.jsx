@@ -14,6 +14,7 @@ import ViewMap from "../map/ViewMap";
 import ShowAppointment from "../appointment/ShowAppointment";
 import UserCard from "./UserCard";
 import AdvertInformation from "./AdvertInformation";
+import {Helmet} from "react-helmet";
 
 import "./selectedadvert.css";
 
