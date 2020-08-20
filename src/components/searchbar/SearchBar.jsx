@@ -45,7 +45,7 @@ export default class SearchBar extends Component {
       return;
     }
     this.props.history.push({
-      pathname: `/search/city/${this.state.city}`,
+      pathname: `/search/city/${this.state.city.trim()}`,
       state: this.state
     });
   };

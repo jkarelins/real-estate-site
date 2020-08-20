@@ -16,7 +16,7 @@ class MainPage extends Component {
   state = initialState;
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     switch (this.props.match.params.keyword) {
       case "city":
         const { keyword, value } = this.props.match.params;
@@ -81,18 +81,26 @@ class MainPage extends Component {
         </div>
       );
     } else {
+      const forRent = this.props.allAdverts.find(advert => advert.isForRent);
+      const forSale = this.props.allAdverts.find(advert => advert.isForSale);
+
       return (
         <Fragment>
           <Helmet>
             <title>
-              Real Estate in 
-              {this.props.location.state.city?` ${this.props.location.state.city}`:" The Netherlands"} 
-              {this.props.location.state.forRent?" for rent ":""}
-              {this.props.location.state.forSale?" for sale ":""}
+              {this.props.allAdverts.length>0? (
+                `${this.props.allAdverts[0].city} ${forRent?" for rent ":""} ${forSale?" for sale ":""}`
+              ):(
+                ""
+              )}
             </title>
             {/* <link rel="canonical" href="http://mysite.com/example" /> */}
-            <meta name="description" content={`Cheapest and fastest way to sell, buy and rent real 
-            estate in ${this.props.location.state.city?this.props.location.state.city:"The Netherlands"}.`} />
+            {this.props.allAdverts.length>0? (
+                <meta name="description" content={`Cheapest and fastest way to sell, buy and rent real 
+                estate in ${this.props.allAdverts[0].city} in the Netherlands.`} />
+              ):(
+                ""
+              )}
             <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
           </Helmet>
           <div className="container">
