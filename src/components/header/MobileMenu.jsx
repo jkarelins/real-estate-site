@@ -25,10 +25,10 @@ export default class MobileMenu extends Component {
   }
   render() {
     return (
-      <nav className={`mainNav d-inline-block text-right pr-3 d-lg-none 
+      <nav className={`mainNav d-inline-block text-right pr-3 d-md-none 
       ${this.props.scrollDirection==='DOWN'?'navHidden':'navVisible'}`} style={{height:`${this.state.mobileHeight}vh`}}>
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item mr-2 mt-3" onClick={this.toggleMenu}>
+          <li className="nav-item mr-2 mt-2" onClick={this.toggleMenu}>
             <i className="fa fa-bars" style={{fontSize: '40px', color: '#EDF7F6'}}></i>
           </li>
         </ul>
