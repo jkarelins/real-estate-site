@@ -63,7 +63,7 @@ class MainPage extends Component {
             <meta name="description" content="Cheapest and fastest way to sell, buy and rent real estate in the Netherlands." />
             <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
           </Helmet>
-          <SearchBar history={this.props.history} />
+          <SearchBar />
           <div className="container">
             <div className="row mt-3 d-flex justify-content-center">
               {this.props.allAdverts.map((advert, i) => (

@@ -25,31 +25,7 @@ class SearchBar extends Component {
 
   searchByCityname = e => {
     e.preventDefault(); 
-    if (this.state.priceFrom > this.state.priceTo) {
-      this.setState({
-        ...this.state,
-        minMoreThenMax: true
-      });
-      return;
-    }
-    if (!this.state.forRent && !this.state.forSale) {
-      this.setState({
-        ...this.state,
-        noRentNoSale: true
-      });
-      return;
-    }
-    if (this.state.city === "") {
-      this.props.history.push({
-        pathname: `/search/city/any`,
-        state: this.state
-      });
-      return;
-    }
-    this.props.history.push({
-      pathname: `/search/city/${this.state.city.trim()}`,
-      state: this.state
-    });
+    this.props.findMore(this.state);
   };
 
   forSaleOrRent = action => {

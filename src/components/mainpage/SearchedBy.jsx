@@ -2,15 +2,19 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   fetchAdvertsBySearchTerm,
-  clearSearchedAdverts
+  clearSearchedAdverts,
 } from "../../actions/advert";
+
 import AdvertCard from "../advertcard/AdvertCard";
+
 import {Helmet} from "react-helmet";
+import SearchBarSearchPage from "../searchbar/SearchBarSearchPage";
 
 
 const initialState = {
   offset: 0,
-  limit: 12
+  limit: 12,
+  search: {}
 };
 class MainPage extends Component {
   state = initialState;
@@ -20,6 +24,7 @@ class MainPage extends Component {
     switch (this.props.match.params.keyword) {
       case "city":
         const { keyword, value } = this.props.match.params;
+        // console.log(keyword, value, this.props.location.state)
         if (this.props.allAdverts) {
           if (this.props.allAdverts.length !== 0) {
             this.setState({
@@ -51,15 +56,45 @@ class MainPage extends Component {
     }
   }
 
-  loadMore = () => {
-    const { keyword, value } = this.props.match.params;
+  findMore = (search) => {
+    this.setState({...this.state, search});
+    // console.log(search);
+    const {priceFrom, priceTo, forRent, forSale} = search;
+    const city = search.city || 'any';
+
+    this.props.clearSearchedAdverts();
     this.props.fetchAdvertsBySearchTerm(
-      this.state.offset,
-      keyword,
-      value,
-      this.props.location.state
+      0,
+      'city',
+      city,
+      {priceFrom, priceTo, forRent, forSale}
     );
     this.setState({ offset: this.state.offset + this.state.limit });
+  }
+
+  loadMore = () => {
+    if(Object.keys(this.state.search).length === 0){
+      const { keyword, value } = this.props.match.params;
+      this.props.fetchAdvertsBySearchTerm(
+        this.state.offset,
+        keyword,
+        value,
+        this.props.location.state
+      );
+      this.setState({ offset: this.state.offset + this.state.limit });
+    } else {
+      const {priceFrom, priceTo, forRent, forSale} = this.state.search;
+      const city = this.state.search.city || 'any';
+  
+      this.props.fetchAdvertsBySearchTerm(
+        0,
+        'city',
+        city,
+        {priceFrom, priceTo, forRent, forSale}
+      );
+      this.setState({ offset: this.state.offset + this.state.limit });
+    }
+    
   };
 
   numberWithSpaces = x => {
@@ -83,7 +118,6 @@ class MainPage extends Component {
     } else {
       const forRent = this.props.allAdverts.find(advert => advert.isForRent);
       const forSale = this.props.allAdverts.find(advert => advert.isForSale);
-
       return (
         <Fragment>
           <Helmet>
@@ -103,6 +137,7 @@ class MainPage extends Component {
               )}
             <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
           </Helmet>
+          <SearchBarSearchPage findMore={this.findMore} />
           <div className="container">
             <div className="row mt-3 d-flex justify-content-center">
               {this.props.allAdverts.map((advert, i) => {
