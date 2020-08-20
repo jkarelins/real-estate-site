@@ -25,7 +25,7 @@ export default class MobileMenu extends Component {
   }
   render() {
     return (
-      <nav className={`mainNav d-inline-block text-right pr-3 d-md-none 
+      <nav className={`mainNav d-inline-block text-right pr-3 d-lg-none 
       ${this.props.scrollDirection==='DOWN'?'navHidden':'navVisible'}`} style={{height:`${this.state.mobileHeight}vh`}}>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item mr-2 mt-3" onClick={this.toggleMenu}>

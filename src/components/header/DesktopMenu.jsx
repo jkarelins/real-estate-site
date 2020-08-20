@@ -6,7 +6,7 @@ export default class DesktopMenu extends Component {
 
   render() {
     return (
-      <nav className={`mainNav navbar-expand-lg justify-content-end d-none d-md-flex ${this.props.scrollDirection==='DOWN'?'navHidden':'navVisible'}`}>
+      <nav className={`mainNav navbar-expand-lg justify-content-end d-none d-lg-flex ${this.props.scrollDirection==='DOWN'?'navHidden':'navVisible'}`}>
       <div className="navbarLinkContainer" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           {this.props.user ? (
