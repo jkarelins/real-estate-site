@@ -47,8 +47,8 @@ class PrivatePersPage extends Component {
         <div className="col-12 col-sm-12 col-md-12 col-xl-3">
           <div className="card">
             <div className="card-body">
-              <h4>Welcome</h4>
-              <h5 className="card-title">{this.props.user.username}</h5>
+              {/* <h4 className="ml-3">Welcome</h4>
+              <h5  className="card-title">{this.props.user.username}</h5> */}
               <ul className="list-group list-group-flush">
                 {+this.props.user.freeAdvertLimit ? (
                   <li className="list-group-item">

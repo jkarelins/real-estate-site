@@ -2,11 +2,11 @@ import axios from "axios";
 import { newError } from "./error";
 
 let baseUrl = "";
-if (process.env.NODE_ENV === "development") {
-  baseUrl = "http://localhost:4000";
-} else {
+// if (process.env.NODE_ENV === "development") {
+//   baseUrl = "http://localhost:4000";
+// } else {
   baseUrl = "https://shielded-journey-92023.herokuapp.com";
-}
+// }
 
 const FETCH_ALL_EXTRAS = "FETCH_ALL_EXTRAS";
 const ONE_EXTRA_ADDED = "ONE_EXTRA_ADDED";

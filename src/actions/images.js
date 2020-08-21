@@ -2,11 +2,11 @@ import axios from "axios";
 import { newError } from "./error";
 
 let baseUrl = "";
-if (process.env.NODE_ENV === "development") {
-  baseUrl = "http://localhost:4000";
-} else {
+// if (process.env.NODE_ENV === "development") {
+//   baseUrl = "http://localhost:4000";
+// } else {
   baseUrl = "https://shielded-journey-92023.herokuapp.com";
-}
+// }
 
 const ADD_NEW_IMAGE = "ADD_NEW_IMAGE";
 const DELETE_ONE_IMAGE = "DELETE_ONE_IMAGE";
