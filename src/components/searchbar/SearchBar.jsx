@@ -78,7 +78,7 @@ class SearchBar extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div className="mt-3">
+      <div className="">
         <div className="container">
           <form
               className="form-inline"
@@ -163,7 +163,6 @@ class SearchBar extends Component {
               : ""}
           </small>
         </div>
-        <hr className="hrSection" />
       </div>
     );
   }

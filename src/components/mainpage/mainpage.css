@@ -1,3 +1,9 @@
 @media all and (max-width:480px) {
   .btn-block-sm { width: 100%; display:block; }
 }  
+
+.hrSection {
+  border: 1px solid #17a2b8;
+  margin: 3vh 5vw;
+
+}

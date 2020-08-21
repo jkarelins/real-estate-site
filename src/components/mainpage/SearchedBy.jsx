@@ -69,6 +69,7 @@ class MainPage extends Component {
       city,
       {priceFrom, priceTo, forRent, forSale}
     );
+    console.log(this.state.offset, this.props.advertsCount)
     this.setState({ offset: this.state.offset + this.state.limit });
   }
 
@@ -85,15 +86,15 @@ class MainPage extends Component {
     } else {
       const {priceFrom, priceTo, forRent, forSale} = this.state.search;
       const city = this.state.search.city || 'any';
-  
       this.props.fetchAdvertsBySearchTerm(
-        0,
+        this.state.offset,
         'city',
         city,
         {priceFrom, priceTo, forRent, forSale}
       );
       this.setState({ offset: this.state.offset + this.state.limit });
     }
+    console.log(this.state.offset, this.props.advertsCount)
     
   };
 

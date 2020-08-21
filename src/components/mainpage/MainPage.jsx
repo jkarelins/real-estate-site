@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { fetchAdverts } from "../../actions/advert";
 import AdvertCard from "../advertcard/AdvertCard";
 import SearchBar from "../searchbar/SearchBar";
+import FirstMenu from "./FirstMenu";
+
 import {Helmet} from "react-helmet";
 
 import './mainpage.css'
@@ -64,6 +66,9 @@ class MainPage extends Component {
             <meta name="keywords" content="real estate, appartment, house, flat, rent, buy" />
           </Helmet>
           <SearchBar />
+          <hr className="hrSection" />
+          <FirstMenu />
+          <hr className="hrSection" />
           <div className="container">
             <div className="row mt-3 d-flex justify-content-center">
               {this.props.allAdverts.map((advert, i) => (
