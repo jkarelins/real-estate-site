@@ -51,7 +51,7 @@ class FavoriteAdverts extends Component {
       } else {
         if (this.props.userAdverts.length === 0) {
           return (
-            <div className="container mt-3">
+            <div className="container text-center mt-3">
               <h4>You have not added advertisements yet</h4>
               <Link to="/user">Add Adevertisements</Link>
             </div>

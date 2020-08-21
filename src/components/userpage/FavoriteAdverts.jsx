@@ -35,7 +35,7 @@ class FavoriteAdverts extends Component {
       } else {
         if (this.props.favorites.length === 0) {
           return (
-            <div className="contaner mt-3">
+            <div className="container text-center mt-3">
               <h4>You have not added favorite advertisements yet</h4>
             </div>
           );
