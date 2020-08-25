@@ -5,6 +5,8 @@ import PaymentWraper from "../pay/PaymentWraper";
 import Moment from "react-moment";
 import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 
+import './privateperspage.css'
+
 const initialState = {
   topUp: false,
   success: false,
@@ -102,7 +104,9 @@ class PrivatePersPage extends Component {
           </div>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-xl-9">
-          <div className="card">
+          <AddNewAdvert />
+          <hr className="hrSection" />
+          {/* <div className="card">
             <div className="card-body">
               {this.state.success ? (
                 <div className="alert alert-success mt-3" role="alert">
@@ -151,9 +155,7 @@ class PrivatePersPage extends Component {
                 </div>
               )}
             </div>
-          </div>
-          <hr className="my-3" />
-          <AddNewAdvert />
+          </div> */}
         </div>
       </div>
     );

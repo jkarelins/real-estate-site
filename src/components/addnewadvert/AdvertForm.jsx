@@ -5,7 +5,7 @@ export default class AdvertForm extends Component {
     return (
       <Fragment>
         <form onSubmit={this.props.submitNewAdvert}>
-          <div className="input-group my-3">
+          <div className="row pl-3">
             {this.props.formValues.isForSale ? (
               <button
                 className="btn btn-sm btn-success mr-3"
@@ -41,12 +41,20 @@ export default class AdvertForm extends Component {
               </button>
             )}
           </div>
-          <div className="input-group mb-3">
-            <small>Please, Select is it For Sale or For Rent</small>
-          </div>
-          <div className="input-group mb-3">
-            <label htmlFor="price" className="col-6">
-              Price <span className="text-danger">*</span>
+          {!this.props.formValues.isForRent && !this.props.formValues.isForSale ? (
+            <div className="row pl-3 mb-3">
+              <small className="text-danger">Please, Select is it For Sale or For Rent</small>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="row mb-3 mt-3">
+            <label htmlFor="price" className="col-12 col-md-6">
+              Price - {this.props.formValues.isForSale
+                ? "EUR"
+                : this.props.formValues.isForRent
+                ? "EUR/month"
+                : ""} <span className="text-danger">*</span>
               <input
                 type="number"
                 name="price"
@@ -57,13 +65,9 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
                 required
               />
-              {this.props.formValues.isForSale
-                ? "EUR"
-                : this.props.formValues.isForRent
-                ? "EUR/month"
-                : ""}
+              
             </label>
-            <label htmlFor="postcode" className="col-6">
+            <label htmlFor="postcode" className="col-12 col-md-6">
               City Name <span className="text-danger">*</span>
               <input
                 type="text"
@@ -76,8 +80,8 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mb-3">
-            <label htmlFor="postcode" className="col-8">
+          <div className="row mb-3">
+            <label htmlFor="postcode" className="col-12 col-md-8">
               Address <span className="text-danger">*</span>
               <input
                 type="text"
@@ -89,7 +93,7 @@ export default class AdvertForm extends Component {
                 required
               />
             </label>
-            <label htmlFor="postcode" className="col-4">
+            <label htmlFor="postcode" className="col-12 col-md-4">
               Postcode <span className="text-danger">*</span>
               <input
                 type="text"
@@ -102,9 +106,9 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mb-3">
+          <div className="row mb-3">
             <label htmlFor="cionstructionYear" className="col-6">
-              Construction Year
+              Construction Year <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -116,7 +120,7 @@ export default class AdvertForm extends Component {
               />
             </label>
             <label htmlFor="renovationYear" className="col-6">
-              Renovation Year
+              Renovation Year <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -128,8 +132,8 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mb-3">
-            <label htmlFor="sqrMeter" className="col-3">
+          <div className="row mb-3">
+            <label htmlFor="sqrMeter" className="col-6 col-md-3">
               Square Meter <span className="text-danger">*</span>
               <input
                 type="number"
@@ -142,8 +146,8 @@ export default class AdvertForm extends Component {
                 required
               />
             </label>
-            <label htmlFor="cubicMeter" className="col-3">
-              Cubic Meter
+            <label htmlFor="cubicMeter" className="col-6 col-md-3">
+              Cubic Meter <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -154,8 +158,8 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="numberOfRooms" className="col-3">
-              Number of Rooms
+            <label htmlFor="numberOfRooms" className="col-6 col-md-3">
+              Nr. of Rooms <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -166,8 +170,8 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="numberOfBathrooms" className="col-3">
-              Number of Bathrooms
+            <label htmlFor="numberOfBathrooms" className="col-6 col-md-3">
+              Nr. of Bathrooms <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -179,9 +183,9 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mb-3">
-            <label htmlFor="numberOfFloors" className="col-3">
-              Number of Floors
+          <div className="row mb-3">
+            <label htmlFor="numberOfFloors" className="col-6 col-md-3">
+              Number of Floors <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -192,20 +196,20 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="locatedOnFloor" className="col-3">
-              Located on Floor
+            <label htmlFor="locatedOnFloor" className="col-6 col-md-3">
+              Located on Floor <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
                 name="locatedOnFloor"
-                min="1"
+                min="0"
                 step="1"
                 value={this.props.formValues.locatedOnFloor}
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="monthlyPayment" className="col-3">
-              Monthly Payments
+            <label htmlFor="monthlyPayment" className="col-6 col-md-3">
+              Monthly Payments <span className="text-danger">*</span>
               <input
                 type="number"
                 className="form-control"
@@ -216,7 +220,7 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="energyLabel" className="col-3">
+            <label htmlFor="energyLabel" className="col-6 col-md-3">
               Energy Label
               <input
                 type="text"
@@ -229,8 +233,8 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mt-3">
-            <label htmlFor="heating" className="col-6">
+          <div className="row mt-3">
+            <label htmlFor="heating" className="col-12 col-md-6">
               Heating
               <input
                 type="text"
@@ -240,7 +244,7 @@ export default class AdvertForm extends Component {
                 onChange={this.props.handleChange}
               />
             </label>
-            <label htmlFor="warmWater" className="col-6">
+            <label htmlFor="warmWater" className="col-12 col-md-6">
               Warm Water
               <input
                 type="text"
@@ -251,8 +255,8 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="input-group mt-3">
-            <label htmlFor="storage" className="col-6">
+          <div className="row mt-3">
+            <label htmlFor="storage" className="col-12 col-md-6">
               Storage
               <input
                 type="text"
@@ -263,7 +267,7 @@ export default class AdvertForm extends Component {
               />
             </label>
 
-            <label htmlFor="parking" className="col-6">
+            <label htmlFor="parking" className="col-12 col-md-6">
               Parking
               <input
                 type="text"
@@ -274,22 +278,24 @@ export default class AdvertForm extends Component {
               />
             </label>
           </div>
-          <div className="form-group col-12 mt-3">
-            <label htmlFor="description">
-              Description <span className="text-danger">*</span>
-            </label>
-            <textarea
-              className="form-control"
-              id="description"
-              rows="7"
-              name="description"
-              value={this.props.formValues.description}
-              onChange={this.props.handleChange}
-              placeholder="Description"
-              required
-            />
+          <div className="col-12">
+            <div className="row mt-3">
+              <label htmlFor="description">
+                Description <span className="text-danger">*</span>
+              </label>
+              <textarea
+                className="form-control"
+                id="description"
+                rows="7"
+                name="description"
+                value={this.props.formValues.description}
+                onChange={this.props.handleChange}
+                placeholder="Description"
+                required
+              />
+            </div>
           </div>
-          <div className="input-group ml-3">
+          <div className="col-12 mt-3">
             <input className="btn btn-success" type="submit" value="Add New" />
           </div>
         </form>
