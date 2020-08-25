@@ -112,7 +112,7 @@ class MainPage extends Component {
 
     if (!this.props.allAdverts) {
       return (
-        <div>
+        <div className="container">
           <h4>Main page is here. Sorry no advertisements yet!</h4>
         </div>
       );

@@ -31,11 +31,11 @@ export default class DesktopMenu extends Component {
                     My Adverts
                   </Link>
                 </li>
-                <li className="nav-item mr-2 my-2">
+                {/* <li className="nav-item mr-2 my-2">
                   <Link className="text-link" to="/appointment">
                     My Appointments
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item mr-2 my-2">
                   <Link className="text-link" to="/user">
                     My Account

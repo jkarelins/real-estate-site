@@ -50,11 +50,11 @@ export default class MobileMenu extends Component {
                   My Adverts
                 </Link>
               </li>
-              <li className="nav-item mr-2 mt-3">
+              {/* <li className="nav-item mr-2 mt-3">
                 <Link className="mobileLink" to="/appointment">
                   My Appointments
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item mr-2 mt-3">
                 <Link className="mobileLink" to="/user">
                   My Account
