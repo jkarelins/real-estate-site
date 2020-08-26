@@ -2,28 +2,33 @@ import { sitemapBuilder as buildSitemap, paramsApplier as applyParams } from 're
 import routes from './routes';
 import path from 'path'; // add path which will be needed for file write
 import fs from 'fs'; // import file system object
+import axios from "axios";
 
+const baseUrl = 'http://shielded-journey-92023.herokuapp.com';
 const hostname = 'https://desolate-refuge-17574.herokuapp.com/';
 const dest = path.resolve('./public', 'sitemap.xml');
 
 // !!! This function should return array from backend with all advert & all cities we have adverts in!!!!
 // const posts = getPostsForSitemap();
 
-const config = {
-	'/search/city/:cityName': [
-    // !!!!!!!! Make 2x functions to request form backend all cities & all adverts !!! 
-      { cityName: ['haarlem', 'amsterdam'] },
-      // 
-    ],
-};
-	
-// Merge our route paths with config pattern    
-const paths = applyParams(routes, config);
-
-// Generate sitemap and return Sitemap instance
-// paste new paths constant with hostname
-const sitemap = buildSitemap(hostname, paths);
-
-// write sitemap.xml file in /public folder
-// Access the sitemap content by converting it with .toString() method
-fs.writeFileSync(dest, sitemap.toString())
+axios
+.get(`${baseUrl}/seo/cities`)
+.then(cities => {
+  axios
+    .get(`${baseUrl}/seo/ids`)
+    .then(ids => {
+      const config = {
+        '/search/city/:cityName': [
+          { cityName: cities.data },
+        ],
+        '/advert/:id': [
+          { id: ids.data },
+        ],
+      };
+      const paths = applyParams(routes, config);
+      const sitemap = buildSitemap(hostname, paths);
+      fs.writeFileSync(dest, sitemap.toString());
+    })
+    .catch(err => console.log(err));
+})
+.catch(err => console.log(err));
