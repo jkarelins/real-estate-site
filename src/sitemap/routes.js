@@ -1,3 +1,3 @@
-const routes = ['/', '/advert/:id','/search/:keyword/:value'];
+const routes = ['/', '/advert/:id','/search/city/:cityName'];
 
 export default routes;
