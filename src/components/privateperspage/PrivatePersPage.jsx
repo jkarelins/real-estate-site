@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import PaymentWraper from "../pay/PaymentWraper";
+// import PaymentWraper from "../pay/PaymentWraper";
 import Moment from "react-moment";
 import AddNewAdvert from "../addnewadvert/AddNewAdvert";
 

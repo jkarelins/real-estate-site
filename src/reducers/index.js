@@ -7,6 +7,7 @@ import likeReducer from "./likes";
 import appointmentReducer from "./appointment";
 import imageReducer from "./image";
 import extraReducer from "./extra";
+import seoReducer from './seo'
 
 export default combineReducers({
   userReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   likeReducer,
   appointmentReducer,
   imageReducer,
-  extraReducer
+  extraReducer,
+  seoReducer
 });
