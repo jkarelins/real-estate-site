@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
 import {Link} from 'react-router-dom';
+import { fetchAdverts } from "../../actions/advert";
 
-export default class FirstMenu extends Component {
+
+class FirstMenu extends Component {
   render() {
     return (
       <div className="container mt-3">
@@ -32,3 +35,11 @@ export default class FirstMenu extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    popularCities: state.advertReducer.allAdverts,
+  };
+}
+
+export default connect(mapStateToProps, { fetchAdverts })(FirstMenu);
