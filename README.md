@@ -2,8 +2,6 @@
 
 ## What's this project is about
 
-- [🔥 Deployed Version 🔥](https://desolate-refuge-17574.herokuapp.com/)
-
 Real estate for sale & for rent website. Real estate website's visitors can easily filter their searches by type, location, price, and other predefined and custom criteria. Each property goes with a detailed description, community and property features, location, price, and a great image gallery.
 Buyer of real estate can find contacts of seller. In case seller enabled online appointment feature for advertisement - buyer can fill in form to make online appointment request.
 
@@ -12,13 +10,13 @@ This project was merely a learning exercise as well as my first sizeable project
 
 ## Readme Content
 
-- [Technologies Used](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#technologies-used)
-- [Terms & Conditions](https://github.com/jkarelins/real-estate-site#terms--conditions)
-- [Project Goals](https://github.com/jkarelins/real-estate-site#main-goals-of-this-project)
-- [Installation & Setup Guide](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#installation--setup-guide)
-- [App Screens](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#app-screens)
-- [Basic Mockups for Project](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#basic-mockups-for-project)
-- [Datastructure for db](https://github.com/jkarelins/real-estate-site/tree/feat/readme-update#datastructure-for-db)
+- [Technologies Used](https://github.com/followDev/real-estate/tree/feat/readme-update#technologies-used)
+- [Terms & Conditions](https://github.com/followDev/real-estate#terms--conditions)
+- [Project Goals](https://github.com/followDev/real-estate#main-goals-of-this-project)
+- [Installation & Setup Guide](https://github.com/followDev/real-estate/tree/feat/readme-update#installation--setup-guide)
+- [App Screens](https://github.com/followDev/real-estate/tree/feat/readme-update#app-screens)
+- [Basic Mockups for Project](https://github.com/followDev/real-estate/tree/feat/readme-update#basic-mockups-for-project)
+- [Datastructure for db](https://github.com/followDev/real-estate/tree/feat/readme-update#datastructure-for-db)
 
 ## Technologies Used
 
@@ -57,7 +55,7 @@ This project was created in 2 and a half weeks. React Site & API Server was buil
 
 ## Installation & Setup Guide
 
-- git clone git@github.com:jkarelins/real-estate-site.git
+- git clone git@github.com:followDev/real-estate.git
 - cd real-estate-site
 - npm install
 - npm run start
@@ -74,7 +72,7 @@ This project was created in 2 and a half weeks. React Site & API Server was buil
 
 #### User Roles
 
-![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/manager-agent-roles.gif?raw=true)
+![User Roles](https://github.com/followDev/real-estate/blob/master/images/ready-screens/manager-agent-roles.gif?raw=true)
 
 - Manager of Company can activate and suspend accounts of company agents.
 - Company Agent can not log in to site, after registration (while manager have not confirmed account)
@@ -83,33 +81,33 @@ This project was created in 2 and a half weeks. React Site & API Server was buil
 
 #### Top Up Balance using Stripe
 
-![Top Up Balance using Stripe](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/top-up-balance-stripe.gif?raw=true)
+![Top Up Balance using Stripe](https://github.com/followDev/real-estate/blob/master/images/ready-screens/top-up-balance-stripe.gif?raw=true)
 
 #### One step to add your Advertisement
 
-![One step to add your Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/Easy-to-add-advert.gif)
+![One step to add your Advertisement](https://github.com/followDev/real-estate/blob/master/images/ready-screens/Easy-to-add-advert.gif)
 
 #### Upload Images to your Advertisement
 
-![Upload Images to your Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/image-upload.gif?raw=true)
+![Upload Images to your Advertisement](https://github.com/followDev/real-estate/blob/master/images/ready-screens/image-upload.gif?raw=true)
 
 #### Add Extras to your Advertisement & Check finished Advertisement
 
-![Add Extras to your Advertisement & Check finished Advertisement](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/add-extras+overview.gif?raw=true)
+![Add Extras to your Advertisement & Check finished Advertisement](https://github.com/followDev/real-estate/blob/master/images/ready-screens/add-extras+overview.gif?raw=true)
 
 #### Check Main Page & Search for Advertisements
 
-![Check Main Page & Search for Advertisements](https://github.com/jkarelins/real-estate-site/blob/master/images/ready-screens/main-page&search.gif?raw=true)
+![Check Main Page & Search for Advertisements](https://github.com/followDev/real-estate/blob/master/images/ready-screens/main-page&search.gif?raw=true)
 
 ## Basic Mockups for Project
 
 #### Image of Single advertisement page
 
-![Image of Single advertisement page](https://github.com/jkarelins/real-estate-site/blob/master/images/One_Advertisement_page.png?raw=true)
+![Image of Single advertisement page](https://github.com/followDev/real-estate/blob/master/images/One_Advertisement_page.png?raw=true)
 
 #### Image of Search Page
 
-![Image of Search Page](https://github.com/jkarelins/real-estate-site/blob/master/images/Search_page.png?raw=true)
+![Image of Search Page](https://github.com/followDev/real-estate/blob/master/images/Search_page.png?raw=true)
 
 ---
 
@@ -117,7 +115,7 @@ This project was created in 2 and a half weeks. React Site & API Server was buil
 
 #### Advertisement
 
-![Advertisement data structure](https://github.com/jkarelins/real-estate-site/blob/master/images/advert-data-table.png?raw=true)
+![Advertisement data structure](https://github.com/followDev/real-estate/blob/master/images/advert-data-table.png?raw=true)
 
 - isForSale: Boolean,
 - isForRent: Boolean,
@@ -157,7 +155,7 @@ phoneNumber: Text,
 
 #### User roles
 
-![User Roles](https://github.com/jkarelins/real-estate-site/blob/master/images/user-roles-updated.png?raw=true)
+![User Roles](https://github.com/followDev/real-estate/blob/master/images/user-roles-updated.png?raw=true)
 
 ## Calendar
 
